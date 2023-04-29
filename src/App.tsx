@@ -1,14 +1,10 @@
-import LogoAtom from './components/atoms/LogoAtom/LogoAtom'
-
+import HeaderOrganism from './components/organisms/HeaderOrganism/HeaderOrganism'
 import './App.css'
-import ButtonAtom from './components/atoms/ButtonAtom/ButtonAtom'
 
 function App() {
 	return (
 		<div className='App'>
-			<LogoAtom />
-			<ButtonAtom label={'Login'} btnClass='button--login' />
-			<ButtonAtom label={'Get Started'} btnClass='button--register' />
+			<HeaderOrganism />
 		</div>
 	)
 }

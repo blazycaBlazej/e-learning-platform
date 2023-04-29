@@ -1,0 +1,17 @@
+.menu-item {
+	cursor: pointer;
+	transition: color 0.3s linear;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 22px;
+	line-height: 24px;
+	color: #ffffff;
+
+	&:hover {
+		color: #7f56d9;
+	}
+	&:active {
+		color: #7f56d9;
+	}
+}
