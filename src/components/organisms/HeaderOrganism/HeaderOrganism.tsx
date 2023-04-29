@@ -1,5 +1,5 @@
-import LogoAtom from '../../atoms/LogoAtom/LogoAtom'
-import ButtonAtom from '../../atoms/ButtonAtom/ButtonAtom'
+import LogoAtom from '../../atoms/Menu/LogoAtom/LogoAtom'
+import ButtonAtom from '../../atoms/UI/ButtonAtom/ButtonAtom'
 import MenuMolecul from '../../molecules/MenuMolecul/MenuMolecul'
 
 import './HeaderOrganism.scss'
@@ -7,7 +7,7 @@ import './HeaderOrganism.scss'
 const HeaderOrganism = (): JSX.Element => {
 	return (
 		<header className='header'>
-               <div className="header__shadow"></div>
+			
 			<LogoAtom />
 
 			<div className='header__svg'>

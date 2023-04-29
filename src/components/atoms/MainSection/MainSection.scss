@@ -1,0 +1,56 @@
+.main-section {
+	margin: 5.6rem auto 0 auto;
+	max-width: 1614px;
+	width: 100%;
+	display: flex;
+	& &__header {
+		max-width: 982px;
+		font-family: 'Caladea';
+		font-style: normal;
+		font-weight: 700;
+		font-size: 10rem;
+		line-height: 110%;
+		letter-spacing: -0.5px;
+		color: #fff;
+
+		&--violet {
+			color: #bea0ff;
+		}
+	}
+
+	& &__crosses-wrapper {
+		display: inline-block;
+		margin-left: 4.5rem;
+		margin-bottom: 4rem;
+	}
+
+	& &__crosses {
+		display: flex;
+		gap: 3rem;
+	}
+
+	& &__description {
+		font-family: 'Inter';
+		font-style: normal;
+		font-weight: 500;
+		font-size: 2.5rem;
+		line-height: 160%;
+		color: #b0b0d1;
+		max-width: 798px;
+	}
+
+	& &__student {
+		position: relative;
+	}
+
+	& &__student-background {
+		position: absolute;
+		z-index: -1;
+		left: 20rem;
+		top: 5rem;
+		width: 43.6rem;
+		height: 65.9rem;
+		background: rgba(127, 86, 217, 0.5);
+		border-radius: 242.5px;
+	}
+}
