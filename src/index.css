@@ -92,7 +92,9 @@ mark,
 audio,
 video,
 button,
-input {
+input,
+*::after,
+*::before {
 	margin: 0;
 	padding: 0;
 	border: 0;

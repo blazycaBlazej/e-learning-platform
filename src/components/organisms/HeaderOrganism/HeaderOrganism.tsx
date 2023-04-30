@@ -1,4 +1,4 @@
-import LogoAtom from '../../atoms/Menu/LogoAtom/LogoAtom'
+import LogoAtom from '../../atoms/LogoAtom/LogoAtom'
 import ButtonAtom from '../../atoms/UI/ButtonAtom/ButtonAtom'
 import MenuMolecul from '../../molecules/MenuMolecul/MenuMolecul'
 

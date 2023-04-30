@@ -1,5 +1,5 @@
 import './MainSection.scss'
-import Searchbar from './Searchbar/Searchbar'
+import Searchbar from '../../atoms/Searchbar/Searchbar'
 
 const MainSection = (): JSX.Element => {
 	return (
@@ -43,7 +43,9 @@ const MainSection = (): JSX.Element => {
 
 			<div className='main-section__student'>
 				<div className='main-section__student-background'></div>
-				<img src='/assets/student.svg' />
+				<div className='main-section__student-image'>
+					<img src='/assets/student.svg' alt='student' />
+				</div>
 			</div>
 		</section>
 	)

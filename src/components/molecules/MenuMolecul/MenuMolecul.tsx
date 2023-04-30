@@ -1,4 +1,4 @@
-import MenuItemAtom from '../../atoms/Menu/MenuItemAtom/MenuItemAtom'
+import MenuItemAtom from '../../atoms/MenuItemAtom/MenuItemAtom'
 import './MenuMolecul.scss'
 
 const MenuMolecul = (): JSX.Element => {

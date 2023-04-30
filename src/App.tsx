@@ -1,7 +1,8 @@
 import HeaderOrganism from './components/organisms/HeaderOrganism/HeaderOrganism'
 import './App.scss'
 
-import MainSection from './components/atoms/MainSection/MainSection'
+import MainSection from './components/molecules/MainSection/MainSection'
+import SSSwiper from './components/atoms/Swiper/PartnersSwiper'
 
 function App() {
 	return (
@@ -18,6 +19,7 @@ function App() {
 			</div>
 			<HeaderOrganism />
 			<MainSection />
+			<SSSwiper />
 		</div>
 	)
 }

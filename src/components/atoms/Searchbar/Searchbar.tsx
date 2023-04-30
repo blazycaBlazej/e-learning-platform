@@ -1,4 +1,4 @@
-import ButtonAtom from '../../UI/ButtonAtom/ButtonAtom'
+import ButtonAtom from '../UI/ButtonAtom/ButtonAtom'
 import './Searchbar.scss'
 import { IconSearch } from '@tabler/icons-react'
 

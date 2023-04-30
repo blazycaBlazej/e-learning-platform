@@ -42,6 +42,10 @@
 	& &__student {
 		position: relative;
 	}
+	& &__student-image {
+		position: absolute;
+		z-index: 1;
+	}
 
 	& &__student-background {
 		position: absolute;
