@@ -1,6 +1,5 @@
 .menu-item {
 	cursor: pointer;
-	transition: color 0.3s linear;
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 500;
@@ -17,7 +16,7 @@
 	&,
 	&::after,
 	&::before {
-		transition: transform 0.3s linear, color 0.3s linear, background 0.3s linear;
+		transition: transform 0.2s linear, color 0.2s linear, background 0.2s linear;
 	}
 
 	&::after {

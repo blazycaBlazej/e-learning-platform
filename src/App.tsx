@@ -3,6 +3,7 @@ import './App.scss'
 
 import MainSection from './components/molecules/MainSection/MainSection'
 import SSSwiper from './components/atoms/Swiper/PartnersSwiper'
+import CoursesMolecul from './components/molecules/CoursesMolecul/CoursesMolecul'
 
 function App() {
 	return (
@@ -20,6 +21,7 @@ function App() {
 			<HeaderOrganism />
 			<MainSection />
 			<SSSwiper />
+			<CoursesMolecul />
 		</div>
 	)
 }
