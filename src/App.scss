@@ -52,4 +52,29 @@ body {
 		filter: blur(150px);
 		z-index: 2;
 	}
+
+	& &__category-add-ons {
+		position: absolute;
+		z-index: -1;
+		left: 0;
+		top: 3049px;
+	}
+
+	& &__category-add-ons2 {
+		position: absolute;
+		z-index: -1;
+		right: 0;
+		top: 3031px;
+	}
+
+	& &__category-shadow {
+		position: absolute;
+		width: 694px;
+		height: 694px;
+		left: 1506px;
+		top: 2641px;
+
+		background: rgba(61, 92, 255, 0.2);
+		filter: blur(150px);
+	}
 }
