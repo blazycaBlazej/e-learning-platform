@@ -1,6 +1,6 @@
 import HeaderOrganism from './components/organisms/HeaderOrganism/HeaderOrganism'
 import './App.scss'
-
+import FiltrCourseAtom from './components/atoms/FiltrCourseAtom/FiltrCourseAtom'
 import MainSection from './components/molecules/MainSection/MainSection'
 import SSSwiper from './components/atoms/Swiper/PartnersSwiper'
 import CoursesMolecul from './components/molecules/CoursesMolecul/CoursesMolecul'

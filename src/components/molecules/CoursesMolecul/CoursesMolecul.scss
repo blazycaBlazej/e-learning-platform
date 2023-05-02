@@ -1,10 +1,16 @@
 .courses-molecul {
-	margin-top: 22rem;
+	margin-top: 20.7rem;
 
 	max-width: 1614px;
 	width: 100%;
 	margin: auto;
 	gap: 2.7rem;
+
+	& &__header-box {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
 
 	& &__header {
 		font-family: 'Caladea';
@@ -26,5 +32,11 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: 2.7rem;
+	}
+
+	& &__btn-cointainer {
+		display: flex;
+		justify-content: center;
+		margin-top: 10.95rem;
 	}
 }

@@ -1,4 +1,6 @@
-import Course from '../../atoms/Course/Course'
+import Course from '../../atoms/CourseAtom/CourseAtom'
+import FiltrCourseAtom from '../../atoms/FiltrCourseAtom/FiltrCourseAtom'
+import ButtonAtom from '../../atoms/UI/ButtonAtom/ButtonAtom'
 import './CoursesMolecul.scss'
 
 const courses = [
@@ -67,9 +69,12 @@ const courses = [
 const CoursesMolecul = (): JSX.Element => {
 	return (
 		<div className='courses-molecul'>
-			<span className='courses-molecul__header'>
-				Popular <span className='courses-molecul__header--violet'>Courses</span>
-			</span>
+			<div className='courses-molecul__header-box'>
+				<span className='courses-molecul__header'>
+					Popular <span className='courses-molecul__header--violet'>Courses</span>
+				</span>
+				<FiltrCourseAtom />
+			</div>
 
 			<div className='courses-molecul__content'>
 				{courses.map(el => (
@@ -84,6 +89,10 @@ const CoursesMolecul = (): JSX.Element => {
 						evaluation={el.evaluation}
 					/>
 				))}
+			</div>
+
+			<div className="courses-molecul__btn-cointainer">
+				<ButtonAtom label="Explore all Courses" btnClass='button--allCourse'/>
 			</div>
 		</div>
 	)

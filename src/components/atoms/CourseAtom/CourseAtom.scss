@@ -1,4 +1,5 @@
-.course {
+.course-atom {
+	cursor: pointer;
 	display: flex;
 	flex-direction: column;
 	max-width: 52rem;
@@ -10,10 +11,11 @@
 	font-family: 'Inter';
 	font-style: normal;
 	transition: background linear 0.3s;
+	margin-top: 1.3rem;
 
 	&:hover {
 		background: #1e0f3c;
-		.course__image {
+		.course-atom__image {
 			transform: scale(1.2);
 		}
 	}

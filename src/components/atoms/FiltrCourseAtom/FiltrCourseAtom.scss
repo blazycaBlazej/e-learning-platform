@@ -1,0 +1,32 @@
+.filtr-course-atom {
+	display: flex;
+	padding: 1.1rem 1.3rem;
+	align-items: center;
+	background-color: rgba(255, 255, 255, 0.1);
+	border-radius: 49.5px;
+	width: 100%;
+	max-width: 89.9rem;
+
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 156%;
+	color: #ffffff;
+
+	& &__element {
+		cursor: pointer;
+		white-space: nowrap;
+		padding: 2.4rem 4.1rem;
+		border-radius: 46px;
+
+		&:hover,
+		&:active {
+			text-decoration: underline;
+		}
+
+		&--active {
+			background: #7f56d9;
+		}
+	}
+}
