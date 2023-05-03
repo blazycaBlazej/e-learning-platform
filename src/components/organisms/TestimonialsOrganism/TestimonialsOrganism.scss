@@ -1,0 +1,91 @@
+.testimonials-organism {
+	padding-block: 15.1rem 15.8rem;
+
+	max-width: 1614px;
+	width: 100%;
+	margin-inline: auto;
+	position: relative;
+
+	& &__img1 {
+		position: absolute;
+		width: 76px;
+		height: 76px;
+		left: 291px;
+		top: 196px;
+	}
+
+	& &__img2 {
+		position: absolute;
+		width: 134px;
+		height: 134px;
+		left: 0;
+		top: 397px;
+	}
+
+	& &__img3 {
+		position: absolute;
+		width: 99px;
+		height: 99px;
+		left: 84px;
+		top: 680px;
+	}
+
+	& &__img4 {
+		position: absolute;
+		width: 158px;
+		height: 158px;
+		right: 192px;
+		top: 130px;
+	}
+
+	& &__img5 {
+		position: absolute;
+		width: 99px;
+		height: 99px;
+		right: 0;
+		top: 436px;
+	}
+
+	& &__img6 {
+		position: absolute;
+		width: 61px;
+		height: 61px;
+		right: 120px;
+		top: 676px;
+	}
+
+	& &__shadow {
+		position: absolute;
+		width: 694px;
+		height: 694px;
+		right: -250px;
+		top: 142px;
+
+		background: rgba(61, 92, 255, 0.2);
+		filter: blur(150px);
+		z-index: -2;
+		overflow: hidden;
+	}
+
+	& &__content {
+		margin-inline: auto;
+		width: 100%;
+		display: flex;
+		gap: 15.6rem;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	& &__header {
+		font-family: 'Caladea';
+		font-style: normal;
+		font-weight: 700;
+		font-size: 70px;
+		line-height: 100%;
+
+		letter-spacing: -0.5px;
+
+		color: #ffffff;
+	}
+}

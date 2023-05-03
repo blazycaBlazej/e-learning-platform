@@ -6,6 +6,7 @@ import SSSwiper from './components/atoms/Swiper/PartnersSwiper'
 import CoursesMolecul from './components/molecules/CoursesMolecul/CoursesMolecul'
 import CategoriesOrganism from './components/organisms/CategoriesOrgansim/CategoriesOrganism'
 import DifferenceOrganism from './components/organisms/DifferenceOrganism/DifferenceOrganism'
+import TestimonialsOrganism from './components/organisms/TestimonialsOrganism/TestimonialsOrganism'
 
 function App() {
 	return (
@@ -37,6 +38,7 @@ function App() {
 			<CoursesMolecul />
 			<CategoriesOrganism />
 			<DifferenceOrganism />
+			<TestimonialsOrganism />
 		</div>
 	)
 }
