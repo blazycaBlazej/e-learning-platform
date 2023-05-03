@@ -4,9 +4,10 @@ import './App.scss'
 import MainSection from './components/molecules/MainSection/MainSection'
 import SSSwiper from './components/atoms/Swiper/PartnersSwiper'
 import CoursesMolecul from './components/molecules/CoursesMolecul/CoursesMolecul'
-import CategoriesOrganism from './components/organisms/CategoriesOrgansim/CategoriesOrganism'
+import CategoriesOrganism from './components/organisms/CategoriesOrganism/CategoriesOrganism'
 import DifferenceOrganism from './components/organisms/DifferenceOrganism/DifferenceOrganism'
 import TestimonialsOrganism from './components/organisms/TestimonialsOrganism/TestimonialsOrganism'
+import JoinUsOrganism from './components/organisms/JoinUsOrganism/JoinUsOrganism'
 
 function App() {
 	return (
@@ -39,6 +40,7 @@ function App() {
 			<CategoriesOrganism />
 			<DifferenceOrganism />
 			<TestimonialsOrganism />
+			<JoinUsOrganism />
 		</div>
 	)
 }
