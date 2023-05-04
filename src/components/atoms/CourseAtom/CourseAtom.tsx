@@ -14,7 +14,7 @@ interface CourseProps {
 
 const Course = ({ img, name, lessonsNumber, category, author, authorImg, dousuniecia, evaluation }: CourseProps) => {
 	return (
-		<div className='course-atom'>
+		<div className='course-atom' data-aos='fade-up'>
 			<div className='course-atom__image-cointainer'>
 				<img src={img} alt={name} className='course-atom__image' />
 			</div>

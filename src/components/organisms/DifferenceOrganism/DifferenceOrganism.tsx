@@ -4,9 +4,9 @@ const DifferenceOrganism = (): JSX.Element => {
 	return (
 		<div className='difference-organism'>
 			<div className='difference-organism__content'>
-				<img className='difference-organism__image' src='./assets/femaleStudent.png' alt='' />
+				<img className='difference-organism__image' src='./assets/femaleStudent.png' alt='' data-aos='fade-right' />
 
-				<div className='difference-organism__text'>
+				<div className='difference-organism__text' data-aos='fade-left'>
 					<h3 className='difference-organism__header'>
 						What is our <span className='difference-organism__header--violet'>difference</span>
 					</h3>

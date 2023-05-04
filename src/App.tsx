@@ -26,11 +26,11 @@ function App() {
 
 			<div className='app__category-shadow'></div>
 
-			<div className='app__category-add-ons'>
+			<div className='app__category-add-ons' data-aos='fade-right' data-aos-delay='700'>
 				<img src='/assets/addOns/categoryAddOns.svg' />
 			</div>
 
-			<div className='app__category-add-ons2'>
+			<div className='app__category-add-ons2' data-aos='fade-left' data-aos-delay='700'>
 				<img src='/assets/addOns/categoryAddOns2.svg' />
 			</div>
 

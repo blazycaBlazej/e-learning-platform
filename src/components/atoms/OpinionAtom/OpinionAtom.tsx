@@ -9,7 +9,7 @@ interface OpinionAtomProps {
 
 const OpinionAtom = ({ author, prof, opinion }: OpinionAtomProps): JSX.Element => {
 	return (
-		<div className='opinion-atom'>
+		<div className='opinion-atom' data-aos='zoom-in'>
 			<div className='opinion-atom__header'>
 				<div className='opinion-atom__flex-row'>
 					<img src='./assets/testimonials/5.png' className='opinion-atom__user-image' />
