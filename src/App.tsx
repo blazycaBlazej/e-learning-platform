@@ -8,6 +8,7 @@ import CategoriesOrganism from './components/organisms/CategoriesOrganism/Catego
 import DifferenceOrganism from './components/organisms/DifferenceOrganism/DifferenceOrganism'
 import TestimonialsOrganism from './components/organisms/TestimonialsOrganism/TestimonialsOrganism'
 import JoinUsOrganism from './components/organisms/JoinUsOrganism/JoinUsOrganism'
+import FooterOrganism from './components/organisms/FooterOrganism/FooterOrganism'
 
 function App() {
 	return (
@@ -41,6 +42,7 @@ function App() {
 			<DifferenceOrganism />
 			<TestimonialsOrganism />
 			<JoinUsOrganism />
+			<FooterOrganism />
 		</div>
 	)
 }

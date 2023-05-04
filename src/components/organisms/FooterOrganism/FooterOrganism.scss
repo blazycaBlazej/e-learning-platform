@@ -1,0 +1,101 @@
+.footer-organism {
+	margin: auto;
+	max-width: 1614px;
+	width: 100%;
+
+	& &__top {
+		display: flex;
+		padding-bottom: 8.9rem;
+		border-bottom: 1px solid rgba(218, 218, 247, 0.32);
+	}
+
+	& &__about {
+		margin-top: 8.6rem;
+		display: flex;
+		flex-direction: column;
+		gap: 6.6rem;
+	}
+
+	& &__description {
+		max-width: 480px;
+		font-family: 'Inter';
+		font-style: normal;
+		font-weight: 400;
+		font-size: 18px;
+		line-height: 156%;
+		color: #b0b0d1;
+	}
+
+	& &__links {
+		margin-top: 11rem;
+		margin-left: 13.3rem;
+	}
+
+	& &__links-header {
+		font-family: 'Caladea';
+		font-style: normal;
+		font-weight: 700;
+		font-size: 25px;
+		line-height: 24px;
+		color: #ffffff;
+	}
+	& &__links-content {
+		margin-top: 5rem;
+
+		display: flex;
+		flex-wrap: wrap;
+		gap: 2.3rem;
+	}
+	& &__link-element {
+		flex-basis: calc(50% - 1.15rem);
+		font-family: 'Inter';
+		font-style: normal;
+		font-weight: 500;
+		font-size: 18px;
+		line-height: 156%;
+		color: #b0b0d1;
+	}
+
+	& &__contact {
+		margin-top: 10.6rem;
+		margin-left: 15.9rem;
+	}
+
+	& &__contact-header {
+		font-family: 'Caladea';
+		font-style: normal;
+		font-weight: 700;
+		font-size: 25px;
+		line-height: 24px;
+		color: #ffffff;
+	}
+
+	& &__contact-content {
+		display: flex;
+		flex-direction: column;
+		gap: 3.8rem;
+		margin-top: 4.3rem;
+	}
+
+	& &__contact-element {
+		display: flex;
+		gap: 2.8rem;
+		font-family: 'Inter';
+		font-style: normal;
+		font-weight: 500;
+		font-size: 18px;
+		line-height: 100%;
+		color: #b0b0d1;
+	}
+
+	& &__bottom {
+		font-family: 'Inter';
+		font-style: normal;
+		font-weight: 400;
+		font-size: 18px;
+		line-height: 156%;
+		color: #b0b0d1;
+		display: block;
+		padding-block: 4.3rem;
+	}
+}
