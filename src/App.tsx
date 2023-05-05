@@ -2,7 +2,7 @@ import HeaderOrganism from './components/organisms/HeaderOrganism/HeaderOrganism
 import './App.scss'
 
 import MainSection from './components/molecules/MainSection/MainSection'
-import SSSwiper from './components/atoms/Swiper/PartnersSwiper'
+import SSSwiper from './components/atoms/PartnersSwiper/PartnersSwiper'
 import CoursesMolecul from './components/molecules/CoursesMolecul/CoursesMolecul'
 import CategoriesOrganism from './components/organisms/CategoriesOrganism/CategoriesOrganism'
 import DifferenceOrganism from './components/organisms/DifferenceOrganism/DifferenceOrganism'

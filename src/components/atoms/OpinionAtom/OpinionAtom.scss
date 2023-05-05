@@ -53,6 +53,12 @@
 	& &__rating {
 		display: flex;
 		gap: 0.5rem;
+	}
+
+	& &__gold-star {
+		color: #fab437;
+	}
+	& &__gray-star {
 		color: #fab437;
 	}
 

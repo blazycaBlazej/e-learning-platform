@@ -88,4 +88,10 @@
 
 		color: #ffffff;
 	}
+
+	& &__swiper {
+		width: 100%;
+		max-width: 104.5rem;
+		margin: auto;
+	}
 }
