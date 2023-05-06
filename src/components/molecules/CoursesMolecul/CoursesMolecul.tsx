@@ -1,4 +1,4 @@
-import Course from '../../atoms/CourseAtom/CourseAtom'
+import Course from '../../atoms/CourseHomePageAtom/CourseHomePageAtom'
 import FiltrCourseAtom from '../../atoms/FiltrCourseAtom/FiltrCourseAtom'
 import ButtonAtom from '../../atoms/UI/ButtonAtom/ButtonAtom'
 import './CoursesMolecul.scss'

@@ -1,4 +1,4 @@
-.course-atom {
+.course-atom-home-page {
 	cursor: pointer;
 	display: flex;
 	flex-direction: column;
@@ -15,7 +15,7 @@
 
 	&:hover {
 		background: #1e0f3c;
-		.course-atom__image {
+		.course-atom-home-page__image {
 			transform: scale(1.2);
 		}
 	}
