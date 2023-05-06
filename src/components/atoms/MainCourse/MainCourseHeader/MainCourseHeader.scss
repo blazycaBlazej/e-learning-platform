@@ -1,0 +1,67 @@
+.main-course-header {
+	font-family: 'Inter';
+	background-color: #1c1d1f;
+	width: 100%;
+	color: #fff;
+
+	& &__content {
+		max-width: 70rem;
+		width: 100%;
+		padding-block: 3.2rem;
+		margin-left: 4.8rem;
+	}
+
+	& &__category {
+		font-size: 1.4rem;
+		line-height: 16.8px;
+		letter-spacing: -0.2px;
+		color: #cec0fc;
+	}
+
+	& &__name {
+		margin-top: 1.2rem;
+		font-size: 3.2rem;
+		line-height: 3.84rem;
+		font-weight: bold;
+	}
+
+	& &__description {
+		margin-top: 0.8rem;
+		font-size: 1.9rem;
+		line-height: 2.66rem;
+	}
+
+	& &__rating-wrapper {
+		margin-top: 1.6rem;
+		display: flex;
+		align-items: center;
+		gap: 0.8rem;
+		font-size: 1.4rem;
+		line-height: 19.6px;
+	}
+	& &__rating {
+		display: flex;
+		gap: 0.5rem;
+	}
+
+	& &__rating-star,
+	& &__rating-number {
+		color: #fab437;
+	}
+
+	& &__rating-number {
+		font-weight: bold;
+	}
+
+	& &__creator,
+	& &__last-update,
+	& &__language {
+		display: block;
+		margin-top: 0.94rem;
+		font-size: 1.4rem;
+		line-height: 19.6px;
+		display: flex;
+		align-items: center;
+		gap: 0.8rem;
+	}
+}

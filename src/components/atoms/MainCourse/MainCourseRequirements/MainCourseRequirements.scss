@@ -1,0 +1,24 @@
+.main-course-requirements {
+	color: #1c1d1f;
+	background-color: #fff;
+	max-width: 70rem;
+	width: 100%;
+	font-family: 'Inter';
+
+	& &__header {
+		font-size: 2.4rem;
+		line-height: 2.88rem;
+		font-weight: bold;
+		letter-spacing: -0.2px;
+	}
+
+	& &__list {
+		margin-top: 2rem;
+		list-style-position: inside;
+	}
+
+	& &__list-element {
+		font-size: 1.6rem;
+		line-height: 2.24rem;
+	}
+}

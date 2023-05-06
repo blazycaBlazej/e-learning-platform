@@ -1,10 +1,12 @@
-import HomePage from './pages/HomePage'
+import HomePage from './pages/HomePage/HomePage'
 import './App.scss'
+import MainCourseViewPage from './pages/MainCourseViewPage/MainCourseViewPage'
 
 function App() {
 	return (
 		<div className='app'>
-			<HomePage />
+			<MainCourseViewPage />
+			{/* <HomePage /> */}
 		</div>
 	)
 }

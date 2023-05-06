@@ -1,0 +1,30 @@
+.main-course-companies {
+	padding: 1.7rem;
+	background-color: #fff;
+	max-width: 70rem;
+	width: 100%;
+	font-family: 'Inter';
+	color: #1c1d1f;
+	border: 1px solid #d1d7dc;
+
+	& &__header {
+		display: block;
+		margin-bottom: 0.4rem;
+		font-size: 1.6rem;
+		line-height: 1.92rem;
+		letter-spacing: -0.2px;
+		font-weight: bold;
+	}
+
+	& &__description {
+		margin-bottom: 2.5rem;
+		font-size: 1.4rem;
+		line-height: 1.97rem;
+	}
+
+	& &__companies {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+}
