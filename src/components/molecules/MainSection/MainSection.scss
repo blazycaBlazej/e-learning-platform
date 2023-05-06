@@ -1,14 +1,15 @@
 .main-section {
-	margin: 5.6rem auto 0 auto;
-	max-width: 1614px;
+	margin: auto;
+	max-width: 1414px;
 	width: 100%;
 	display: flex;
 	& &__header {
-		max-width: 982px;
+		margin-top: 3rem;
+		max-width: 580px;
 		font-family: 'Caladea';
 		font-style: normal;
 		font-weight: 700;
-		font-size: 10rem;
+		font-size: 6rem;
 		line-height: 110%;
 		letter-spacing: -0.5px;
 		color: #fff;
@@ -33,14 +34,15 @@
 		font-family: 'Inter';
 		font-style: normal;
 		font-weight: 500;
-		font-size: 2.5rem;
+		font-size: 1.8rem;
 		line-height: 160%;
 		color: #b0b0d1;
-		max-width: 798px;
+		max-width: 460px;
 	}
 
 	& &__student {
 		position: relative;
+		margin-left: 5rem;
 	}
 	& &__student-image {
 		position: absolute;

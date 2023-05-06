@@ -13,22 +13,22 @@
 	& &__search {
 		background: #ffffff;
 		border-radius: 49.5px;
-		height: 100px;
+		height: 80px;
 		width: 100%;
-		max-width: 986px;
+		max-width: 550px;
 		color: #667085;
 		padding-left: 3.3rem;
 	}
 
 	& &__button {
 		top: 1.2rem;
-		right: 1.4rem;
+		right: 3.8rem;
 		position: absolute;
 	}
 
 	& &__placeholder {
 		position: absolute;
-		top: 3.4rem;
+		top: 2.4rem;
 		left: 3.3rem;
 		display: flex;
 		align-items: center;

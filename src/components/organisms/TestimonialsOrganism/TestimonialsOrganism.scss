@@ -1,7 +1,7 @@
 .testimonials-organism {
 	padding-block: 15.1rem 15.8rem;
 
-	max-width: 1614px;
+	max-width: 1414px;
 	width: 100%;
 	margin-inline: auto;
 	position: relative;
@@ -11,14 +11,14 @@
 		width: 76px;
 		height: 76px;
 		left: 291px;
-		top: 196px;
+		top: 166px;
 	}
 
 	& &__img2 {
 		position: absolute;
-		width: 134px;
-		height: 134px;
-		left: 0;
+		width: 104px;
+		height: 104px;
+		left: 50px;
 		top: 397px;
 	}
 
@@ -32,8 +32,8 @@
 
 	& &__img4 {
 		position: absolute;
-		width: 158px;
-		height: 158px;
+		width: 118px;
+		height: 118px;
 		right: 192px;
 		top: 130px;
 	}
@@ -71,7 +71,7 @@
 		margin-inline: auto;
 		width: 100%;
 		display: flex;
-		gap: 15.6rem;
+		gap: 9.6rem;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
@@ -81,7 +81,7 @@
 		font-family: 'Caladea';
 		font-style: normal;
 		font-weight: 700;
-		font-size: 70px;
+		font-size: 4.8rem;
 		line-height: 100%;
 
 		letter-spacing: -0.5px;
@@ -91,7 +91,7 @@
 
 	& &__swiper {
 		width: 100%;
-		max-width: 104.5rem;
+		max-width: 84.5rem;
 		margin: auto;
 	}
 }

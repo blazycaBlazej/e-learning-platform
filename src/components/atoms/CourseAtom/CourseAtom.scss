@@ -2,7 +2,7 @@
 	cursor: pointer;
 	display: flex;
 	flex-direction: column;
-	max-width: 52rem;
+	max-width: 45rem;
 	width: 100%;
 	background: #381d74;
 	border: 2px solid rgba(255, 255, 255, 0.2);
@@ -26,12 +26,12 @@
 
 	& &__image {
 		transition: transform linear 0.3s;
-		width: 52rem;
-		height: 26.8rem;
+		width: 45rem;
+		height: 22.8rem;
 	}
 
 	& &__content {
-		padding: 3.4rem 4.2rem 5.6rem 3.5rem;
+		padding: 2.4rem;
 	}
 
 	& &__info-cointainer {
@@ -39,7 +39,7 @@
 		display: flex;
 		justify-content: space-between;
 		font-weight: 500;
-		font-size: 1.6rem;
+		font-size: 1.4rem;
 		line-height: 112%;
 		color: #d9ecff;
 	}
@@ -71,7 +71,7 @@
 	& &__name {
 		margin-top: 3.5rem;
 		font-weight: 700;
-		font-size: 3rem;
+		font-size: 2.4rem;
 		line-height: 133%;
 		color: #d9ecff;
 	}
@@ -85,7 +85,7 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		margin-top: 4.4rem;
+		margin-top: 1.6rem;
 		padding-block: 3.1rem 2.4rem;
 		border-bottom: 1px solid rgba(218, 218, 247, 0.32);
 		border-top: 1px solid rgba(218, 218, 247, 0.32);
@@ -93,7 +93,7 @@
 
 	& &__author {
 		display: flex;
-		gap: 1.9rem;
+		gap: 1.6rem;
 		align-items: center;
 	}
 
@@ -105,7 +105,7 @@
 
 	& &__author-name {
 		font-weight: 600;
-		font-size: 18px;
+		font-size: 16px;
 		line-height: 100%;
 		color: #d9ecff;
 	}
@@ -131,7 +131,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		margin-top: 2.6rem;
+		margin-top: 1.6rem;
 	}
 
 	& &__evaluation {
@@ -143,7 +143,7 @@
 	& &__enroll {
 		cursor: pointer;
 		font-weight: 500;
-		font-size: 1.6rem;
+		font-size: 1.4rem;
 		line-height: 112%;
 		text-decoration-line: underline;
 
