@@ -1,107 +1,111 @@
+@media screen and(max-width: 660px) {
+	& &__header {
+		padding-inline: 2.4rem;
+	}
+}
+
+@media screen and(max-width: 360px) {
+	& &__header {
+		padding-inline: 1.2rem;
+	}
+}
+
 .main-course-view-page {
-	margin: auto;
-	width: 100%;
 	& &__sticky-header {
 		position: sticky;
 		top: 0;
 		left: 0;
+	}
+	& &__header-bgc {
+		background-color: #1c1d1f;
+		margin: auto;
+	}
+	& &__header-wrapper {
+		max-width: 1184px;
 		width: 100%;
-		z-index: 1;
+		margin: auto;
+		background-color: #1c1d1f;
+		position: relative;
 	}
 
 	& &__header {
-		background-color: #1c1d1f;
-		padding-left: 4.8rem;
-	}
-
-	& &__header-content {
-		position: relative;
-		max-width: 1184px;
-		width: 100%;
-		margin: auto;
-	}
-
-	& &__wrapper {
-		max-width: 70rem;
+		margin-left: 3.2rem;
+		max-width: 700px;
 		width: 100%;
 	}
 
-	& &__options {
+	& &__option {
 		position: absolute;
-		top: 3.2rem;
-		right: 4.8rem;
-		z-index: 2;
-	}
-
-	& &__content-cointainer {
-		max-width: 1184px;
-		margin: auto;
+		left: 780px;
+		top: 0;
 	}
 
 	& &__content {
+		max-width: 1184px;
+		width: 100%;
+		margin: auto;
+		display: flex;
+		gap: 4.8rem;
+	}
+
+	& &__left-side {
+		max-width: 700px;
+		width: 100%;
+		margin-top: 3.2rem;
+		margin-left: 3.2rem;
 		display: flex;
 		flex-direction: column;
-		padding-top: 3.2rem;
-		margin-left: 4.8rem;
 		gap: 3.2rem;
-		width: 100%;
-		max-width: 70rem;
 	}
 
 	@media screen and(max-width: 1180px) {
-		& &__wrapper {
+		& &__left-side {
 			max-width: 60rem;
 		}
-		& &__content {
-			padding-top: 3.2rem;
+
+		& &__header {
 			max-width: 60rem;
+		}
+
+		& &__option {
+			left: 680px;
 		}
 	}
 
 	@media screen and(max-width: 1080px) {
-		& &__header {
-			background-color: #1c1d1f;
-			padding-left: 0;
+		& &__left-side {
+			margin-inline: auto;
 		}
 
-		& &__wrapper {
-			margin: auto;
+		& &__header {
+			margin-inline: auto;
 		}
 		& &__sticky-header {
 			position: fixed;
+			top: auto;
 			bottom: 0;
 			left: 0;
-			top: auto;
 			width: 100%;
-			z-index: 1;
-		}
-		& &__options {
-			position: relative;
-		}
-		& &__content-cointainer {
-			max-width: 100%;
-		}
-		& &__content {
-			margin: auto;
 		}
 	}
 
-	@media screen and(max-width: 640px) {
-		& &__header {
-			padding-inline: 2.4rem;
-		}
+	@media screen and(max-width: 660px) {
 		& &__content {
+			margin: auto 2.4rem;
+			width: calc(100% - 4.8rem);
+		}
+		& &__header {
 			padding-inline: 2.4rem;
 		}
 	}
 
 	@media screen and(max-width: 360px) {
-		& &__header {
-			padding-right: 1.2rem;
-			padding-inline: 1.2rem;
-		}
 		& &__content {
-			padding-right: 1.2rem;
+			margin: auto 1.2rem;
+			width: calc(100% - 2.4rem);
+		}
+
+		& &__header {
 			padding-inline: 1.2rem;
 		}
 	}

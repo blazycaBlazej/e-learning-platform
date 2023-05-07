@@ -11,35 +11,29 @@ import MainCourseStickyHeader from '../../components/atoms/MainCourse/MainCourse
 const MainCourseViewPage = (): JSX.Element => {
 	const rating = 5
 	return (
-		<>
-			{/* <HeaderOrganism /> */}
-			<div className='main-course-view-page'>
-				<div className='main-course-view-page__sticky-header'>
-					<MainCourseStickyHeader />
-				</div>
-				<div
-					className='main-course-view-page__header
-			'>
-					<div className='main-course-view-page__header-content'>
-						<div className='main-course-view-page__wrapper'>
-							<MainCourseHeader />
-						</div>
-						<div className='main-course-view-page__options'>
-							<MainCourseOptionAtom />
-						</div>
+		<section className='main-course-view-page'>
+			<div className='main-course-view-page__sticky-header'>
+				<MainCourseStickyHeader />
+			</div>
+			<div className='main-course-view-page__header-bgc'>
+				<div className='main-course-view-page__header-wrapper'>
+					<div className='main-course-view-page__header'>
+						<MainCourseHeader />
 					</div>
-				</div>
-
-				<div className='main-course-view-page__content-cointainer'>
-					<div className='main-course-view-page__content'>
-						<MainCourseTopics />
-						<MainCourseCompanies />
-						<MainCourseRequirements />
-						<MainCourseDescription />
+					<div className='main-course-view-page__option'>
+						<MainCourseOptionAtom />
 					</div>
 				</div>
 			</div>
-		</>
+			<div className='main-course-view-page__content'>
+				<div className='main-course-view-page__left-side'>
+					<MainCourseTopics />
+					<MainCourseCompanies />
+					<MainCourseRequirements />
+					<MainCourseDescription />
+				</div>
+			</div>
+		</section>
 	)
 }
 
