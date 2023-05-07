@@ -1,6 +1,6 @@
 .main-course-topics {
-	width: 100%;
-	max-width: 700px;
+	// width: 100%;
+	// max-width: 700px;
 	background-color: #fff;
 	color: #1c1d1f;
 	padding: 2.5rem;
@@ -29,5 +29,13 @@
 		flex-basis: calc(50% - 0.8rem);
 		font-size: 1.4rem;
 		line-height: 1.96rem;
+	}
+
+	@media screen and(max-width: 450px) {
+		padding: 0;
+		border: none;
+		& &__list-element {
+			flex-basis: calc(100% - 0.8rem);
+		}
 	}
 }

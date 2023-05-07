@@ -1,5 +1,5 @@
 import HeaderOrganism from '../../components/organisms/HeaderOrganism/HeaderOrganism'
-import MainCourseDescriptionAtom from '../../components/atoms/MainCourse/MainCourseHeader/MainCourseHeader'
+import MainCourseHeader from '../../components/atoms/MainCourse/MainCourseHeader/MainCourseHeader'
 import MainCourseOptionAtom from '../../components/atoms/MainCourse/MainCourseOptionAtom/MainCourseOptionAtom'
 
 import './MainCourseViewPage.scss'
@@ -21,15 +21,17 @@ const MainCourseViewPage = (): JSX.Element => {
 					className='main-course-view-page__header
 			'>
 					<div className='main-course-view-page__header-content'>
-						<MainCourseDescriptionAtom />
+						<div className='main-course-view-page__wrapper'>
+							<MainCourseHeader />
+						</div>
 						<div className='main-course-view-page__options'>
 							<MainCourseOptionAtom />
 						</div>
 					</div>
 				</div>
 
-				<div className='main-course-view-page__content'>
-					<div className='main-course-view-page__topics'>
+				<div className='main-course-view-page__content-cointainer'>
+					<div className='main-course-view-page__content'>
 						<MainCourseTopics />
 						<MainCourseCompanies />
 						<MainCourseRequirements />
