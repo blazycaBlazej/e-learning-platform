@@ -1,5 +1,5 @@
 import { IconMap2, IconPhone, IconMail } from '@tabler/icons-react'
-import LogoAtom from '../../atoms/UI/LogoAtom/LogoAtom'
+import LogoAtom from '../../../atoms/Menu/MenuLogoAtom/MenuLogoAtom'
 
 import './FooterOrganism.scss'
 

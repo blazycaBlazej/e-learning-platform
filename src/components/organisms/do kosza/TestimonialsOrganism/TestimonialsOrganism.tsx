@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide, SwiperRef } from 'swiper/react'
 import { Autoplay } from 'swiper'
 import 'swiper/css'
 
-import OpinionAtom from '../../atoms/dokosza/OpinionAtom/OpinionAtom'
+import OpinionAtom from '../../../atoms/dokosza/OpinionAtom/OpinionAtom'
 import './TestimonialsOrganism.scss'
 
 const opinions = [

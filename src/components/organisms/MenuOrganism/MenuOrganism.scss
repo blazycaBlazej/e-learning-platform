@@ -1,0 +1,53 @@
+.menu-organism {
+	padding: 1.3rem 2.4rem;
+	display: flex;
+	align-items: center;
+	gap: 2.5rem;
+	z-index: 1010;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.08);
+	width: 100%;
+	position: absolute;
+	background-color: white;
+
+	& &__btns {
+		display: flex;
+		gap: 0.8rem;
+	}
+
+	& &__searchbar {
+		width: 100%;
+	}
+
+	& &__search-icon {
+		display: none;
+	}
+
+	& &__options {
+		display: flex;
+		align-items: center;
+	}
+
+	@media screen and(max-width: 800px) {
+		position: fixed;
+		justify-content: space-between;
+		padding: 1.3rem;
+		& &__searchbar {
+			display: none;
+		}
+
+		& &__menu-item {
+			display: none;
+		}
+
+		& &__btns {
+			display: none;
+		}
+
+		& &__search-icon {
+			display: block;
+		}
+	}
+	@media screen and(max-width: 340px) {
+		gap: 1rem;
+	}
+}

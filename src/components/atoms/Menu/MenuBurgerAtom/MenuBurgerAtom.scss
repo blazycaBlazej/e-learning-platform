@@ -1,0 +1,9 @@
+.menu-burger-atom {
+	color: #1c1d1f;
+	cursor: pointer;
+	display: none;
+	padding: 0.4rem 1.2rem;
+	@media screen and (max-width: 800px) {
+		display: block;
+	}
+}

@@ -1,16 +1,15 @@
 .menu-item {
 	cursor: pointer;
 	font-family: 'Inter';
-	font-style: normal;
-	font-weight: 500;
-	font-size: 1.8rem;
-	line-height: 24px;
-	color: #ffffff;
+	font-size: 1.4rem;
+	line-height: 1.96rem;
+	color: #1c1d1f;
 	position: relative;
-	padding-bottom: 0.8rem;
-
+	margin-top: 0.6rem;
+	padding-bottom: 0.6rem;
+	width: auto;
 	&:active {
-		color: #7f56d9;
+		color: #5624d0;
 	}
 
 	&,
@@ -32,9 +31,9 @@
 	}
 
 	&:hover {
-		color: #7f56d9;
+		color: #5624d0;
 		&:after {
-			background: #7f56d9;
+			background: #5624d0;
 			transform: scaleX(1);
 			transform-origin: left;
 		}

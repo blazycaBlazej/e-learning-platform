@@ -1,11 +1,11 @@
 import MainSection from '../../components/molecules/MainSection/MainSection'
 import PartnersSwiper from '../../components/atoms/dokosza/PartnersSwiper/PartnersSwiper'
 import CoursesMolecul from '../../components/molecules/CoursesMolecul/CoursesMolecul'
-import CategoriesOrganism from '../../components/organisms/CategoriesOrganism/CategoriesOrganism'
-import DifferenceOrganism from '../../components/organisms/DifferenceOrganism/DifferenceOrganism'
-import TestimonialsOrganism from '../../components/organisms/TestimonialsOrganism/TestimonialsOrganism'
-import JoinUsOrganism from '../../components/organisms/JoinUsOrganism/JoinUsOrganism'
-import FooterOrganism from '../../components/organisms/FooterOrganism/FooterOrganism'
+import CategoriesOrganism from '../../components/organisms/do kosza/CategoriesOrganism/CategoriesOrganism'
+import DifferenceOrganism from '../../components/organisms/do kosza/DifferenceOrganism/DifferenceOrganism'
+import TestimonialsOrganism from '../../components/organisms/do kosza/TestimonialsOrganism/TestimonialsOrganism'
+import JoinUsOrganism from '../../components/organisms/do kosza/JoinUsOrganism/JoinUsOrganism'
+import FooterOrganism from '../../components/organisms/do kosza/FooterOrganism/FooterOrganism'
 
 import './HomePage.scss'
 

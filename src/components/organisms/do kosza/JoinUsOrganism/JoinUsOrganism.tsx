@@ -1,4 +1,4 @@
-import ButtonAtom from '../../atoms/UI/ButtonAtom/ButtonAtom'
+import ButtonAtom from '../../../atoms/UI/ButtonAtom/ButtonAtom'
 import './JoinUsOrganism.scss'
 
 const JoinUsOrganism = (): JSX.Element => {
