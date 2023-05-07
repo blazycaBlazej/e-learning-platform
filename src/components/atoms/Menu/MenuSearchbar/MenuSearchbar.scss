@@ -1,35 +1,27 @@
-.searchbar {
+.menu-searchbar {
 	width: 100%;
 	position: relative;
-	margin-top: 9.1rem;
-
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 500;
-	font-size: 19px;
+	font-size: 12px;
 	line-height: 126%;
 	color: #667085;
 
 	& &__search {
+		border: 1px solid #1c1d1f;
 		background: #ffffff;
 		border-radius: 49.5px;
-		height: 80px;
+		height: 4rem;
 		width: 100%;
-		max-width: 550px;
 		color: #667085;
-		padding-left: 3.3rem;
-	}
-
-	& &__button {
-		top: 1.2rem;
-		right: 3.8rem;
-		position: absolute;
+		padding-left: 4.9rem;
 	}
 
 	& &__placeholder {
 		position: absolute;
-		top: 2.4rem;
-		left: 3.3rem;
+		top: 1.2rem;
+		left: 1.3rem;
 		display: flex;
 		align-items: center;
 		gap: 1.8rem;

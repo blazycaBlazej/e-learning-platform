@@ -1,6 +1,5 @@
-import HeaderOrganism from '../../components/organisms/HeaderOrganism/HeaderOrganism'
 import MainSection from '../../components/molecules/MainSection/MainSection'
-import PartnersSwiper from '../../components/atoms/PartnersSwiper/PartnersSwiper'
+import PartnersSwiper from '../../components/atoms/dokosza/PartnersSwiper/PartnersSwiper'
 import CoursesMolecul from '../../components/molecules/CoursesMolecul/CoursesMolecul'
 import CategoriesOrganism from '../../components/organisms/CategoriesOrganism/CategoriesOrganism'
 import DifferenceOrganism from '../../components/organisms/DifferenceOrganism/DifferenceOrganism'
@@ -34,7 +33,6 @@ const HomePage = (): JSX.Element => {
 				<img src='/assets/addOns/categoryAddOns2.svg' />
 			</div>
 
-			<HeaderOrganism />
 			<MainSection />
 			<PartnersSwiper />
 			<CoursesMolecul />

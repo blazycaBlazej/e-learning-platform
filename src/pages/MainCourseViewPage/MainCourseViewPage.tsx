@@ -1,4 +1,3 @@
-import HeaderOrganism from '../../components/organisms/HeaderOrganism/HeaderOrganism'
 import MainCourseHeader from '../../components/atoms/MainCourse/MainCourseHeader/MainCourseHeader'
 import MainCourseOptionAtom from '../../components/atoms/MainCourse/MainCourseOptionAtom/MainCourseOptionAtom'
 

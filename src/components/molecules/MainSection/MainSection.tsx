@@ -1,5 +1,5 @@
 import './MainSection.scss'
-import Searchbar from '../../atoms/Searchbar/Searchbar'
+import Searchbar from '../../atoms/Menu/MenuSearchbar/MenuSearchbar'
 
 const MainSection = (): JSX.Element => {
 	return (

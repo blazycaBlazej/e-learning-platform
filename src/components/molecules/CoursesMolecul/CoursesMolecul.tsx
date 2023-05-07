@@ -1,5 +1,5 @@
-import Course from '../../atoms/CourseHomePageAtom/CourseHomePageAtom'
-import FiltrCourseAtom from '../../atoms/FiltrCourseAtom/FiltrCourseAtom'
+import Course from '../../atoms/dokosza/CourseHomePageAtom/CourseHomePageAtom'
+import FiltrCourseAtom from '../../atoms/dokosza/FiltrCourseAtom/FiltrCourseAtom'
 import ButtonAtom from '../../atoms/UI/ButtonAtom/ButtonAtom'
 import './CoursesMolecul.scss'
 
