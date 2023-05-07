@@ -1,0 +1,81 @@
+.course-element {
+	cursor: pointer;
+	width: 100%;
+	padding-block: 2rem 1.6rem;
+	border-bottom: 1px solid #d1d7dc;
+	display: flex;
+	gap: 1rem;
+	font-family: 'Inter';
+	color: #1c1d1f;
+
+	& &__name {
+		font-size: 1.6rem;
+		line-height: 2.24rem;
+		font-weight: bold;
+	}
+
+	& &__description {
+		margin-top: 0.4rem;
+		font-size: 1.4rem;
+		line-height: 1.8rem;
+		max-width: 60rem;
+	}
+
+	& &__author {
+		display: block;
+		font-weight: 400;
+		margin-top: 0.4rem;
+		font-size: 1.2rem;
+		line-height: 1.4rem;
+	}
+
+	& &__img {
+		width: 260px;
+		height: 146.25px;
+		background-color: black;
+	}
+
+	& &__rating-wrapper {
+		margin-top: 0.4rem;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	& &__rating {
+		display: flex;
+		gap: 0.5rem;
+	}
+
+	& &__rating-number {
+		font-weight: bold;
+		line-height: 1.2;
+		letter-spacing: 0.02rem;
+		font-size: 1.4rem;
+	}
+
+	& &__rating-star,
+	& &__rating-number {
+		color: #fab437;
+	}
+
+	& &__number-of-rantings {
+		font-weight: 400;
+		line-height: 1.4;
+		font-size: 1.2rem;
+	}
+
+	& &__price {
+		margin-left: auto;
+		font-weight: 700;
+		letter-spacing: -0.02rem;
+		font-size: 1.6rem;
+	}
+
+	@media screen and (max-width: 600px) {
+		flex-direction: column;
+		& &__price {
+			margin-left: 0;
+		}
+	}
+}

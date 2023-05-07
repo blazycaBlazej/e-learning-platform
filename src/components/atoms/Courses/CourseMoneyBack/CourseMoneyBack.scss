@@ -1,0 +1,23 @@
+.course-money-back {
+	display: flex;
+	align-items: center;
+	gap: 1.9rem;
+	padding: 2.3rem 2rem;
+	font-family: 'Inter';
+	font-size: 1.6rem;
+	line-height: 1.92rem;
+	color: #1c1d1f;
+	border: 1px solid #d1d7dc;
+	font-weight: bold;
+
+	& &__cirlce {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 3.2rem;
+		height: 3.2rem;
+		background-color: #1c1d1f;
+		border-radius: 100%;
+		color: #fff;
+	}
+}
