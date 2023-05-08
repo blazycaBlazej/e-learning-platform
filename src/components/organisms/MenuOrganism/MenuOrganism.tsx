@@ -11,8 +11,11 @@ import './MenuOrganism.scss'
 const MenuOrganism = (): JSX.Element => {
 	return (
 		<nav className='menu-organism'>
-			<MenuBurgerAtom />
-			<Link to='/'>
+			<div className='menu-organism__burger'>
+				<MenuBurgerAtom />
+			</div>
+
+			<Link to='/' className='menu-organism__logo'>
 				<MenuLogoAtom />
 			</Link>
 

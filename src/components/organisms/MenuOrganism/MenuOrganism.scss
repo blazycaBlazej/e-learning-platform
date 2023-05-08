@@ -31,6 +31,12 @@
 		position: fixed;
 		justify-content: space-between;
 		padding: 1.3rem;
+
+		& &__logo {
+			position: absolute;
+			left: calc(50vw - 54px);
+		}
+
 		& &__searchbar {
 			display: none;
 		}
@@ -45,6 +51,12 @@
 
 		& &__search-icon {
 			display: block;
+		}
+	}
+
+	@media screen and(max-width: 600px) {
+		& &__burger {
+			padding-inline-end: 9.8rem;
 		}
 	}
 	@media screen and(max-width: 340px) {

@@ -1,14 +1,16 @@
 import { Outlet } from 'react-router-dom'
 import MenuOrganism from '../components/organisms/MenuOrganism/MenuOrganism'
 
-// import './MainLayout.scss'
+import './MainLayout.scss'
 
 const MainLayout = (): JSX.Element => {
 	return (
-		<>
+		<section className='main-layout'>
 			<MenuOrganism />
-			<Outlet />
-		</>
+			<div className='main-layout__content'>
+				<Outlet />
+			</div>
+		</section>
 	)
 }
 

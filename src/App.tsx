@@ -5,7 +5,7 @@ import CoursesViewPage from './pages/CoursesViewPage/CouresesViewPage'
 import MainLayout from './layouts/MainLayout'
 
 import './App.scss'
-import NotFound from './pages/NotFound/NotFound'
+import NotFound from './pages/NotFoundPage/NotFoundPage'
 
 function App() {
 	const router = createBrowserRouter([
