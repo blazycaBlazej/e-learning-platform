@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import MenuBasketAtom from '../../atoms/Menu/MenuBasketAtom/MenuBasketAtom'
 import MenuBurgerAtom from '../../atoms/Menu/MenuBurgerAtom/MenuBurgerAtom'
 import MenuItemAtom from '../../atoms/Menu/MenuItemAtom/MenuItemAtom'
@@ -11,11 +12,16 @@ const MenuOrganism = (): JSX.Element => {
 	return (
 		<nav className='menu-organism'>
 			<MenuBurgerAtom />
-			<MenuLogoAtom />
+			<Link to='/'>
+				<MenuLogoAtom />
+			</Link>
 
-			<div className='menu-organism__menu-item'>
-				<MenuItemAtom link='#' itemName='Categories' />
-			</div>
+			<Link to='/courses'>
+				<div className='menu-organism__menu-item'>
+					<MenuItemAtom link='#' itemName='Courses' />
+				</div>
+			</Link>
+
 			<div className='menu-organism__searchbar'>
 				<MenuSearchbar />
 			</div>

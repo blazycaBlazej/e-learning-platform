@@ -12,7 +12,6 @@ const MainCourseViewPage = (): JSX.Element => {
 	const rating = 5
 	return (
 		<>
-			<MenuOrganism />
 			<section className='main-course-view-page'>
 				<div className='main-course-view-page__sticky-header'>
 					<MainCourseStickyHeader />

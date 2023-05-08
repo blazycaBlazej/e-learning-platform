@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import CourseElement from '../../atoms/Courses/CourseElement/CourseElement'
 import CourseLabel from '../../atoms/Courses/CourseLabel/CourseLabel'
 import CourseMoneyBack from '../../atoms/Courses/CourseMoneyBack/CourseMoneyBack'
@@ -12,10 +13,24 @@ const CoursesViewOrganism = (): JSX.Element => {
 			<div className='courses-view-organism__money-back'>
 				<CourseMoneyBack />
 			</div>
-			<CourseElement />
-			<CourseElement />
-			<CourseElement />
-			<CourseElement />
+			<Link to='/courses/xd'>
+				<CourseElement />
+			</Link>
+			<Link to='/courses/xd'>
+				<CourseElement />
+			</Link>
+			<Link to='/courses/xd'>
+				<CourseElement />
+			</Link>
+			<Link to='/courses/xd'>
+				<CourseElement />
+			</Link>
+			<Link to='/courses/xd'>
+				<CourseElement />
+			</Link>
+			<Link to='/courses/xd'>
+				<CourseElement />
+			</Link>
 		</section>
 	)
 }
