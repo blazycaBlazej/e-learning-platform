@@ -11,31 +11,29 @@ import MenuOrganism from '../../components/organisms/MenuOrganism/MenuOrganism'
 const MainCourseViewPage = (): JSX.Element => {
 	const rating = 5
 	return (
-		<>
-			<section className='main-course-view-page'>
-				<div className='main-course-view-page__sticky-header'>
-					<MainCourseStickyHeader />
-				</div>
-				<div className='main-course-view-page__header-bgc'>
-					<div className='main-course-view-page__header-wrapper'>
-						<div className='main-course-view-page__header'>
-							<MainCourseHeader />
-						</div>
-						<div className='main-course-view-page__option'>
-							<MainCourseOptionAtom />
-						</div>
+		<main className='main-course-view-page'>
+			<div className='main-course-view-page__sticky-header'>
+				<MainCourseStickyHeader />
+			</div>
+			<div className='main-course-view-page__header-bgc'>
+				<div className='main-course-view-page__header-wrapper'>
+					<div className='main-course-view-page__header'>
+						<MainCourseHeader />
+					</div>
+					<div className='main-course-view-page__option'>
+						<MainCourseOptionAtom />
 					</div>
 				</div>
-				<div className='main-course-view-page__content'>
-					<div className='main-course-view-page__left-side'>
-						<MainCourseTopics />
-						<MainCourseCompanies />
-						<MainCourseRequirements />
-						<MainCourseDescription />
-					</div>
+			</div>
+			<div className='main-course-view-page__content'>
+				<div className='main-course-view-page__left-side'>
+					<MainCourseTopics />
+					<MainCourseCompanies />
+					<MainCourseRequirements />
+					<MainCourseDescription />
 				</div>
-			</section>
-		</>
+			</div>
+		</main>
 	)
 }
 

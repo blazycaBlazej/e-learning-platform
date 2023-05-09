@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom'
 import MenuOrganism from '../components/organisms/MenuOrganism/MenuOrganism'
 
 import './MainLayout.scss'
+import FooterOrganism from '../components/organisms/FooterOrganism/FooterOrganism'
 
 const MainLayout = (): JSX.Element => {
 	return (
@@ -9,6 +10,9 @@ const MainLayout = (): JSX.Element => {
 			<MenuOrganism />
 			<div className='main-layout__content'>
 				<Outlet />
+			</div>
+			<div className='main-layout__footer'>
+				<FooterOrganism />
 			</div>
 		</section>
 	)

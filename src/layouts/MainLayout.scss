@@ -1,5 +1,12 @@
 .main-layout {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 	& &__content {
 		padding-block-start: 7rem;
+	}
+
+	& &__footer {
+		margin-top: auto;
 	}
 }

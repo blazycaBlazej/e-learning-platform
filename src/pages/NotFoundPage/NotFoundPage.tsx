@@ -1,3 +1,4 @@
+import FooterOrganism from '../../components/organisms/FooterOrganism/FooterOrganism'
 import MenuOrganism from '../../components/organisms/MenuOrganism/MenuOrganism'
 import './NotFoundPage.scss'
 
@@ -12,6 +13,9 @@ const NotFoundPage = (): JSX.Element => {
 
 				<h1 className='not-found-page__header'>We can’t find the page you’re looking for</h1>
 				<p className='not-found-page__description'>Visit our support page for further assistance.</p>
+			</div>
+			<div className='not-found-page__footer'>
+				<FooterOrganism />
 			</div>
 		</section>
 	)

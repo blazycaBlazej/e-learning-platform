@@ -1,7 +1,7 @@
 import './ButtonAtom.scss'
 
 interface ButtonAtomProps {
-	label: string
+	label: string | JSX.Element
 	btnClass: string
 }
 
