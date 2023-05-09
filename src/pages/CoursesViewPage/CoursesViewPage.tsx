@@ -3,9 +3,9 @@ import './CoursesViewPage.scss'
 
 const CoursesViewPage = (): JSX.Element => {
 	return (
-		<section className='courses-view-page'>
+		<main className='courses-view-page'>
 			<CoursesViewOrganism />
-		</section>
+		</main>
 	)
 }
 

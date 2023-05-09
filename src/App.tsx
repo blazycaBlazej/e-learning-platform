@@ -1,11 +1,11 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import HomePage from './pages/HomePage/HomePage'
-import MainCourseViewPage from './pages/MainCourseViewPage/MainCourseViewPage'
-import CoursesViewPage from './pages/CoursesViewPage/CouresesViewPage'
+import CourseDetailsPage from './pages/CourseDetailsPage/CourseDetailsPage'
+import CoursesViewPage from './pages/CoursesViewPage/CoursesViewPage'
 import MainLayout from './layouts/MainLayout'
-
-import './App.scss'
+import BasketPage from './pages/BasketPage/BasketPage'
 import NotFound from './pages/NotFoundPage/NotFoundPage'
+import './App.scss'
 
 function App() {
 	const router = createBrowserRouter([
@@ -24,11 +24,16 @@ function App() {
 				},
 				{
 					path: 'courses/:productId',
-					element: <MainCourseViewPage />,
+					element: <CourseDetailsPage />,
+				},
+				{
+					path: 'basket',
+					element: <BasketPage />,
 				},
 			],
 		},
 	])
+
 	return <RouterProvider router={router} />
 }
 

@@ -1,32 +1,36 @@
+import { useEffect } from 'react'
 import MainCourseHeader from '../../components/atoms/MainCourse/MainCourseHeader/MainCourseHeader'
 import MainCourseOptionAtom from '../../components/atoms/MainCourse/MainCourseOptionAtom/MainCourseOptionAtom'
 
-import './MainCourseViewPage.scss'
 import MainCourseTopics from '../../components/atoms/MainCourse/MainCourseTopics/MainCourseTopics'
 import MainCourseCompanies from '../../components/atoms/MainCourse/MainCourseCompanies/MainCourseCompanies'
 import MainCourseRequirements from '../../components/atoms/MainCourse/MainCourseRequirements/MainCourseRequirements'
 import MainCourseDescription from '../../components/atoms/MainCourse/MainCourseDescription/MainCourseDescription'
 import MainCourseStickyHeader from '../../components/atoms/MainCourse/MainCourseStickyHeader/MainCourseStickyHeader'
-import MenuOrganism from '../../components/organisms/MenuOrganism/MenuOrganism'
-const MainCourseViewPage = (): JSX.Element => {
+
+import './CourseDetailsPage.scss'
+const CourseDetailsPage = (): JSX.Element => {
 	const rating = 5
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	}, [])
 	return (
-		<main className='main-course-view-page'>
-			<div className='main-course-view-page__sticky-header'>
+		<main className='course-details-page'>
+			<div className='course-details-page__sticky-header'>
 				<MainCourseStickyHeader />
 			</div>
-			<div className='main-course-view-page__header-bgc'>
-				<div className='main-course-view-page__header-wrapper'>
-					<div className='main-course-view-page__header'>
+			<div className='course-details-page__header-bgc'>
+				<div className='course-details-page__header-wrapper'>
+					<div className='course-details-page__header'>
 						<MainCourseHeader />
 					</div>
-					<div className='main-course-view-page__option'>
+					<div className='course-details-page__option'>
 						<MainCourseOptionAtom />
 					</div>
 				</div>
 			</div>
-			<div className='main-course-view-page__content'>
-				<div className='main-course-view-page__left-side'>
+			<div className='course-details-page__content'>
+				<div className='course-details-page__left-side'>
 					<MainCourseTopics />
 					<MainCourseCompanies />
 					<MainCourseRequirements />
@@ -37,4 +41,4 @@ const MainCourseViewPage = (): JSX.Element => {
 	)
 }
 
-export default MainCourseViewPage
+export default CourseDetailsPage

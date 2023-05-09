@@ -1,14 +1,16 @@
 .courses-view-page {
 	margin-inline: auto;
 	width: 100%;
-
+	padding-block: 3.2rem;
 	max-width: 1184px;
 
 	@media screen and(max-width: 1230px) {
+		width: calc(100% - 4.4rem);
 		padding-inline: 2.2rem;
 	}
 
 	@media screen and(max-width: 360px) {
+		width: calc(100% - 2.4rem);
 		padding-inline: 1.2rem;
 	}
 }

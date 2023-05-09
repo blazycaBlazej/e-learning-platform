@@ -30,7 +30,9 @@ const MenuOrganism = (): JSX.Element => {
 			</div>
 
 			<div className='menu-organism__options'>
-				<MenuBasketAtom />
+				<Link to='basket'>
+					<MenuBasketAtom />
+				</Link>
 				<span className='menu-organism__search-icon'>
 					<MenuSearchAtom />
 				</span>

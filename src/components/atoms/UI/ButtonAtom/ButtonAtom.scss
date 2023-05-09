@@ -96,4 +96,22 @@
 			background-color: LightGray;
 		}
 	}
+
+	//keep shopping
+	&--basketBtn {
+		width: 15rem;
+		height: 4.8rem;
+		padding-inline: 1.2;
+		background: #7f56d9;
+		color: #fff;
+		font-weight: bold;
+
+		&:hover {
+			background: #8710d8;
+		}
+
+		&:active {
+			background: #8710d8;
+		}
+	}
 }
