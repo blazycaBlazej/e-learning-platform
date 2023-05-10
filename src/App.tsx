@@ -1,4 +1,6 @@
+import { Provider } from 'react-redux'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import store from '../src/store/index'
 import HomePage from './pages/HomePage/HomePage'
 import CourseDetailsPage from './pages/CourseDetailsPage/CourseDetailsPage'
 import CoursesViewPage from './pages/CoursesViewPage/CoursesViewPage'
@@ -34,7 +36,11 @@ function App() {
 		},
 	])
 
-	return <RouterProvider router={router} />
+	return (
+		<Provider store={store}>
+			<RouterProvider router={router} />
+		</Provider>
+	)
 }
 
 export default App
