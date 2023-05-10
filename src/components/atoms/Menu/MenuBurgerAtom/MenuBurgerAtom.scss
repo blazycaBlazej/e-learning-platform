@@ -1,72 +1,15 @@
 .menu-burger-atom {
-	position: absolute;
-	top: 0;
-	top: 7px;
-	left: 0;
-	& &__burger {
-		color: #1c1d1f;
-		cursor: pointer;
-		display: none;
-		padding: 0.4rem 1.2rem;
-		transition: 0.2s linear transform;
-		&:hover,
-		&:active {
-			transform: scale(1.05);
-		}
-	}
-
-	& &__menu {
-		display: none;
-		width: 280px;
-		min-height: 100vh;
-		overflow-y: auto;
-		background-color: #fff;
-		// position: absolute;
-		z-index: 2211;
-		color: #1c1d1f;
-		font-family: 'Inter';
-		padding-block: 1.6rem;
-	}
-
-	& &__list {
-		list-style: none;
-	}
-
-	& &__element-list {
-		padding-inline: 1.6rem;
-		cursor: pointer;
-
-		font-size: 1.6rem;
-		margin-bottom: 1.6rem;
-		&:hover,
-		&:active {
-			text-decoration: underline;
-		}
-	}
-	& &__element-list--violet {
-		color: #5624d0;
-	}
-
-	& &__header {
-		font-size: 1.4rem;
-		color: #6a6f73;
-		font-weight: bold;
-		padding-top: 1.6rem;
-		border-top: 1px solid #d1d7dc;
-		padding-inline: 1.6rem;
-		margin-bottom: 1.6rem;
+	color: #1c1d1f;
+	cursor: pointer;
+	display: none;
+	padding: 0.4rem 1.2rem;
+	transition: 0.2s linear transform;
+	&:hover,
+	&:active {
+		transform: scale(1.05);
 	}
 
 	@media screen and (max-width: 800px) {
-		& &__burger {
-			display: block;
-		}
-
-		& &__menu {
-			display: block;
-		}
+		display: block;
 	}
-}
-
-.menu-tablet-organism {
 }

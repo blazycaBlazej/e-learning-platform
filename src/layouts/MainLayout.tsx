@@ -9,6 +9,7 @@ const MainLayout = (): JSX.Element => {
 	return (
 		<section className='main-layout'>
 			<MenuOrganism />
+			<MenuTabletOrganism />
 			<div className='main-layout__content'>
 				<Outlet />
 			</div>

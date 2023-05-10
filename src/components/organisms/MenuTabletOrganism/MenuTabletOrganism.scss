@@ -1,14 +1,23 @@
 .menu-tablet-organism {
-	width: 280px;
 	min-height: 100vh;
 	overflow-y: auto;
-	background-color: #fff;
-	position: absolute;
-	z-index: 2211;
+	// background-color: rgba(28, 29, 31, 0.5);
+	min-width: 100vw;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 4;
 	color: #1c1d1f;
 	font-family: 'Inter';
-	padding-block: 1.6rem;
 
+	display: none;
+
+	& &__menu {
+		padding-block: 1.6rem;
+		width: 280px;
+		background-color: #fff;
+		min-height: 100vh;
+	}
 	& &__list {
 		list-style: none;
 	}
@@ -36,5 +45,9 @@
 		border-top: 1px solid #d1d7dc;
 		padding-inline: 1.6rem;
 		margin-bottom: 1.6rem;
+	}
+
+	@media screen and(max-width: 800px) {
+		display: block;
 	}
 }
