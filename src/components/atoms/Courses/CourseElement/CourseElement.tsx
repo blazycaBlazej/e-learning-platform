@@ -2,30 +2,45 @@ import { IconStarFilled, IconStarHalfFilled, IconStar } from '@tabler/icons-reac
 import './CourseElement.scss'
 
 interface CourseElementProps {
+	id: number
+	category: string
 	name: string
 	description: string
 	author: string
-	rating: number
 	numberOfRating: number
+	rating: number
 	price: number
+	language: string
+	requirements: string[]
+	img?: string
 }
 
-const CourseElement = (): JSX.Element => {
-	const rating = 5
+const CourseElement = ({
+	id,
+	category,
+	name,
+	description,
+	author,
+	numberOfRating,
+	rating,
+	price,
+	language,
+	requirements,
+	img,
+}: CourseElementProps): JSX.Element => {
 	return (
 		<section className='course-element'>
-			<div className='course-element__img'></div>
+			<div className='course-element__img--wrapper'>
+				<img loading='lazy' className='course-element__img' src={img} alt={name} />
+			</div>
 
 			<div className='course-element__content'>
-				<h3 className='course-element__name'>Java od Podstaw do Eksperta - twórz własne aplikacje</h3>
-				<p className='course-element__description'>
-					Stworzony z myślą o osobach, które nie wiedzą nic na temat programowania w Java. Stań się ekspertem w Javie
-					już dziś!
-				</p>
-				<span className='course-element__author'>Arkadiusz Włodarczyk</span>
+				<h3 className='course-element__name'>{name}</h3>
+				<p className='course-element__description'>{description}</p>
+				<span className='course-element__author'>{author}</span>
 
 				<div className='course-element__rating-wrapper'>
-					<span className='course-element__rating-number'>5.0</span>
+					<span className='course-element__rating-number'>{rating}</span>
 
 					<div className='course-element__rating'>
 						{rating >= 1 ? (
@@ -64,11 +79,11 @@ const CourseElement = (): JSX.Element => {
 							<IconStar className='course-element__rating-star' size={18} />
 						)}
 					</div>
-					<span className='course-element__number-of-rantings'>(1)</span>
+					<span className='course-element__number-of-rantings'>{numberOfRating}</span>
 				</div>
 			</div>
 
-			<span className='course-element__price'>239,99 zł</span>
+			<span className='course-element__price'>${price},00</span>
 		</section>
 	)
 }

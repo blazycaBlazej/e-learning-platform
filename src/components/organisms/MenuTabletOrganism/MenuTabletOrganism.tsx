@@ -71,28 +71,28 @@ const MenuTabletOrganism = (): JSX.Element => {
 						</ul>
 						<h2 className='menu-tablet-organism__header'>Most Popular</h2>
 						<ul className='menu-tablet-organism__list'>
-							<Link to='/courses'>
+							<Link to='/courses/design'>
 								<li className='menu-tablet-organism__element-list'>Design</li>
 							</Link>
-							<Link to='/courses'>
+							<Link to='/courses/development'>
 								<li className='menu-tablet-organism__element-list'>Development</li>
 							</Link>
-							<Link to='/courses'>
+							<Link to='/courses/marketing'>
 								<li className='menu-tablet-organism__element-list'>Marketing</li>
 							</Link>
-							<Link to='/courses'>
+							<Link to='/courses/it-and-software'>
 								<li className='menu-tablet-organism__element-list'>IT and Software</li>
 							</Link>
-							<Link to='/courses'>
+							<Link to='/courses/personal-development'>
 								<li className='menu-tablet-organism__element-list'>Personal Development</li>
 							</Link>
-							<Link to='/courses'>
+							<Link to='/courses/business'>
 								<li className='menu-tablet-organism__element-list'>Business</li>
 							</Link>
-							<Link to='/courses'>
+							<Link to='/courses/photography'>
 								<li className='menu-tablet-organism__element-list'>Photography</li>
 							</Link>
-							<Link to='/courses'>
+							<Link to='/courses/music'>
 								<li className='menu-tablet-organism__element-list'>Music</li>
 							</Link>
 						</ul>
