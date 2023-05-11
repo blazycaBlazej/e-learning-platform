@@ -1,12 +1,11 @@
 import './MainCourseRequirements.scss'
 
-const MainCourseRequirements = (): JSX.Element => {
-	const requirements = [
-		'No programming experience is required.',
-		'Downloading and installing Python is covered at the start of the course.',
-		'Basic computer skills: surfing websites, running programs, saving and opening documents, etc.',
-	]
+interface MainCourseRequirementsProps {
+	requirements: string[]
+}
 
+const MainCourseRequirements = ({ requirements }: MainCourseRequirementsProps): JSX.Element => {
+	console.log(requirements)
 	return (
 		<section className='main-course-requirements'>
 			<h2 className='main-course-requirements__header'>Requirements</h2>

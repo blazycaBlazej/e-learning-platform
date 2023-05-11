@@ -2,12 +2,21 @@ import { IconCertificate, IconDevices, IconInfinity } from '@tabler/icons-react'
 
 import ButtonAtom from '../../UI/ButtonAtom/ButtonAtom'
 import './MainCourseOptionAtom.scss'
-const MainCourseOptionAtom = (): JSX.Element => {
+
+interface MainCourseOptionAtomProps {
+	price: number
+	img: string
+	name: string
+}
+
+const MainCourseOptionAtom = ({ price, img, name }: MainCourseOptionAtomProps): JSX.Element => {
 	return (
 		<section className='main-course-option-atom'>
-			<div className='main-course-option-atom__img-wrapper'></div>
+			<div className='main-course-option-atom__img-wrapper'>
+				<img className='main-course-option-atom__img' loading='lazy' src={img} alt={name} />
+			</div>
 			<div className='main-course-option-atom__content'>
-				<span className='main-course-option-atom__price'>239,99 zł</span>
+				<span className='main-course-option-atom__price'>${price}</span>
 
 				<div className='main-course-option-atom__btns'>
 					<ButtonAtom label='Buy' btnClass='button--buy' />

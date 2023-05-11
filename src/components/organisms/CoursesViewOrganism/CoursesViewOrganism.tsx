@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useLoaderData } from 'react-router-dom'
 import CourseElement from '../../atoms/Courses/CourseElement/CourseElement'
 import CourseLabel from '../../atoms/Courses/CourseLabel/CourseLabel'
 import CourseMoneyBack from '../../atoms/Courses/CourseMoneyBack/CourseMoneyBack'
@@ -15,15 +15,12 @@ interface Course {
 	price: number
 	language: string
 	requirements: string[]
-	img?: string
+	img: string
 }
 
-interface CoursesViewOrganismProps {
-	courses: Course[]
-}
+const CoursesViewOrganism = (): JSX.Element => {
+	const courses: Course[] = useLoaderData() as Course[]
 
-const CoursesViewOrganism = ({ courses }: CoursesViewOrganismProps): JSX.Element => {
-	console.log(courses)
 	return (
 		<section className='courses-view-organism'>
 			<div className='courses-view-organism__label'>
@@ -34,7 +31,7 @@ const CoursesViewOrganism = ({ courses }: CoursesViewOrganismProps): JSX.Element
 			</div>
 
 			{courses.map(el => (
-				<Link to='/courses/xd'>
+				<Link to={`/courses/${el.id}`}>
 					<CourseElement
 						key={el.id}
 						id={el.id}

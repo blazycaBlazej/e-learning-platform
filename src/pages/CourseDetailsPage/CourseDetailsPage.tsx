@@ -1,3 +1,4 @@
+import { useLoaderData } from 'react-router-dom'
 import { useEffect } from 'react'
 import MainCourseHeader from '../../components/atoms/MainCourse/MainCourseHeader/MainCourseHeader'
 import MainCourseOptionAtom from '../../components/atoms/MainCourse/MainCourseOptionAtom/MainCourseOptionAtom'
@@ -9,11 +10,27 @@ import MainCourseDescription from '../../components/atoms/MainCourse/MainCourseD
 import MainCourseStickyHeader from '../../components/atoms/MainCourse/MainCourseStickyHeader/MainCourseStickyHeader'
 
 import './CourseDetailsPage.scss'
+
+interface courseDetail {
+	id: number
+	category: string
+	name: string
+	description: string
+	author: string
+	numberOfRating: number
+	rating: number
+	price: number
+	language: string
+	requirements: string[]
+	img: string
+}
+
 const CourseDetailsPage = (): JSX.Element => {
-	const rating = 5
+	const courseDetail: courseDetail[] = useLoaderData() as courseDetail[]
 	useEffect(() => {
 		window.scrollTo(0, 0)
 	}, [])
+
 	return (
 		<main className='course-details-page'>
 			<div className='course-details-page__sticky-header'>
@@ -22,10 +39,18 @@ const CourseDetailsPage = (): JSX.Element => {
 			<div className='course-details-page__header-bgc'>
 				<div className='course-details-page__header-wrapper'>
 					<div className='course-details-page__header'>
-						<MainCourseHeader />
+						<MainCourseHeader
+							name={courseDetail[0].name}
+							description={courseDetail[0].description}
+							rating={courseDetail[0].rating}
+							language={courseDetail[0].language}
+							numberOfRating={courseDetail[0].numberOfRating}
+							author={courseDetail[0].author}
+							category={courseDetail[0].category}
+						/>
 					</div>
 					<div className='course-details-page__option'>
-						<MainCourseOptionAtom />
+						<MainCourseOptionAtom price={courseDetail[0].price} img={courseDetail[0].img} name={courseDetail[0].name} />
 					</div>
 				</div>
 			</div>
@@ -33,8 +58,8 @@ const CourseDetailsPage = (): JSX.Element => {
 				<div className='course-details-page__left-side'>
 					<MainCourseTopics />
 					<MainCourseCompanies />
-					<MainCourseRequirements />
-					<MainCourseDescription />
+					<MainCourseRequirements requirements={courseDetail[0].requirements} />
+					<MainCourseDescription description={courseDetail[0].description} />
 				</div>
 			</div>
 		</main>

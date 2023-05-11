@@ -2,18 +2,32 @@ import { IconStarFilled, IconStarHalfFilled, IconStar, IconWorld, IconRefresh, I
 
 import './MainCourseHeader.scss'
 
-const MainCourseHeader = (): JSX.Element => {
-	const rating = 5
+interface MainCourseHeaderProps {
+	name: string
+	description: string
+	rating: number
+	language: string
+	numberOfRating: number
+	author: string
+	category: string
+}
+
+const MainCourseHeader = ({
+	name,
+	description,
+	rating,
+	language,
+	numberOfRating,
+	author,
+	category,
+}: MainCourseHeaderProps): JSX.Element => {
 	return (
 		<section className='main-course-header'>
-			<span className='main-course-header__category'>Projektowanie</span>
-			<h1 className='main-course-header__name'>The Ultimate Drawing Course - Beginner to Advanced</h1>
-			<p className='main-course-header__description'>
-				Learn the #1 most important building block of all art, Drawing. This course will teach you how to draw like a
-				pro!
-			</p>
+			<span className='main-course-header__category'>{category}</span>
+			<h1 className='main-course-header__name'>{name}</h1>
+			<p className='main-course-header__description'>{description}</p>
 			<div className='main-course-header__rating-wrapper'>
-				<span className='main-course-header__rating-number'>5.0</span>
+				<span className='main-course-header__rating-number'>{rating}</span>
 
 				<div className='main-course-header__rating'>
 					{rating >= 1 ? (
@@ -52,12 +66,12 @@ const MainCourseHeader = (): JSX.Element => {
 						<IconStar className='main-course-header__rating-star' size={18} />
 					)}
 				</div>
-				<span className='main-course-header__number-of-rantings'>(1 ratings)</span>
-				<span className='main-course-view-students'>1 students</span>
+				<span className='main-course-header__number-of-rantings'>({numberOfRating} ratings)</span>
+				<span className='main-course-view-students'>{numberOfRating} students</span>
 			</div>
 			<span className='main-course-header__creator'>
 				<IconUser size={20} />
-				Created by: Jan Kowalski
+				Created by: {author}
 			</span>
 			<span className='main-course-header__last-update'>
 				<IconRefresh size={20} />
@@ -65,7 +79,7 @@ const MainCourseHeader = (): JSX.Element => {
 			</span>
 			<span className='main-course-header__language'>
 				<IconWorld size={20} />
-				English
+				{language}
 			</span>
 		</section>
 	)

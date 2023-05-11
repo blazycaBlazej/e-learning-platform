@@ -31,6 +31,14 @@ function App() {
 					},
 				},
 				{
+					path: 'courses/:id',
+					element: <CourseDetailsPage />,
+					loader: ({ request, params }) => {
+						const data = courses.filter(el => el.id === Number(params.id))
+						return data
+					},
+				},
+				{
 					path: '/courses/design',
 					element: <CoursesViewPage />,
 					loader: () => {
@@ -102,10 +110,7 @@ function App() {
 						return data
 					},
 				},
-				{
-					path: 'courses/:productId',
-					element: <CourseDetailsPage />,
-				},
+
 				{
 					path: 'basket',
 					element: <BasketPage />,
