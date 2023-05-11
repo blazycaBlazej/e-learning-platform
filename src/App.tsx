@@ -10,6 +10,7 @@ import NotFound from './pages/NotFoundPage/NotFoundPage'
 import { courses } from './data/courses'
 import './App.scss'
 import LoginPage from './pages/LoginPage/LoginPage'
+import RegisterPage from './pages/RegisterPage/RegisterPage'
 
 function App() {
 	const router = createBrowserRouter([
@@ -29,6 +30,10 @@ function App() {
 				{
 					path: 'login',
 					element: <LoginPage />,
+				},
+				{
+					path: 'register',
+					element: <RegisterPage />,
 				},
 				{
 					path: 'courses',
