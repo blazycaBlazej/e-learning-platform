@@ -30,7 +30,7 @@ const MenuOrganism = (): JSX.Element => {
 			</div>
 
 			<div className='menu-organism__options'>
-				<Link to='basket'>
+				<Link to='/basket'>
 					<MenuBasketAtom />
 				</Link>
 				<span className='menu-organism__search-icon'>
@@ -39,10 +39,12 @@ const MenuOrganism = (): JSX.Element => {
 			</div>
 
 			<div className='menu-organism__btns'>
-				<Link to='login'>
+				<Link to='/login'>
 					<ButtonAtom label='Log in' btnClass='button--login' />
 				</Link>
-				<ButtonAtom label='Sign up' btnClass='button--sign' />
+				<Link to='/register'>
+					<ButtonAtom label='Sign up' btnClass='button--sign' />
+				</Link>
 			</div>
 		</nav>
 	)

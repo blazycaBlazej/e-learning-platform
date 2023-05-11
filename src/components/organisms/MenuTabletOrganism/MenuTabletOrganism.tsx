@@ -63,7 +63,7 @@ const MenuTabletOrganism = (): JSX.Element => {
 									Log in
 								</li>
 							</Link>
-							<Link to='/..'>
+							<Link to='/register'>
 								<li className='menu-tablet-organism__element-list menu-tablet-organism__element-list--violet'>
 									Sign up
 								</li>
