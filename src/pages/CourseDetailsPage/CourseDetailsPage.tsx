@@ -34,7 +34,12 @@ const CourseDetailsPage = (): JSX.Element => {
 	return (
 		<main className='course-details-page'>
 			<div className='course-details-page__sticky-header'>
-				<MainCourseStickyHeader />
+				<MainCourseStickyHeader
+					name={courseDetail[0].name}
+					rating={courseDetail[0].rating}
+					numberOfRating={courseDetail[0].numberOfRating}
+					img={courseDetail[0].img}
+				/>
 			</div>
 			<div className='course-details-page__header-bgc'>
 				<div className='course-details-page__header-wrapper'>
