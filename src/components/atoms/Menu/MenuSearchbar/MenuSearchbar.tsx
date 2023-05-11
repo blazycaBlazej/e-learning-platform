@@ -5,11 +5,11 @@ import { IconSearch } from '@tabler/icons-react'
 const MenuSearchbar = (): JSX.Element => {
 	return (
 		<section className='menu-searchbar'>
-			<input className='menu-searchbar__search' type='text' />
+			<input className='menu-searchbar__search' type='text' required />
 
 			<div className='menu-searchbar__placeholder'>
 				<IconSearch size={18} color='#667085' />
-				<span>Search for anything</span>
+				<span className='menu-searchbar__placeholder-text'>Search for anything</span>
 			</div>
 		</section>
 	)

@@ -9,6 +9,7 @@ import BasketPage from './pages/BasketPage/BasketPage'
 import NotFound from './pages/NotFoundPage/NotFoundPage'
 import { courses } from './data/courses'
 import './App.scss'
+import LoginPage from './pages/LoginPage/LoginPage'
 
 function App() {
 	const router = createBrowserRouter([
@@ -20,6 +21,14 @@ function App() {
 				{
 					index: true,
 					element: <HomePage />,
+				},
+				{
+					path: 'basket',
+					element: <BasketPage />,
+				},
+				{
+					path: 'login',
+					element: <LoginPage />,
 				},
 				{
 					path: 'courses',
@@ -109,11 +118,6 @@ function App() {
 
 						return data
 					},
-				},
-
-				{
-					path: 'basket',
-					element: <BasketPage />,
 				},
 			],
 		},

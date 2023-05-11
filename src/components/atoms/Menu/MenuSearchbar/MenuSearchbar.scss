@@ -16,6 +16,9 @@
 		width: 100%;
 		color: #667085;
 		padding-left: 4.9rem;
+		&:valid ~ .menu-searchbar__placeholder .menu-searchbar__placeholder-text {
+			display: none;
+		}
 	}
 
 	& &__placeholder {
@@ -25,5 +28,6 @@
 		display: flex;
 		align-items: center;
 		gap: 1.8rem;
+		pointer-events: none;
 	}
 }

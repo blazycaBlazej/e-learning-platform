@@ -39,7 +39,9 @@ const MenuOrganism = (): JSX.Element => {
 			</div>
 
 			<div className='menu-organism__btns'>
-				<ButtonAtom label='Log in' btnClass='button--login' />
+				<Link to='login'>
+					<ButtonAtom label='Log in' btnClass='button--login' />
+				</Link>
 				<ButtonAtom label='Sign up' btnClass='button--sign' />
 			</div>
 		</nav>

@@ -58,7 +58,7 @@ const MenuTabletOrganism = (): JSX.Element => {
 				<div className='menu-tablet-organism'>
 					<div className='menu-tablet-organism__menu' ref={myRef}>
 						<ul className='menu-tablet-organism__list'>
-							<Link to='/..'>
+							<Link to='/login'>
 								<li className='menu-tablet-organism__element-list menu-tablet-organism__element-list--violet'>
 									Log in
 								</li>

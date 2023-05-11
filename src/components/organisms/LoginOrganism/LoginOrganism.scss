@@ -1,0 +1,81 @@
+.login-organism {
+	font-family: 'Inter';
+	color: #1c1d1f;
+	max-width: 35.2rem;
+	width: 100%;
+
+	& &__header {
+		font-weight: bold;
+		font-size: 1.6rem;
+		margin-bottom: 1.6rem;
+	}
+
+	& &__wrapper {
+		height: 9rem;
+	}
+
+	& &__input-wrapper {
+		max-width: 35.2rem;
+		width: 100%;
+		height: 6.2rem;
+		position: relative;
+		border: 1px solid #1c1d1f;
+	}
+	& &__input {
+		max-width: 35.2rem;
+		width: 100%;
+		height: 6rem;
+		position: absolute;
+
+		font-weight: 400;
+		line-height: 1.4;
+		font-size: 1.6rem;
+		padding-inline: 1.6rem;
+		padding-block: 1.6rem 0;
+
+		&:valid ~ .login-organism__label,
+		&:focus ~ .login-organism__label {
+			top: 6px;
+			font-size: 1.1rem;
+		}
+	}
+
+	& &__label {
+		width: 100%;
+		height: 4.1rem;
+		position: absolute;
+		pointer-events: none;
+		left: 15px;
+		top: 22px;
+		transition: 0.5s;
+		letter-spacing: -0.02rem;
+		font-size: 1.4rem;
+		font-weight: bold;
+	}
+
+	& &__error {
+		display: block;
+		margin-top: 0.6rem;
+		color: red;
+		display: none;
+		font-size: 1.2rem;
+	}
+
+	& &__sign-up-box {
+		margin-top: 5.4rem;
+		padding-block: 1.7rem;
+		border-top: 1px solid #1c1d1f;
+		text-align: center;
+	}
+
+	& &__sign-up-box-text {
+		font-size: 1.4rem;
+
+		&--violet {
+			cursor: pointer;
+			text-decoration: underline;
+			color: #5624d0;
+			font-weight: bold;
+		}
+	}
+}
