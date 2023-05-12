@@ -55,7 +55,7 @@
 		display: block;
 		margin-top: 0.6rem;
 		color: red;
-		display: none;
+		// display: none;
 		font-size: 1.2rem;
 	}
 
@@ -80,5 +80,9 @@
 			color: #5624d0;
 			font-weight: bold;
 		}
+	}
+
+	& &__btn {
+		margin-top: 9rem;
 	}
 }
