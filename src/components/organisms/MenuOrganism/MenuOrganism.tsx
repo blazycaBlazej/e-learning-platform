@@ -9,6 +9,7 @@ import ButtonAtom from '../../atoms/UI/ButtonAtom/ButtonAtom'
 import './MenuOrganism.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { authAction } from '../../../store/slices/authSlice/authSlice'
+import MenuAuthAtom from '../../atoms/Menu/MenuAuthAtom/MenuAuthAtom'
 
 interface StateRoot {
 	auth: {
@@ -18,12 +19,9 @@ interface StateRoot {
 
 const MenuOrganism = (): JSX.Element => {
 	const dispatch = useDispatch()
-	const clickHandler = () => {
-		localStorage.removeItem('token')
-		dispatch(authAction.logout())
-	}
 
 	const isLogin = useSelector((state: StateRoot) => state.auth.isLogin)
+
 	return (
 		<nav className='menu-organism'>
 			<div className='menu-organism__burger'>
@@ -63,9 +61,7 @@ const MenuOrganism = (): JSX.Element => {
 					</Link>
 				</div>
 			) : (
-				<div className='menu-organism__btns' onClick={clickHandler}>
-					<ButtonAtom label='Log out' btnClass='button--sign' />
-				</div>
+				<MenuAuthAtom />
 			)}
 		</nav>
 	)

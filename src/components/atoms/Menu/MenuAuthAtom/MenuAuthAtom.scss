@@ -1,0 +1,91 @@
+.menu-auth-atom {
+	cursor: pointer;
+	font-family: 'Inter';
+
+	& &__circle {
+		font-weight: bold;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 100%;
+		width: 3.2rem;
+		height: 3.2rem;
+		background-color: #1c1d1f;
+		font-size: 1.8rem;
+		color: #fff;
+	}
+
+	& &__box {
+		padding-top: 2rem;
+		right: 0;
+		position: absolute;
+	}
+
+	& &__menu {
+		padding-block: 2rem;
+		background-color: #fff;
+		min-width: 26rem;
+		border: 1px solid #d1d7dc;
+	}
+
+	& &__menu-header {
+		padding-inline: 1.6rem;
+		display: flex;
+		align-items: center;
+		gap: 0.8rem;
+		padding-bottom: 1.7rem;
+	}
+
+	& &__menu-big-circle {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: #1c1d1f;
+		border-radius: 100%;
+		width: 6.4rem;
+		height: 6.4rem;
+		font-size: 3.2rem;
+		font-weight: bold;
+		color: #fff;
+	}
+
+	& &__menu-user-name-box {
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+	}
+
+	& &__menu-user-name {
+		font-size: 1.4rem;
+		font-weight: bold;
+	}
+
+	& &__menu-user-email {
+		font-size: 1.2rem;
+		color: #6a6f73;
+	}
+
+	& &__menu-border {
+		border-top: 1px solid #d1d7dc;
+	}
+
+	& &__menu-content {
+		padding-inline: 1.6rem;
+	}
+
+	& &__menu-list {
+		margin-top: 1.6rem;
+		list-style: none;
+	}
+	& &__menu-element {
+		padding-block: 0.8rem;
+		font-size: 1.4rem;
+		transition: color linear 0.2s;
+		&:hover {
+			color: #5624d0;
+		}
+		&:active {
+			color: #5624d0;
+		}
+	}
+}

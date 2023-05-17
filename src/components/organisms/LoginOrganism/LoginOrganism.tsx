@@ -40,6 +40,8 @@ const LoginOrganism = (): JSX.Element => {
 						console.log(response.status)
 					} else {
 						localStorage.setItem('token', data.token)
+						localStorage.setItem('email', email!)
+						localStorage.setItem('name', data.name!)
 						disptach(authAction.login())
 						navigate('/')
 					}

@@ -92,7 +92,7 @@ app.post('/login', (req, res) => {
 				res.status(401).json({ error: 'Nieprawidłowe hasło lub login' })
 			} else {
 				const token = jwt.sign(user, ACCESS_TOKEN)
-				res.status(200).json({ message: 'Zalogowano pomyślnie', token })
+				res.status(200).json({ message: 'Zalogowano pomyślnie', token, name: user.fullName })
 			}
 		}
 	})
