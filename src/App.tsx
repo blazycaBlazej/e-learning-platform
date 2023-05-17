@@ -1,6 +1,6 @@
-import { Provider } from 'react-redux'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import store from '../src/store/index'
+import { useDispatch, useSelector } from 'react-redux'
+import { createBrowserRouter, redirect, RouterProvider } from 'react-router-dom'
+
 import HomePage from './pages/HomePage/HomePage'
 import CourseDetailsPage from './pages/CourseDetailsPage/CourseDetailsPage'
 import CoursesViewPage from './pages/CoursesViewPage/CoursesViewPage'
@@ -11,13 +11,28 @@ import { courses } from './data/courses'
 import './App.scss'
 import LoginPage from './pages/LoginPage/LoginPage'
 import RegisterPage from './pages/RegisterPage/RegisterPage'
+import { logoutAction } from './pages/LogoutPage/LogoutPage'
+import { useEffect } from 'react'
+import { authAction } from './store/slices/authSlice/authSlice'
+interface StateRoot {
+	auth: {
+		isLogin: boolean
+	}
+}
 
 function App() {
+	const isLogin = useSelector((state: StateRoot) => state.auth.isLogin)
 	const router = createBrowserRouter([
 		{
 			path: '/',
 			element: <MainLayout />,
 			errorElement: <NotFound />,
+			id: 'root',
+			// loader: () => {
+			// 	const token = localStorage.getItem('token')
+			// 	return token
+			// },
+
 			children: [
 				{
 					index: true,
@@ -30,11 +45,37 @@ function App() {
 				{
 					path: 'login',
 					element: <LoginPage />,
+					loader: () => {
+						if (isLogin) {
+							return redirect('/')
+						} else {
+							return null
+						}
+					},
 				},
 				{
 					path: 'register',
 					element: <RegisterPage />,
+					loader: () => {
+						if (isLogin) {
+							return redirect('/')
+						} else {
+							return null
+						}
+					},
 				},
+				// {
+				// 	path: '/logout',
+				// 	action: logoutAction,
+				// 	loader: () => {
+				// 		const token = localStorage.getItem('token')
+				// 		if (!token) {
+				// 			return redirect('/')
+				// 		} else {
+				// 			return null
+				// 		}
+				// 	},
+				// },
 				{
 					path: 'courses',
 					element: <CoursesViewPage />,
@@ -128,11 +169,18 @@ function App() {
 		},
 	])
 
-	return (
-		<Provider store={store}>
-			<RouterProvider router={router} />
-		</Provider>
-	)
+	const dispatch = useDispatch()
+	useEffect(() => {
+		const handleLoad = () => {
+			if (localStorage.getItem('token')) {
+				dispatch(authAction.login())
+			}
+		}
+		addEventListener('load', handleLoad)
+		return () => removeEventListener('load', handleLoad)
+	}, [])
+
+	return <RouterProvider router={router} />
 }
 
 export default App

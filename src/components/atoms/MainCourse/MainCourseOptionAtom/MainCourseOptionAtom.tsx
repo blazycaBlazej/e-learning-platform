@@ -2,6 +2,8 @@ import { IconCertificate, IconDevices, IconInfinity } from '@tabler/icons-react'
 
 import ButtonAtom from '../../UI/ButtonAtom/ButtonAtom'
 import './MainCourseOptionAtom.scss'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 interface MainCourseOptionAtomProps {
 	price: number
@@ -9,7 +11,20 @@ interface MainCourseOptionAtomProps {
 	name: string
 }
 
+interface StateRoot {
+	auth: {
+		isLogin: boolean
+	}
+}
+
 const MainCourseOptionAtom = ({ price, img, name }: MainCourseOptionAtomProps): JSX.Element => {
+	const isLogin = useSelector((state: StateRoot) => state.auth.isLogin)
+	const navigate = useNavigate()
+	const clickHandler = () => {
+		if (!isLogin) {
+			navigate('/login')
+		}
+	}
 	return (
 		<section className='main-course-option-atom'>
 			<div className='main-course-option-atom__img-wrapper'>
@@ -19,8 +34,12 @@ const MainCourseOptionAtom = ({ price, img, name }: MainCourseOptionAtomProps): 
 				<span className='main-course-option-atom__price'>${price}</span>
 
 				<div className='main-course-option-atom__btns'>
-					<ButtonAtom label='Buy' btnClass='button--buy' />
-					<ButtonAtom label='Add to followed' btnClass='button--to-follow' />
+					<div onClick={clickHandler}>
+						<ButtonAtom label='Buy' btnClass='button--buy' />
+					</div>
+					<div onClick={clickHandler}>
+						<ButtonAtom label='Add to followed' btnClass='button--to-follow' />
+					</div>
 				</div>
 				<span className='main-course-option-atom__money-back'>30-Day Money-Back Guarantee</span>
 				<h2 className='main-course-option-atom__course-includes'>This course includes:</h2>

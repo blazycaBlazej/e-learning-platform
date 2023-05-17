@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Form, Link, useRouteLoaderData } from 'react-router-dom'
 import MenuBasketAtom from '../../atoms/Menu/MenuBasketAtom/MenuBasketAtom'
 import MenuBurgerAtom from '../../atoms/Menu/MenuBurgerAtom/MenuBurgerAtom'
 import MenuItemAtom from '../../atoms/Menu/MenuItemAtom/MenuItemAtom'
@@ -7,8 +7,23 @@ import MenuSearchAtom from '../../atoms/Menu/MenuSearchAtom/MenuSearchAtom'
 import MenuSearchbar from '../../atoms/Menu/MenuSearchbar/MenuSearchbar'
 import ButtonAtom from '../../atoms/UI/ButtonAtom/ButtonAtom'
 import './MenuOrganism.scss'
+import { useDispatch, useSelector } from 'react-redux'
+import { authAction } from '../../../store/slices/authSlice/authSlice'
+
+interface StateRoot {
+	auth: {
+		isLogin: boolean
+	}
+}
 
 const MenuOrganism = (): JSX.Element => {
+	const dispatch = useDispatch()
+	const clickHandler = () => {
+		localStorage.removeItem('token')
+		dispatch(authAction.logout())
+	}
+
+	const isLogin = useSelector((state: StateRoot) => state.auth.isLogin)
 	return (
 		<nav className='menu-organism'>
 			<div className='menu-organism__burger'>
@@ -38,14 +53,20 @@ const MenuOrganism = (): JSX.Element => {
 				</span>
 			</div>
 
-			<div className='menu-organism__btns'>
-				<Link to='/login'>
-					<ButtonAtom label='Log in' btnClass='button--login' />
-				</Link>
-				<Link to='/register'>
-					<ButtonAtom label='Sign up' btnClass='button--sign' />
-				</Link>
-			</div>
+			{!isLogin ? (
+				<div className='menu-organism__btns'>
+					<Link to='/login'>
+						<ButtonAtom label='Log in' btnClass='button--login' />
+					</Link>
+					<Link to='/register'>
+						<ButtonAtom label='Sign up' btnClass='button--sign' />
+					</Link>
+				</div>
+			) : (
+				<div className='menu-organism__btns' onClick={clickHandler}>
+					<ButtonAtom label='Log out' btnClass='button--sign' />
+				</div>
+			)}
 		</nav>
 	)
 }

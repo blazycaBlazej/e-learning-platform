@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import ButtonAtom from '../../atoms/UI/ButtonAtom/ButtonAtom'
 import './RegisterOrganism.scss'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { authAction } from '../../../store/slices/authSlice/authSlice'
 
 const RegisterOrganism = (): JSX.Element => {
 	const [isSent, setIsSent] = useState(false)
@@ -115,6 +117,7 @@ const RegisterOrganism = (): JSX.Element => {
 
 	const [backendError, setBackendError] = useState<string>('')
 
+	const disptach = useDispatch()
 	useEffect(() => {
 		// && nameIsCorrect && emailIsCorrect && passwordIsCorrect
 		if (isButtonClicked && nameIsCorrect && emailIsCorrect && passwordIsCorrect) {
@@ -133,6 +136,8 @@ const RegisterOrganism = (): JSX.Element => {
 					if (data.error) {
 						setBackendError(data.error)
 					} else {
+						localStorage.setItem('token', data.token)
+						disptach(authAction.login())
 						navigate('/')
 					}
 				} catch (error) {

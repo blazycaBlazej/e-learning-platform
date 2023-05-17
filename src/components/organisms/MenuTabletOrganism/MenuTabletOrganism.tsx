@@ -4,10 +4,14 @@ import { Link, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { uiAction } from '../../../store/slices/uiSlice/uiSlice'
 import './MenuTabletOrganism.scss'
+import { authAction } from '../../../store/slices/authSlice/authSlice'
 
 interface StateRoot {
 	ui: {
 		menuIsOpen: boolean
+	}
+	auth: {
+		isLogin: boolean
 	}
 }
 
@@ -16,7 +20,8 @@ const MenuTabletOrganism = (): JSX.Element => {
 	const dispatch = useDispatch()
 	const myRef = useRef<null | HTMLDivElement>(null)
 	const isOpen = useSelector((state: StateRoot) => state.ui.menuIsOpen)
-
+	const isLogin = useSelector((state: StateRoot) => state.auth.isLogin)
+	const disptach = useDispatch()
 	if (isOpen) {
 		document.body.style.overflowY = 'hidden'
 	} else {
@@ -42,6 +47,10 @@ const MenuTabletOrganism = (): JSX.Element => {
 		}
 	}, [dispatch])
 
+	const clickHandler = () => {
+		dispatch(authAction.logout())
+	}
+
 	return (
 		<FlipMove
 			duration={200}
@@ -58,16 +67,28 @@ const MenuTabletOrganism = (): JSX.Element => {
 				<div className='menu-tablet-organism'>
 					<div className='menu-tablet-organism__menu' ref={myRef}>
 						<ul className='menu-tablet-organism__list'>
-							<Link to='/login'>
-								<li className='menu-tablet-organism__element-list menu-tablet-organism__element-list--violet'>
-									Log in
-								</li>
-							</Link>
-							<Link to='/register'>
-								<li className='menu-tablet-organism__element-list menu-tablet-organism__element-list--violet'>
-									Sign up
-								</li>
-							</Link>
+							{isLogin ? (
+								<>
+									<li
+										onClick={clickHandler}
+										className='menu-tablet-organism__element-list menu-tablet-organism__element-list--violet'>
+										Logout
+									</li>
+								</>
+							) : (
+								<>
+									<Link to='/login'>
+										<li className='menu-tablet-organism__element-list menu-tablet-organism__element-list--violet'>
+											Log in
+										</li>
+									</Link>
+									<Link to='/register'>
+										<li className='menu-tablet-organism__element-list menu-tablet-organism__element-list--violet'>
+											Sign up
+										</li>
+									</Link>
+								</>
+							)}
 						</ul>
 						<h2 className='menu-tablet-organism__header'>Most Popular</h2>
 						<ul className='menu-tablet-organism__list'>
