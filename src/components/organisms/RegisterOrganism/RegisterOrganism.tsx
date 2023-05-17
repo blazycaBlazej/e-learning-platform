@@ -1,18 +1,25 @@
 import FlipMove from 'react-flip-move'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import ButtonAtom from '../../atoms/UI/ButtonAtom/ButtonAtom'
 import './RegisterOrganism.scss'
+import { useNavigate } from 'react-router-dom'
 
 const RegisterOrganism = (): JSX.Element => {
 	const [isSent, setIsSent] = useState(false)
 	const [passwordIsCorrect, setPasswordIsCorrect] = useState(false)
 	const [nameIsCorrect, setNameIsCorrect] = useState(false)
 	const [emailIsCorrect, setEmailIsCorrect] = useState(false)
-	const [passwordErros, setPasswordErrors] = useState([''])
+	const [passwordErrors, setPasswordErrors] = useState<string[]>([])
+	const [isButtonClicked, setIsButtonClicked] = useState(false)
+
 	const nameRef = useRef<null | HTMLInputElement>(null)
 	const emailRef = useRef<null | HTMLInputElement>(null)
 	const passwordRef = useRef<null | HTMLInputElement>(null)
+	const email = emailRef.current && emailRef.current.value
+	const fullName = nameRef.current && nameRef.current!.value
+	const password = passwordRef.current && passwordRef.current!.value
+	const navigate = useNavigate()
 
 	const checkNameLength = () => {
 		if (nameRef.current!.value.trim().length > 2) {
@@ -36,8 +43,18 @@ const RegisterOrganism = (): JSX.Element => {
 		const regexNumber = /(?=.*\d)/
 		const regexBigLetter = /(?=.*[A-Z])/
 		const regexSmallLetter = /(?=.*[a-z])/
+
 		const password = passwordRef.current!.value
-		setPasswordErrors(prevErrors => [''])
+
+		const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,15}$/
+
+		if (regex.test(password)) {
+			setPasswordIsCorrect(true)
+		} else {
+			setPasswordIsCorrect(false)
+		}
+
+		setPasswordErrors(prevErrors => [])
 
 		if (!regexSpecial.test(password)) {
 			setPasswordErrors(prevErrors => [...prevErrors, `The password must contain (e.g., @, $, !, %, *, ?, &).`])
@@ -54,16 +71,14 @@ const RegisterOrganism = (): JSX.Element => {
 		if (!regexSmallLetter.test(password)) {
 			setPasswordErrors(prevErrors => [...prevErrors, `The password must contain a lowercase letter.`])
 		}
+
 		if (password.length < 6) {
-			// errors.push('haslo musi zawierac 6 znakow')
 			setPasswordErrors(prevErrors => [...prevErrors, 'The password must contain 6 characters.'])
 		}
+
 		if (password.length > 15) {
-			// errors.push('haslo nie moze zawierac wiecej 15')
 			setPasswordErrors(prevErrors => [...prevErrors, 'The password cannot exceed 15 characters.'])
 		}
-
-		passwordErros.length === 0 ? setPasswordIsCorrect(true) : setPasswordIsCorrect(false)
 	}
 
 	const changeNameHandler = () => {
@@ -80,15 +95,55 @@ const RegisterOrganism = (): JSX.Element => {
 
 	const submitHandler = (e: React.SyntheticEvent) => {
 		e.preventDefault()
-		setIsSent(true)
-		checkNameLength()
-		checkEmail()
-		checkPassword()
+
+		if (!isSent) {
+			checkNameLength()
+			checkPassword()
+			checkEmail()
+			setIsSent(true)
+		}
+
+		if (nameIsCorrect && emailIsCorrect && passwordIsCorrect) {
+			setIsButtonClicked(true)
+		}
 	}
-	const [xd, setxd] = useState(false)
-	const testHandler = () => {
-		setxd(!xd)
-	}
+
+	// const [xd, setxd] = useState(false)
+	// const testHandler = () => {
+	// 	setxd(!xd)
+	// }
+
+	const [backendError, setBackendError] = useState<string>('')
+
+	useEffect(() => {
+		// && nameIsCorrect && emailIsCorrect && passwordIsCorrect
+		if (isButtonClicked && nameIsCorrect && emailIsCorrect && passwordIsCorrect) {
+			const registerUser = async () => {
+				setIsButtonClicked(false)
+				try {
+					const response = await fetch('http://127.0.0.1:3001/register', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify({ email, fullName, password }),
+					})
+
+					const data = await response.json()
+					if (data.error) {
+						setBackendError(data.error)
+					} else {
+						navigate('/')
+					}
+				} catch (error) {
+					// setPasswordErrors(prevErrors => [...prevErrors, error as string])
+				}
+			}
+			registerUser()
+		} else {
+			// setIsButtonClicked(false)
+		}
+	}, [isButtonClicked])
 
 	return (
 		<section className='register-organism'>
@@ -130,13 +185,13 @@ const RegisterOrganism = (): JSX.Element => {
 					</div>
 
 					<FlipMove duration={300} enterAnimation='elevator' leaveAnimation='elevator'>
-						{!emailIsCorrect && isSent && <span className='register-organism__error'>'Email is incorrect'</span>}
+						{!emailIsCorrect && isSent && <span className='register-organism__error'>Email is incorrect</span>}
 					</FlipMove>
 				</div>
 				<div className='register-organism__wrapper'>
 					<div className='register-organism__input-wrapper'>
 						<input
-							type={xd ? 'text' : 'password'}
+							type={false ? 'text' : 'password'}
 							name='password'
 							className='register-organism__input'
 							required
@@ -151,12 +206,13 @@ const RegisterOrganism = (): JSX.Element => {
 					<FlipMove duration={300} staggerDelayBy={75} enterAnimation='elevator' leaveAnimation='elevator'>
 						{!passwordIsCorrect &&
 							isSent &&
-							passwordErros.map((el, index) => (
+							passwordErrors.map((el, index) => (
 								<span key={index} className='register-organism__error'>
 									{el}
 								</span>
 							))}
 					</FlipMove>
+					<span className='register-organism__error'>{backendError}</span>
 				</div>
 				<div className='register-organism__btn'>
 					<ButtonAtom btnClass='button--registerPage' label='Sign up' />
@@ -173,7 +229,8 @@ const RegisterOrganism = (): JSX.Element => {
 					</Link>
 				</span>
 			</div>
-			<button onClick={testHandler}>as</button>
+
+			{/* <button onClick={testHandler}>as</button> */}
 		</section>
 	)
 }
