@@ -77,7 +77,7 @@ function App() {
 				// 	},
 				// },
 				{
-					path: 'courses',
+					path: '/courses',
 					element: <CoursesViewPage />,
 					loader: async () => {
 						const data = await fetch('http://127.0.0.1:3001/courses', {
@@ -89,9 +89,28 @@ function App() {
 
 						return data
 					},
+					children: [
+						{
+							path: '/courses/search/:search',
+							element: <CoursesViewPage />,
+							loader: async ({ request, params }) => {
+								console.log(params.search)
+								const response = await fetch(`http://127.0.0.1:3001/courses/search/${params.search}`, {
+									method: 'GET',
+									headers: {
+										'Content-type': 'application/json',
+									},
+								})
+								const data = await response.json()
+
+								return data
+							},
+						},
+					],
 				},
+
 				{
-					path: 'courses/:id',
+					path: '/courses/:id',
 					element: <CourseDetailsPage />,
 					loader: async ({ request, params }) => {
 						const response = await fetch(`http://127.0.0.1:3001/courses/${params.id}`, {

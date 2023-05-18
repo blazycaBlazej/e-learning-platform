@@ -116,6 +116,25 @@ app.get('/courses', (req, res) => {
 	})
 })
 
+app.get('/courses/search/:search', (req, res) => {
+	const { search } = req.params
+	const searchTerm = `%${search}%`
+	console.log(search)
+	connection.query(
+		'SELECT * FROM courses WHERE category LIKE ? OR name LIKE ? OR description LIKE ? OR author LIKE ?',
+		[searchTerm, searchTerm, searchTerm, searchTerm],
+		(error, results) => {
+			if (error) {
+				// Obsłuż błąd odpowiednio
+				console.error(error)
+				res.status(500).json({ error: 'Internal server error' })
+			} else {
+				res.status(200).json(results)
+			}
+		}
+	)
+})
+
 app.get('/courses/:id', (req, res) => {
 	const { id } = req.params
 	console.log(id)
