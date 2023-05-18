@@ -83,7 +83,7 @@ const CourseElement = ({
 				</div>
 			</div>
 
-			<span className='course-element__price'>${price},00</span>
+			<span className='course-element__price'>${price}</span>
 		</section>
 	)
 }

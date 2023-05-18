@@ -21,7 +21,7 @@ interface courseDetail {
 	rating: number
 	price: number
 	language: string
-	requirements: string[]
+	requirements: string
 	img: string
 }
 

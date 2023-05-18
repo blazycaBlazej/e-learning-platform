@@ -98,11 +98,35 @@ app.post('/login', (req, res) => {
 	})
 })
 
-//test
-app.get('/api/', (req, res) => {
-	connection.query('SELECT * FROM courses', (err, rows, fields) => {
-		if (err) throw err
-		res.json(rows)
+app.get('/courses', (req, res) => {
+	const { category } = req.query
+
+	const query = category ? 'SELECT * FROM courses WHERE category = ?' : 'SELECT * FROM courses'
+
+	const params = category ? [category] : []
+
+	connection.query(query, params, (error, results) => {
+		if (error) {
+			// Obsłuż błąd odpowiednio
+			console.error(error)
+			res.status(500).json({ error: 'Internal server error' })
+		} else {
+			res.status(200).json(results)
+		}
+	})
+})
+
+app.get('/courses/:id', (req, res) => {
+	const { id } = req.params
+	console.log(id)
+	connection.query('SELECT * FROM courses WHERE id = ?', [id], (error, results) => {
+		if (error) {
+			// Obsłuż błąd odpowiednio
+			console.error(error)
+			res.status(500).json({ error: 'Internal server error' })
+		} else {
+			res.status(200).json(results)
+		}
 	})
 })
 

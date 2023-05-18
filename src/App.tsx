@@ -79,8 +79,13 @@ function App() {
 				{
 					path: 'courses',
 					element: <CoursesViewPage />,
-					loader: () => {
-						const data = courses.filter(el => el)
+					loader: async () => {
+						const data = await fetch('http://127.0.0.1:3001/courses', {
+							method: 'GET',
+							headers: {
+								'Content-Type': 'application/json',
+							},
+						})
 
 						return data
 					},
@@ -88,61 +93,111 @@ function App() {
 				{
 					path: 'courses/:id',
 					element: <CourseDetailsPage />,
-					loader: ({ request, params }) => {
-						const data = courses.filter(el => el.id === Number(params.id))
+					loader: async ({ request, params }) => {
+						const response = await fetch(`http://127.0.0.1:3001/courses/${params.id}`, {
+							method: 'GET',
+							headers: {
+								'Content-type': 'application/json',
+							},
+						})
+						const data = await response.json()
 						return data
 					},
 				},
 				{
 					path: '/courses/design',
 					element: <CoursesViewPage />,
-					loader: () => {
-						const data = courses.filter(el => el.category === 'design')
+					loader: async () => {
+						// const data = courses.filter(el => el.category === 'design')
 
+						// return data
+						const data = await fetch('http://127.0.0.1:3001/courses?category=Design', {
+							method: 'GET',
+							headers: {
+								'Content-type': 'application/json',
+							},
+							// body: JSON.stringify({ category: 'Design' }),
+						})
 						return data
 					},
 				},
 				{
 					path: '/courses/development',
 					element: <CoursesViewPage />,
-					loader: () => {
-						const data = courses.filter(el => el.category === 'development')
+					loader: async () => {
+						// const data = courses.filter(el => el.category === 'development')
 
+						// return data
+						const data = await fetch('http://127.0.0.1:3001/courses?category=Development', {
+							method: 'GET',
+							headers: {
+								'Content-type': 'application/json',
+							},
+						})
 						return data
 					},
 				},
 				{
 					path: '/courses/marketing',
 					element: <CoursesViewPage />,
-					loader: () => {
-						const data = courses.filter(el => el.category === 'marketing')
+					loader: async () => {
+						// const data = courses.filter(el => el.category === 'marketing')
 
+						// return data
+
+						const data = await fetch('http://127.0.0.1:3001/courses?category=Marketing', {
+							method: 'GET',
+							headers: {
+								'Content-Type': 'application/json',
+							},
+						})
 						return data
 					},
 				},
 				{
 					path: '/courses/it-and-software',
 					element: <CoursesViewPage />,
-					loader: () => {
-						const data = courses.filter(el => el.category === 'IT and Software')
+					loader: async () => {
+						const data = await fetch('http://127.0.0.1:3001/courses?category=IT and Software', {
+							method: 'GET',
+							headers: {
+								'Content-Type': 'application/json',
+							},
+						})
 
 						return data
+						// const data = courses.filter(el => el.category === 'IT and Software')
+
+						// return data
 					},
 				},
 				{
 					path: '/courses/personal-development',
 					element: <CoursesViewPage />,
-					loader: () => {
-						const data = courses.filter(el => el.category === 'Personal Development')
+					loader: async () => {
+						const data = await fetch('http://127.0.0.1:3001/courses?category=Personal Development', {
+							method: 'GET',
+							headers: {
+								'Content-Type': 'application/json',
+							},
+						})
 
 						return data
+						// const data = courses.filter(el => el.category === 'Personal Development')
+
+						// return data
 					},
 				},
 				{
 					path: '/courses/business',
 					element: <CoursesViewPage />,
-					loader: () => {
-						const data = courses.filter(el => el.category === 'Business')
+					loader: async () => {
+						const data = await fetch('http://127.0.0.1:3001/courses?category=Business', {
+							method: 'GET',
+							headers: {
+								'Content-Type': 'application/json',
+							},
+						})
 
 						return data
 					},
@@ -150,8 +205,13 @@ function App() {
 				{
 					path: '/courses/photography',
 					element: <CoursesViewPage />,
-					loader: () => {
-						const data = courses.filter(el => el.category === 'Photography')
+					loader: async () => {
+						const data = await fetch('http://127.0.0.1:3001/courses?category=Photography', {
+							method: 'GET',
+							headers: {
+								'Content-Type': 'application/json',
+							},
+						})
 
 						return data
 					},
@@ -159,8 +219,13 @@ function App() {
 				{
 					path: '/courses/music',
 					element: <CoursesViewPage />,
-					loader: () => {
-						const data = courses.filter(el => el.category === 'Music')
+					loader: async () => {
+						const data = await fetch('http://127.0.0.1:3001/courses?category=Music', {
+							method: 'GET',
+							headers: {
+								'Content-Type': 'application/json',
+							},
+						})
 
 						return data
 					},
