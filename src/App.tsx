@@ -112,6 +112,29 @@ function App() {
 						}
 					},
 				},
+				{
+					path: 'instructor-courses',
+					element: <WishListPage />,
+					loader: async () => {
+						const isLogin = localStorage.getItem('token')
+						if (isLogin) {
+							const response = await fetch('http://127.0.0.1:3001/getInstructorCourses', {
+								method: 'GET',
+								headers: {
+									'Content-Type': 'application/json',
+									authorization: `Beer ${token}`,
+								},
+							})
+
+							const data = await response.json()
+							const dataArray = Object.values(data)
+							console.log(dataArray)
+							return { data: dataArray, type: 'instructorCourses' }
+						} else {
+							return redirect('/')
+						}
+					},
+				},
 				// {
 				// 	path: '/logout',
 				// 	action: logoutAction,

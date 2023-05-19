@@ -16,9 +16,10 @@ interface WishListCourseAtomProps {
 		requirements: string
 		img: string
 	}
+	type: string
 }
 
-const WishListCourseAtom = ({ course }: WishListCourseAtomProps): JSX.Element => {
+const WishListCourseAtom = ({ course, type }: WishListCourseAtomProps): JSX.Element => {
 	const { id, category, name, description, author, numberOfRating, rating, price, language, requirements, img } = course
 
 	return (
@@ -74,7 +75,7 @@ const WishListCourseAtom = ({ course }: WishListCourseAtomProps): JSX.Element =>
 						</div>
 						<span className='wish-list-course-atom__number-of-rantings'>({numberOfRating})</span>
 					</div>
-					<span className='wish-list-course-atom__price'>${price}</span>
+					{type === 'wishlist' ? <span className='wish-list-course-atom__price'>${price}</span> : null}
 				</div>
 			</section>
 		</Link>

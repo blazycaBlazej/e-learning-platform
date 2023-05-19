@@ -77,8 +77,9 @@ const MenuAuthAtom = (): JSX.Element => {
 									<Link to='/wishlist'>
 										<li className='menu-auth-atom__menu-element'>Wishlist</li>
 									</Link>
-
-									<li className='menu-auth-atom__menu-element'>Instructor dashboard</li>
+									<Link to='/instructor-courses'>
+										<li className='menu-auth-atom__menu-element'>Instructor Courses</li>
+									</Link>
 									<li onClick={clickHandler} className='menu-auth-atom__menu-element'>
 										Log out
 									</li>

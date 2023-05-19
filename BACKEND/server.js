@@ -322,6 +322,38 @@ app.get('/getMyCourses', authMiddleware, (req, res) => {
 	}
 })
 
+app.get('/getInstructorCourses', authMiddleware, (req, res) => {
+	const user = req.user
+
+	if (user) {
+		// Pobierz informacje o liście życzeń z bazy danych dla danego użytkownika
+		connection.query(`SELECT instructorCourses FROM users WHERE email = '${user.email}'`, (error, results) => {
+			if (error) {
+				console.error('Błąd zapytania do bazy danych:', error)
+				res.status(500).json({ message: 'Wystąpił błąd serwera' })
+			} else {
+				const wishlist = results[0].instructorCourses
+				if (wishlist) {
+					const wishlistIds = wishlist.split(' ')
+					const query = `SELECT * FROM courses WHERE id IN (${wishlistIds.map(id => `'${id}'`).join(',')})`
+					connection.query(query, (error, courses) => {
+						if (error) {
+							console.error('Błąd zapytania do bazy danych:', error)
+							res.status(500).json({ message: 'Wystąpił błąd serwera' })
+						} else {
+							res.status(200).json(courses)
+						}
+					})
+				} else {
+					res.status(200).json([]) // Pusta lista życzeń, gdy wishlist jest pusty
+				}
+			}
+		})
+	} else {
+		res.status(401).json({ message: 'Nieprawidłowy token JWT' })
+	}
+})
+
 
 app.get('/courses', (req, res) => {
 	const { category } = req.query

@@ -31,7 +31,9 @@ const WishListOrganism = (): JSX.Element => {
 			{<WishListHeaderAtom type={courses.type} />}
 			<div className='wish-list-organism__wrapper'>
 				{courses.data.length > 0 ? (
-					courses.data.map((course: CourseDetail, index) => <WishListCourseAtom key={index} course={course} />)
+					courses.data.map((course: CourseDetail, index) => (
+						<WishListCourseAtom key={index} course={course} type={courses.type} />
+					))
 				) : (
 					<WishListEmptyAtom type={courses.type} />
 				)}

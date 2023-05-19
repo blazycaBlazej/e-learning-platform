@@ -12,13 +12,17 @@ const WishListEmptyAtom = ({ type }: WishListEmptyAtomProps): JSX.Element => {
 			<p className='wish-list-empty-atom__text'>
 				{type === 'wishlist'
 					? localStorage.getItem('name') + ' you have not added courses to your wishlist'
-					: `You haven't bought any courses yet`}
+					: type === 'myCourse'
+					? `You haven't bought any courses yet`
+					: 'You have not created any course'}
 			</p>
-			<Link to='/courses'>
-				<div className='wish-list-empty-atom__btn'>
-					<ButtonAtom btnClass='button--basketBtn' label={'Browse courses'} />
-				</div>
-			</Link>
+			{type !== 'instructorCourses' ? (
+				<Link to='/courses'>
+					<div className='wish-list-empty-atom__btn'>
+						<ButtonAtom btnClass='button--basketBtn' label='Browse courses' />
+					</div>
+				</Link>
+			) : null}
 		</section>
 	)
 }
