@@ -1,4 +1,11 @@
-import { IconCertificate, IconDevices, IconInfinity, IconHeart, IconHeartFilled } from '@tabler/icons-react'
+import {
+	IconCertificate,
+	IconDevices,
+	IconInfinity,
+	IconHeart,
+	IconHeartFilled,
+	IconInfoCircleFilled,
+} from '@tabler/icons-react'
 
 import ButtonAtom from '../../UI/ButtonAtom/ButtonAtom'
 import './MainCourseOptionAtom.scss'
@@ -25,7 +32,9 @@ const MainCourseOptionAtom = ({ price, img, name, id }: MainCourseOptionAtomProp
 	const token = localStorage.getItem('token')
 	const navigate = useNavigate()
 	const [isFollow, setIsFollow] = useState<boolean>(false)
-	const [isLoading, setIsLoading] = useState<boolean>(true)
+	const [isPurchased, setIsPurchased] = useState<boolean>(false)
+	const [isFollowLoading, setFollowIsLoading] = useState<boolean>(false)
+	const [isPurchasedLoading, setPurchasedIsLoading] = useState<boolean>(false)
 
 	const clickHandler = () => {
 		if (!isLogin) {
@@ -34,28 +43,60 @@ const MainCourseOptionAtom = ({ price, img, name, id }: MainCourseOptionAtomProp
 	}
 
 	const checkWishList = async () => {
-		try {
-			const response = await fetch('http://127.0.0.1:3001/getWishListItems', {
-				headers: {
-					'Content-Type': 'application/json',
-					authorization: `Beer ${token}`,
-				},
-			})
+		if (isLogin) {
+			setFollowIsLoading(true)
+			try {
+				const response = await fetch('http://127.0.0.1:3001/getWishListItems', {
+					headers: {
+						'Content-Type': 'application/json',
+						authorization: `Beer ${token}`,
+					},
+				})
 
-			const data = await response.json()
-			// console.log(data)
-			let isFollow
-			if (data.includes(' ')) {
-				const dataArray = data.split(' ')
-				isFollow = dataArray.filter((el: string) => el === String(id))
-			} else {
-				isFollow = data
+				const data = await response.json()
+				// console.log(data)
+				let isFollow
+				if (data.includes(' ')) {
+					const dataArray = data.split(' ')
+					isFollow = dataArray.filter((el: string) => el === String(id))
+				} else {
+					isFollow = data
+				}
+
+				String(isFollow) === String(id) ? setIsFollow(true) : setIsFollow(false)
+			} catch (error) {
+				console.log(error)
 			}
+			setFollowIsLoading(false)
+		}
+	}
 
-			String(isFollow) === String(id) ? setIsFollow(true) : setIsFollow(false)
-			setIsLoading(false)
-		} catch (error) {
-			console.log(error)
+	const checkPurchasedCourse = async () => {
+		if (isLogin) {
+			setPurchasedIsLoading(true)
+			try {
+				const response = await fetch('http://127.0.0.1:3001/getPurchasedCourse', {
+					headers: {
+						'Content-Type': 'application/json',
+						authorization: `Beer ${token}`,
+					},
+				})
+
+				const data = await response.json()
+				let isPurchased
+				if (data.includes(' ')) {
+					const dataArray = data.split(' ')
+					isPurchased = dataArray.filter((el: string) => el === String(id))
+				} else {
+					isPurchased = data
+				}
+				console.log(isPurchased)
+
+				String(isPurchased) === String(id) ? setIsPurchased(true) : setIsPurchased(false)
+			} catch (error) {
+				console.log(error)
+			}
+			setPurchasedIsLoading(false)
 		}
 	}
 
@@ -64,8 +105,8 @@ const MainCourseOptionAtom = ({ price, img, name, id }: MainCourseOptionAtomProp
 			navigate('/login')
 		} else {
 			const addFollow = async () => {
+				setFollowIsLoading(true)
 				try {
-					setIsLoading(true)
 					await fetch('http://127.0.0.1:3001/toggleWishList', {
 						method: 'POST',
 						headers: {
@@ -74,16 +115,44 @@ const MainCourseOptionAtom = ({ price, img, name, id }: MainCourseOptionAtomProp
 						},
 						body: JSON.stringify({ token, id }),
 					})
-					checkWishList()
+					// checkWishList()
+					setIsFollow(!isFollow)
 				} catch (error) {
 					console.log(error)
 				}
+				setFollowIsLoading(false)
 			}
 			addFollow()
 		}
 	}
 
+	const clickBuyHandler = () => {
+		if (!isLogin) {
+			navigate('/login')
+		} else {
+			const buyCourse = async () => {
+				setPurchasedIsLoading(true)
+				try {
+					await fetch('http://127.0.0.1:3001/buyCourse', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+							authorization: `Beer ${token}`,
+						},
+						body: JSON.stringify({ id }),
+					})
+					setIsPurchased(true)
+				} catch (error) {
+					console.log(error)
+				}
+				setPurchasedIsLoading(false)
+			}
+			buyCourse()
+		}
+	}
+
 	useEffect(() => {
+		checkPurchasedCourse()
 		checkWishList()
 	}, [])
 
@@ -93,41 +162,57 @@ const MainCourseOptionAtom = ({ price, img, name, id }: MainCourseOptionAtomProp
 				<img className='main-course-option-atom__img' loading='lazy' src={img} alt={name} />
 			</div>
 			<div className='main-course-option-atom__content'>
-				<span className='main-course-option-atom__price'>${price}</span>
+				{isPurchased ? null : <span className='main-course-option-atom__price'>${price}</span>}
 
 				<div className='main-course-option-atom__btns'>
-					<div className='main-course-option-atom__btns-row'>
-						<div onClick={clickHandler}>
-							<ButtonAtom label='Buy' btnClass='button--buy' />
+					{isPurchasedLoading ? (
+						<div className='main-course-option-atom__spinner'>
+							<RotatingLines strokeColor='grey' strokeWidth='5' animationDuration='0.75' width='78' visible={true} />
 						</div>
-						<div onClick={clickFollowHandler}>
-							<ButtonAtom
-								label={
-									isLogin ? (
-										isLoading ? (
-											<RotatingLines
-												strokeColor='grey'
-												strokeWidth='5'
-												animationDuration='0.75'
-												width='24'
-												visible={true}
-											/>
-										) : isFollow ? (
-											<IconHeartFilled />
-										) : (
-											<IconHeart />
-										)
-									) : (
-										<IconHeart />
-									)
-								}
-								btnClass='button--follow'
-							/>
+					) : isPurchased ? (
+						<div className='main-course-option-atom__purchased'>
+							<div className='main-course-option-atom__purchased-row'>
+								<IconInfoCircleFilled />
+								<p className='main-course-option-atom__purchased-text'>You purchased this course</p>
+							</div>
+							<ButtonAtom label='Go to course' btnClass='button--go-to-course' />
 						</div>
-					</div>
-					<div onClick={clickHandler}>
-						<ButtonAtom label='Add to followed' btnClass='button--to-follow' />
-					</div>
+					) : (
+						<>
+							<div className='main-course-option-atom__btns-row'>
+								<div onClick={clickBuyHandler}>
+									<ButtonAtom label='Buy' btnClass='button--buy' />
+								</div>
+								<div onClick={clickFollowHandler}>
+									<ButtonAtom
+										label={
+											isLogin ? (
+												isFollowLoading ? (
+													<RotatingLines
+														strokeColor='grey'
+														strokeWidth='5'
+														animationDuration='0.75'
+														width='24'
+														visible={true}
+													/>
+												) : isFollow ? (
+													<IconHeartFilled />
+												) : (
+													<IconHeart />
+												)
+											) : (
+												<IconHeart />
+											)
+										}
+										btnClass='button--follow'
+									/>
+								</div>
+							</div>
+							<div onClick={clickHandler}>
+								<ButtonAtom label='Add to followed' btnClass='button--to-follow' />
+							</div>
+						</>
+					)}
 				</div>
 				<span className='main-course-option-atom__money-back'>30-Day Money-Back Guarantee</span>
 				<h2 className='main-course-option-atom__course-includes'>This course includes:</h2>

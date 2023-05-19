@@ -61,8 +61,8 @@ app.post('/register', (req, res) => {
 			res.status(409).json({ error: 'Użytkownik już istnieje' })
 		} else {
 			connection.query(
-				'INSERT INTO users (email, password, fullName, wishlist) VALUES (?, ?, ?, ?)',
-				[email, password, fullName, ''],
+				'INSERT INTO users (email, password, fullName, wishlist, purchasedItemsId) VALUES (?, ?, ?, ?, ?)',
+				[email, password, fullName, '', ''],
 				error => {
 					if (error) {
 						console.error('Błąd zapytania SQL:', error)
@@ -121,10 +121,58 @@ app.post('/buyCourse', authMiddleware, (req, res) => {
 							console.error('Błąd zapytania do bazy danych:', error)
 							res.status(500).json({ message: 'Wystąpił błąd serwera' })
 						} else {
-							res.status(200).json({ message: 'Zaktualizowano listę życzeń' })
+							res.status(200).json({ message: 'Zakupion kurs' })
+
+							//
+							connection.query(`SELECT wishlist FROM users WHERE email = '${user.email}'`, (error, results) => {
+								if (error) {
+									console.error('Błąd zapytania do bazy danych:', error)
+								} else {
+									const wishlist = results[0].wishlist // Pobierz listę życzeń z wyników zapytania
+
+									// Sprawdź, czy id już istnieje na liście życzeń
+									const wishlistArray = wishlist ? wishlist.split(' ') : []
+									// console.log(wishlistArray)
+									let newArray = wishlistArray.filter(item => item != id)
+
+									// console.log(newArray)
+									const updatedWishlist = newArray.join(' ') // Konwertuj tablicę z powrotem do tekstu
+									// console.log(updatedWishlist)
+									// Zaktualizuj bazę danych z nową listą życzeń
+									connection.query(
+										`UPDATE users SET wishlist = '${updatedWishlist}' WHERE email = '${user.email}'`,
+										(error, results) => {
+											if (error) {
+												console.error('Błąd zapytania do bazy danych:', error)
+											} else {
+											}
+										}
+									)
+								}
+							})
+
+							//
 						}
 					}
 				)
+			}
+		})
+	} else {
+		res.status(401).json({ message: 'Nieprawidłowy token JWT' })
+	}
+})
+
+app.get('/getPurchasedCourse', authMiddleware, (req, res) => {
+	const user = req.user
+
+	if (user) {
+		// Pobierz informacje o liście życzeń z bazy danych dla danego użytkownika
+		connection.query(`SELECT purchasedItemsId FROM users WHERE email = '${user.email}'`, (error, results) => {
+			if (error) {
+				console.error('Błąd zapytania do bazy danych:', error)
+				res.status(500).json({ message: 'Wystąpił błąd serwera' })
+			} else {
+				res.status(200).json(results[0].purchasedItemsId)
 			}
 		})
 	} else {
@@ -147,17 +195,17 @@ app.post('/toggleWishList', authMiddleware, (req, res) => {
 
 				// Sprawdź, czy id już istnieje na liście życzeń
 				const wishlistArray = wishlist ? wishlist.split(' ') : []
-				console.log(wishlistArray)
+				// console.log(wishlistArray)
 				let newArray = wishlistArray.filter(item => item != id)
-				console.log(newArray)
-				console.log('wishlistArray: ' + wishlistArray.length)
-				console.log('newArray: ' + newArray.length)
+				// console.log(newArray)
+				// console.log('wishlistArray: ' + wishlistArray.length)
+				// console.log('newArray: ' + newArray.length)
 				if (wishlistArray.length === newArray.length) {
 					newArray.push(id)
 				}
-				console.log(newArray)
+				// console.log(newArray)
 				const updatedWishlist = newArray.join(' ') // Konwertuj tablicę z powrotem do tekstu
-				console.log(updatedWishlist)
+				// console.log(updatedWishlist)
 				// Zaktualizuj bazę danych z nową listą życzeń
 				connection.query(
 					`UPDATE users SET wishlist = '${updatedWishlist}' WHERE email = '${user.email}'`,
@@ -179,7 +227,7 @@ app.post('/toggleWishList', authMiddleware, (req, res) => {
 
 app.get('/getWishListItems', authMiddleware, (req, res) => {
 	const user = req.user
-	console.log(user)
+
 	if (user) {
 		// Pobierz informacje o liście życzeń z bazy danych dla danego użytkownika
 		connection.query(`SELECT wishlist FROM users WHERE email = '${user.email}'`, (error, results) => {
@@ -197,7 +245,7 @@ app.get('/getWishListItems', authMiddleware, (req, res) => {
 
 app.get('/getWishListCourses', authMiddleware, (req, res) => {
 	const user = req.user
-	console.log(user)
+
 	if (user) {
 		// Pobierz informacje o liście życzeń z bazy danych dla danego użytkownika
 		connection.query(`SELECT wishlist FROM users WHERE email = '${user.email}'`, (error, results) => {
