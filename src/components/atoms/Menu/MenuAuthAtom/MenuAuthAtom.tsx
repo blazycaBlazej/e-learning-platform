@@ -67,7 +67,10 @@ const MenuAuthAtom = (): JSX.Element => {
 							<div className='menu-auth-atom__menu-border'></div>
 							<div className='menu-auth-atom__menu-content'>
 								<ul className='menu-auth-atom__menu-list'>
-									<li className='menu-auth-atom__menu-element'>My learning</li>
+									<Link to='/my-course'>
+										<li className='menu-auth-atom__menu-element'>My learning</li>
+									</Link>
+
 									<Link to='/basket'>
 										<li className='menu-auth-atom__menu-element'>My cart</li>
 									</Link>

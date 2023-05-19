@@ -16,19 +16,24 @@ interface CourseDetail {
 	language: string
 	requirements: string
 	img: string
+	type: string
+}
+
+interface LoaderData {
+	data: CourseDetail[]
+	type: string
 }
 
 const WishListOrganism = (): JSX.Element => {
-	const courses: CourseDetail[] = useLoaderData() as CourseDetail[]
-
+	const courses: LoaderData = useLoaderData() as LoaderData
 	return (
 		<section className='wish-list-organism'>
-			<WishListHeaderAtom />
+			{<WishListHeaderAtom type={courses.type} />}
 			<div className='wish-list-organism__wrapper'>
-				{courses.length > 0 ? (
-					courses.map((course: CourseDetail, index) => <WishListCourseAtom key={index} course={course} />)
+				{courses.data.length > 0 ? (
+					courses.data.map((course: CourseDetail, index) => <WishListCourseAtom key={index} course={course} />)
 				) : (
-					<WishListEmptyAtom />
+					<WishListEmptyAtom type={courses.type} />
 				)}
 			</div>
 		</section>

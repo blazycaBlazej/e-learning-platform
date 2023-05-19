@@ -17,15 +17,30 @@ const connection = mysql.createConnection({
 })
 
 //MIDDLEWARE
+// const authMiddleware = (req, res, next) => {
+// 	const token = req.headers['authorization']?.split(' ')[1]
+// 	if (!token) {
+// 		return res.sendStatus(401).json({ message: 'Zaloguj sie' })
+// 	}
+
+// 	jwt.verify(token, ACCESS_TOKEN, (err, data) => {
+// 		if (err) {
+// 			return res.sendStatus(403).json({ message: 'Zaloguj sie' })
+// 		}
+
+// 		req.user = data
+// 		next()
+// 	})
+// }
 const authMiddleware = (req, res, next) => {
 	const token = req.headers['authorization']?.split(' ')[1]
 	if (!token) {
-		return res.sendStatus(401).json({ message: 'Zaloguj sie' })
+		return res.status(401).json({ message: 'Zaloguj się' })
 	}
 
 	jwt.verify(token, ACCESS_TOKEN, (err, data) => {
 		if (err) {
-			return res.sendStatus(403).json({ message: 'Zaloguj sie' })
+			return res.status(403).json({ message: 'Nieprawidłowy token' })
 		}
 
 		req.user = data
@@ -274,6 +289,39 @@ app.get('/getWishListCourses', authMiddleware, (req, res) => {
 		res.status(401).json({ message: 'Nieprawidłowy token JWT' })
 	}
 })
+
+app.get('/getMyCourses', authMiddleware, (req, res) => {
+	const user = req.user
+
+	if (user) {
+		// Pobierz informacje o liście życzeń z bazy danych dla danego użytkownika
+		connection.query(`SELECT purchasedItemsId FROM users WHERE email = '${user.email}'`, (error, results) => {
+			if (error) {
+				console.error('Błąd zapytania do bazy danych:', error)
+				res.status(500).json({ message: 'Wystąpił błąd serwera' })
+			} else {
+				const wishlist = results[0].purchasedItemsId
+				if (wishlist) {
+					const wishlistIds = wishlist.split(' ')
+					const query = `SELECT * FROM courses WHERE id IN (${wishlistIds.map(id => `'${id}'`).join(',')})`
+					connection.query(query, (error, courses) => {
+						if (error) {
+							console.error('Błąd zapytania do bazy danych:', error)
+							res.status(500).json({ message: 'Wystąpił błąd serwera' })
+						} else {
+							res.status(200).json(courses)
+						}
+					})
+				} else {
+					res.status(200).json([]) // Pusta lista życzeń, gdy wishlist jest pusty
+				}
+			}
+		})
+	} else {
+		res.status(401).json({ message: 'Nieprawidłowy token JWT' })
+	}
+})
+
 
 app.get('/courses', (req, res) => {
 	const { category } = req.query

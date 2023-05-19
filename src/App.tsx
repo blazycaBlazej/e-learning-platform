@@ -67,9 +67,33 @@ function App() {
 					},
 				},
 				{
-					path: '/wishlist/',
+					path: '/my-course',
 					element: <WishListPage />,
 					loader: async () => {
+						const isLogin = localStorage.getItem('token')
+						if (isLogin) {
+							const response = await fetch('http://127.0.0.1:3001/getMyCourses', {
+								method: 'GET',
+								headers: {
+									'Content-Type': 'application/json',
+									authorization: `Beer ${token}`,
+								},
+							})
+
+							const data = await response.json()
+							const dataArray = Object.values(data)
+							console.log(dataArray)
+							return { data: dataArray, type: 'myCourse' }
+						} else {
+							return redirect('/')
+						}
+					},
+				},
+				{
+					path: 'wishlist',
+					element: <WishListPage />,
+					loader: async () => {
+						const isLogin = localStorage.getItem('token')
 						if (isLogin) {
 							const response = await fetch('http://127.0.0.1:3001/getWishListCourses', {
 								method: 'GET',
@@ -80,7 +104,9 @@ function App() {
 							})
 
 							const data = await response.json()
-							return data
+							const dataArray = Object.values(data)
+							console.log(dataArray)
+							return { data: dataArray, type: 'wishlist' }
 						} else {
 							return redirect('/')
 						}
