@@ -98,6 +98,40 @@ app.post('/login', (req, res) => {
 	})
 })
 
+app.post('/buyCourse', authMiddleware, (req, res) => {
+	const { id } = req.body
+
+	const user = req.user
+	if (user) {
+		connection.query(`SELECT purchasedItemsId FROM users WHERE email = '${user.email}'`, (error, results) => {
+			if (error) {
+				console.error('Błąd zapytania do bazy danych:', error)
+				res.status(500).json({ message: 'Wystąpił błąd serwera' })
+			} else {
+				const purchasedItems = results[0].purchasedItemsId
+				const purchasedItemsArray = purchasedItems ? purchasedItems.split(' ') : []
+
+				purchasedItemsArray.push(id)
+
+				const updatedPurchasedItems = purchasedItemsArray.join(' ')
+				connection.query(
+					`UPDATE users SET purchasedItemsId = '${updatedPurchasedItems}' WHERE email = '${user.email}'`,
+					(error, results) => {
+						if (error) {
+							console.error('Błąd zapytania do bazy danych:', error)
+							res.status(500).json({ message: 'Wystąpił błąd serwera' })
+						} else {
+							res.status(200).json({ message: 'Zaktualizowano listę życzeń' })
+						}
+					}
+				)
+			}
+		})
+	} else {
+		res.status(401).json({ message: 'Nieprawidłowy token JWT' })
+	}
+})
+
 app.post('/toggleWishList', authMiddleware, (req, res) => {
 	const { id } = req.body
 
