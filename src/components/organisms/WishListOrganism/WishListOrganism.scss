@@ -1,0 +1,28 @@
+.wish-list-organism {
+	& &__wrapper {
+		padding-block: 6.4rem;
+		max-width: 1184px;
+		width: 100%;
+		margin: auto;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.6rem;
+	}
+
+	@media screen and(max-width: 1230px) {
+		& &__wrapper {
+			padding-inline: 2.2rem;
+		}
+	}
+
+	@media screen and(max-width: 560px) {
+		& &__wrapper {
+			justify-content: center;
+		}
+	}
+	@media screen and(max-width: 360px) {
+		& &__wrapper {
+			padding-inline: 1.2rem;
+		}
+	}
+}

@@ -34,7 +34,7 @@ const MenuOrganism = (): JSX.Element => {
 
 			<Link to='/courses'>
 				<div className='menu-organism__menu-item'>
-					<MenuItemAtom link='#' itemName='Courses' />
+					<MenuItemAtom itemName='Courses' />
 				</div>
 			</Link>
 

@@ -1,0 +1,43 @@
+.menu-item {
+  cursor: pointer;
+  font-family: "Inter";
+  font-size: 1.4rem;
+  line-height: 1.96rem;
+  color: #1c1d1f;
+  position: relative;
+  margin-top: 0.6rem;
+  padding-bottom: 0.6rem;
+  width: auto;
+}
+.menu-item:active {
+  color: #5624d0;
+}
+.menu-item, .menu-item::after, .menu-item::before {
+  -webkit-transition: color 0.2s linear, background 0.2s linear, -webkit-transform 0.2s linear;
+  transition: color 0.2s linear, background 0.2s linear, -webkit-transform 0.2s linear;
+  transition: transform 0.2s linear, color 0.2s linear, background 0.2s linear;
+  transition: transform 0.2s linear, color 0.2s linear, background 0.2s linear, -webkit-transform 0.2s linear;
+}
+.menu-item::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: #ffffff;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transform-origin: right;
+          transform-origin: right;
+}
+.menu-item:hover {
+  color: #5624d0;
+}
+.menu-item:hover:after {
+  background: #5624d0;
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+  -webkit-transform-origin: left;
+          transform-origin: left;
+}/*# sourceMappingURL=MenuItemAtom.css.map */

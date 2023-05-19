@@ -14,6 +14,7 @@ import RegisterPage from './pages/RegisterPage/RegisterPage'
 import { logoutAction } from './pages/LogoutPage/LogoutPage'
 import { useEffect } from 'react'
 import { authAction } from './store/slices/authSlice/authSlice'
+import WishListPage from './pages/WishListPage/WishListPage'
 interface StateRoot {
 	auth: {
 		isLogin: boolean
@@ -22,6 +23,7 @@ interface StateRoot {
 
 function App() {
 	const isLogin = useSelector((state: StateRoot) => state.auth.isLogin)
+	const token = localStorage.getItem('token')
 	const router = createBrowserRouter([
 		{
 			path: '/',
@@ -64,6 +66,26 @@ function App() {
 						}
 					},
 				},
+				{
+					path: '/wishlist/',
+					element: <WishListPage />,
+					loader: async () => {
+						if (isLogin) {
+							const response = await fetch('http://127.0.0.1:3001/getWishListCourses', {
+								method: 'GET',
+								headers: {
+									'Content-Type': 'application/json',
+									authorization: `Beer ${token}`,
+								},
+							})
+
+							const data = await response.json()
+							return data
+						} else {
+							return redirect('/')
+						}
+					},
+				},
 				// {
 				// 	path: '/logout',
 				// 	action: logoutAction,
@@ -89,24 +111,25 @@ function App() {
 
 						return data
 					},
-					children: [
-						{
-							path: '/courses/search/:search',
-							element: <CoursesViewPage />,
-							loader: async ({ request, params }) => {
-								console.log(params.search)
-								const response = await fetch(`http://127.0.0.1:3001/courses/search/${params.search}`, {
-									method: 'GET',
-									headers: {
-										'Content-type': 'application/json',
-									},
-								})
-								const data = await response.json()
-
-								return data
-							},
-						},
-					],
+				},
+				{
+					path: '/courses/search/:search',
+					element: <CoursesViewPage />,
+					loader: async ({ request, params }) => {
+						console.log(params.search)
+						try {
+							const response = await fetch(`http://127.0.0.1:3001/courses/search/${params.search}`, {
+								method: 'GET',
+								headers: {
+									'Content-type': 'application/json',
+								},
+							})
+							const data = await response.json()
+							return data
+						} catch (error) {
+							console.log(error)
+						}
+					},
 				},
 
 				{
@@ -119,7 +142,9 @@ function App() {
 								'Content-type': 'application/json',
 							},
 						})
+
 						const data = await response.json()
+
 						return data
 					},
 				},

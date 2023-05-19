@@ -61,8 +61,8 @@ app.post('/register', (req, res) => {
 			res.status(409).json({ error: 'Użytkownik już istnieje' })
 		} else {
 			connection.query(
-				'INSERT INTO users (email, password, fullName) VALUES (?, ?, ?)',
-				[email, password, fullName],
+				'INSERT INTO users (email, password, fullName, wishlist) VALUES (?, ?, ?, ?)',
+				[email, password, fullName, ''],
 				error => {
 					if (error) {
 						console.error('Błąd zapytania SQL:', error)
@@ -98,6 +98,101 @@ app.post('/login', (req, res) => {
 	})
 })
 
+app.post('/toggleWishList', authMiddleware, (req, res) => {
+	const { id } = req.body
+
+	const user = req.user
+	if (user) {
+		// Pobierz informacje o liście życzeń z bazy danych dla danego użytkownika
+		connection.query(`SELECT wishlist FROM users WHERE email = '${user.email}'`, (error, results) => {
+			if (error) {
+				console.error('Błąd zapytania do bazy danych:', error)
+				res.status(500).json({ message: 'Wystąpił błąd serwera' })
+			} else {
+				const wishlist = results[0].wishlist // Pobierz listę życzeń z wyników zapytania
+
+				// Sprawdź, czy id już istnieje na liście życzeń
+				const wishlistArray = wishlist ? wishlist.split(' ') : []
+				console.log(wishlistArray)
+				let newArray = wishlistArray.filter(item => item != id)
+				console.log(newArray)
+				console.log('wishlistArray: ' + wishlistArray.length)
+				console.log('newArray: ' + newArray.length)
+				if (wishlistArray.length === newArray.length) {
+					newArray.push(id)
+				}
+				console.log(newArray)
+				const updatedWishlist = newArray.join(' ') // Konwertuj tablicę z powrotem do tekstu
+				console.log(updatedWishlist)
+				// Zaktualizuj bazę danych z nową listą życzeń
+				connection.query(
+					`UPDATE users SET wishlist = '${updatedWishlist}' WHERE email = '${user.email}'`,
+					(error, results) => {
+						if (error) {
+							console.error('Błąd zapytania do bazy danych:', error)
+							res.status(500).json({ message: 'Wystąpił błąd serwera' })
+						} else {
+							res.status(200).json({ message: 'Zaktualizowano listę życzeń' })
+						}
+					}
+				)
+			}
+		})
+	} else {
+		res.status(401).json({ message: 'Nieprawidłowy token JWT' })
+	}
+})
+
+app.get('/getWishListItems', authMiddleware, (req, res) => {
+	const user = req.user
+	console.log(user)
+	if (user) {
+		// Pobierz informacje o liście życzeń z bazy danych dla danego użytkownika
+		connection.query(`SELECT wishlist FROM users WHERE email = '${user.email}'`, (error, results) => {
+			if (error) {
+				console.error('Błąd zapytania do bazy danych:', error)
+				res.status(500).json({ message: 'Wystąpił błąd serwera' })
+			} else {
+				res.status(200).json(results[0].wishlist)
+			}
+		})
+	} else {
+		res.status(401).json({ message: 'Nieprawidłowy token JWT' })
+	}
+})
+
+app.get('/getWishListCourses', authMiddleware, (req, res) => {
+	const user = req.user
+	console.log(user)
+	if (user) {
+		// Pobierz informacje o liście życzeń z bazy danych dla danego użytkownika
+		connection.query(`SELECT wishlist FROM users WHERE email = '${user.email}'`, (error, results) => {
+			if (error) {
+				console.error('Błąd zapytania do bazy danych:', error)
+				res.status(500).json({ message: 'Wystąpił błąd serwera' })
+			} else {
+				const wishlist = results[0].wishlist
+				if (wishlist) {
+					const wishlistIds = wishlist.split(' ')
+					const query = `SELECT * FROM courses WHERE id IN (${wishlistIds.map(id => `'${id}'`).join(',')})`
+					connection.query(query, (error, courses) => {
+						if (error) {
+							console.error('Błąd zapytania do bazy danych:', error)
+							res.status(500).json({ message: 'Wystąpił błąd serwera' })
+						} else {
+							res.status(200).json(courses)
+						}
+					})
+				} else {
+					res.status(200).json([]) // Pusta lista życzeń, gdy wishlist jest pusty
+				}
+			}
+		})
+	} else {
+		res.status(401).json({ message: 'Nieprawidłowy token JWT' })
+	}
+})
+
 app.get('/courses', (req, res) => {
 	const { category } = req.query
 
@@ -119,7 +214,7 @@ app.get('/courses', (req, res) => {
 app.get('/courses/search/:search', (req, res) => {
 	const { search } = req.params
 	const searchTerm = `%${search}%`
-	console.log(search)
+
 	connection.query(
 		'SELECT * FROM courses WHERE category LIKE ? OR name LIKE ? OR description LIKE ? OR author LIKE ?',
 		[searchTerm, searchTerm, searchTerm, searchTerm],
@@ -137,7 +232,7 @@ app.get('/courses/search/:search', (req, res) => {
 
 app.get('/courses/:id', (req, res) => {
 	const { id } = req.params
-	console.log(id)
+
 	connection.query('SELECT * FROM courses WHERE id = ?', [id], (error, results) => {
 		if (error) {
 			// Obsłuż błąd odpowiednio

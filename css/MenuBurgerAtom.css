@@ -1,0 +1,17 @@
+.menu-burger-atom {
+  color: #1c1d1f;
+  cursor: pointer;
+  display: none;
+  padding: 0.4rem 1.2rem;
+  -webkit-transition: 0.2s linear transform;
+  transition: 0.2s linear transform;
+}
+.menu-burger-atom:hover, .menu-burger-atom:active {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+@media screen and (max-width: 800px) {
+  .menu-burger-atom {
+    display: block;
+  }
+}/*# sourceMappingURL=MenuBurgerAtom.css.map */

@@ -1,0 +1,19 @@
+.main-course-requirements {
+  color: #1c1d1f;
+  background-color: #fff;
+  font-family: "Inter";
+}
+.main-course-requirements .main-course-requirements__header {
+  font-size: 2.4rem;
+  line-height: 2.88rem;
+  font-weight: bold;
+  letter-spacing: -0.2px;
+}
+.main-course-requirements .main-course-requirements__list {
+  margin-top: 2rem;
+  list-style-position: inside;
+}
+.main-course-requirements .main-course-requirements__list-element {
+  font-size: 1.6rem;
+  line-height: 2.24rem;
+}/*# sourceMappingURL=MainCourseRequirements.css.map */

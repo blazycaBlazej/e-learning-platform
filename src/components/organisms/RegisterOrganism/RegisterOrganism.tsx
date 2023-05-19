@@ -137,6 +137,8 @@ const RegisterOrganism = (): JSX.Element => {
 						setBackendError(data.error)
 					} else {
 						localStorage.setItem('token', data.token)
+						localStorage.setItem('email', email!)
+						localStorage.setItem('name', fullName!)
 						disptach(authAction.login())
 						navigate('/')
 					}

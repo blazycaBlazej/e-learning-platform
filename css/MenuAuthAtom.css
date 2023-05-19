@@ -1,0 +1,102 @@
+.menu-auth-atom {
+  cursor: pointer;
+  font-family: "Inter";
+}
+.menu-auth-atom .menu-auth-atom__circle {
+  font-weight: bold;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 100%;
+  width: 3.2rem;
+  height: 3.2rem;
+  background-color: #1c1d1f;
+  font-size: 1.8rem;
+  color: #fff;
+}
+.menu-auth-atom .menu-auth-atom__box {
+  padding-top: 2rem;
+  right: 0;
+  position: absolute;
+}
+.menu-auth-atom .menu-auth-atom__menu {
+  padding-block: 2rem;
+  background-color: #fff;
+  min-width: 26rem;
+  border: 1px solid #d1d7dc;
+}
+.menu-auth-atom .menu-auth-atom__menu-header {
+  padding-inline: 1.6rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.8rem;
+  padding-bottom: 1.7rem;
+}
+.menu-auth-atom .menu-auth-atom__menu-big-circle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #1c1d1f;
+  border-radius: 100%;
+  width: 6.4rem;
+  height: 6.4rem;
+  font-size: 3.2rem;
+  font-weight: bold;
+  color: #fff;
+}
+.menu-auth-atom .menu-auth-atom__menu-user-name-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.4rem;
+}
+.menu-auth-atom .menu-auth-atom__menu-user-name {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+.menu-auth-atom .menu-auth-atom__menu-user-email {
+  font-size: 1.2rem;
+  color: #6a6f73;
+}
+.menu-auth-atom .menu-auth-atom__menu-border {
+  border-top: 1px solid #d1d7dc;
+}
+.menu-auth-atom .menu-auth-atom__menu-content {
+  padding-inline: 1.6rem;
+}
+.menu-auth-atom .menu-auth-atom__menu-list {
+  margin-top: 1.6rem;
+  list-style: none;
+}
+.menu-auth-atom .menu-auth-atom__menu-element {
+  padding-block: 0.8rem;
+  font-size: 1.4rem;
+  -webkit-transition: color linear 0.2s;
+  transition: color linear 0.2s;
+}
+.menu-auth-atom .menu-auth-atom__menu-element:hover {
+  color: #5624d0;
+}
+.menu-auth-atom .menu-auth-atom__menu-element:active {
+  color: #5624d0;
+}/*# sourceMappingURL=MenuAuthAtom.css.map */

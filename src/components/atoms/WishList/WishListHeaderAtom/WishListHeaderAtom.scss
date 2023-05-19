@@ -1,0 +1,28 @@
+.wish-list-header-atom {
+	height: 11.8rem;
+	background-color: #1c1d1f;
+	width: 100%;
+
+	& &__content {
+		margin: auto;
+		max-width: 1184px;
+		width: 100%;
+	}
+
+	& &__header {
+		padding-top: 4rem;
+		color: #fff;
+		font-weight: bold;
+		font-family: 'Inter';
+		letter-spacing: -0.5px;
+		font-size: 4rem;
+	}
+
+	@media screen and(max-width: 1230px) {
+		padding-inline: 2.2rem;
+	}
+
+	@media screen and(max-width: 360px) {
+		padding-inline: 1.2rem;
+	}
+}

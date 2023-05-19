@@ -1,0 +1,77 @@
+.wish-list-course-atom {
+  max-width: 24.6rem;
+  width: 100%;
+  height: 27.2rem;
+  font-family: "Inter";
+}
+.wish-list-course-atom .wish-list-course-atom__img-wrapper {
+  background-color: gray;
+  height: 13.1rem;
+  width: 100%;
+}
+.wish-list-course-atom .wish-list-course-atom__img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.wish-list-course-atom .wish-list-course-atom__content {
+  padding: 0.8rem;
+}
+.wish-list-course-atom .wish-list-course-atom__name {
+  font-size: 1.6rem;
+  line-height: 2.24rem;
+  font-weight: bold;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.wish-list-course-atom .wish-list-course-atom__author {
+  display: block;
+  font-weight: 400;
+  margin-top: 0.4rem;
+  font-size: 1.2rem;
+  line-height: 1.4rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.wish-list-course-atom .wish-list-course-atom__rating-wrapper {
+  margin-block: 0.8rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5rem;
+}
+.wish-list-course-atom .wish-list-course-atom__rating {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0.5rem;
+}
+.wish-list-course-atom .wish-list-course-atom__rating-number {
+  font-weight: bold;
+  line-height: 1.2;
+  letter-spacing: 0.02rem;
+  font-size: 1.4rem;
+}
+.wish-list-course-atom .wish-list-course-atom__rating-star, .wish-list-course-atom .wish-list-course-atom__rating-number {
+  color: #fab437;
+}
+.wish-list-course-atom .wish-list-course-atom__number-of-rantings {
+  font-weight: 400;
+  line-height: 1.4;
+  font-size: 1.2rem;
+}
+.wish-list-course-atom .wish-list-course-atom__price {
+  font-weight: 700;
+  letter-spacing: -0.02rem;
+  font-size: 1.6rem;
+}/*# sourceMappingURL=WishListElementAtom.css.map */

@@ -1,0 +1,35 @@
+.menu-searchbar {
+  width: 100%;
+  position: relative;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 126%;
+  color: #667085;
+}
+.menu-searchbar .menu-searchbar__search {
+  border: 1px solid #1c1d1f;
+  background: #ffffff;
+  border-radius: 49.5px;
+  height: 4rem;
+  width: 100%;
+  color: #667085;
+  padding-left: 4.9rem;
+}
+.menu-searchbar .menu-searchbar__search:valid ~ .menu-searchbar__placeholder .menu-searchbar__placeholder-text {
+  display: none;
+}
+.menu-searchbar .menu-searchbar__placeholder {
+  position: absolute;
+  top: 1.2rem;
+  left: 1.3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1.8rem;
+  pointer-events: none;
+}/*# sourceMappingURL=MenuSearchbar.css.map */

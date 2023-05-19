@@ -1,0 +1,16 @@
+.main-course-description {
+  color: #1c1d1f;
+  font-family: "Inter";
+  background-color: #fff;
+}
+.main-course-description .main-course-description__header {
+  font-size: 2.4rem;
+  line-height: 2.88rem;
+  letter-spacing: -0.2px;
+  font-weight: bold;
+}
+.main-course-description .main-course-description__description {
+  margin-top: 1.6rem;
+  font-size: 1.6rem;
+  line-height: 2.24rem;
+}/*# sourceMappingURL=MainCourseDescription.css.map */

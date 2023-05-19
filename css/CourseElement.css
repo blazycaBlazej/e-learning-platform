@@ -1,0 +1,91 @@
+.course-element {
+  cursor: pointer;
+  width: 100%;
+  padding-block: 2rem 1.6rem;
+  border-bottom: 1px solid #d1d7dc;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+  font-family: "Inter";
+  color: #1c1d1f;
+}
+.course-element .course-element__name {
+  font-size: 1.6rem;
+  line-height: 2.24rem;
+  font-weight: bold;
+}
+.course-element .course-element__description {
+  margin-top: 0.4rem;
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+  max-width: 60rem;
+}
+.course-element .course-element__author {
+  display: block;
+  font-weight: 400;
+  margin-top: 0.4rem;
+  font-size: 1.2rem;
+  line-height: 1.4rem;
+}
+.course-element .course-element__img--wrapper {
+  width: 260px;
+  height: 146.25px;
+}
+.course-element .course-element__img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.course-element .course-element__rating-wrapper {
+  margin-top: 0.4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5rem;
+}
+.course-element .course-element__rating {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0.5rem;
+}
+.course-element .course-element__rating-number {
+  font-weight: bold;
+  line-height: 1.2;
+  letter-spacing: 0.02rem;
+  font-size: 1.4rem;
+}
+.course-element .course-element__rating-star, .course-element .course-element__rating-number {
+  color: #fab437;
+}
+.course-element .course-element__number-of-rantings {
+  font-weight: 400;
+  line-height: 1.4;
+  font-size: 1.2rem;
+}
+.course-element .course-element__price {
+  margin-left: auto;
+  font-weight: 700;
+  letter-spacing: -0.02rem;
+  font-size: 1.6rem;
+}
+@media screen and (max-width: 600px) {
+  .course-element {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .course-element .course-element__price {
+    margin-left: 0;
+  }
+  .course-element .course-element__img--wrapper {
+    width: 100%;
+    height: auto;
+  }
+}/*# sourceMappingURL=CourseElement.css.map */

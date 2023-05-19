@@ -36,6 +36,11 @@
 		gap: 0.8rem;
 	}
 
+	& &__btns-row {
+		display: flex;
+		justify-content: space-between;
+	}
+
 	& &__money-back {
 		margin-top: 1.6rem;
 		display: block;

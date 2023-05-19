@@ -33,6 +33,8 @@ const MenuAuthAtom = (): JSX.Element => {
 
 	const clickHandler = () => {
 		localStorage.removeItem('token')
+		localStorage.removeItem('name')
+		localStorage.removeItem('email')
 		dispatch(authAction.logout())
 	}
 	return (
@@ -69,7 +71,10 @@ const MenuAuthAtom = (): JSX.Element => {
 									<Link to='/basket'>
 										<li className='menu-auth-atom__menu-element'>My cart</li>
 									</Link>
-									<li className='menu-auth-atom__menu-element'>Wishlist</li>
+									<Link to='/wishlist'>
+										<li className='menu-auth-atom__menu-element'>Wishlist</li>
+									</Link>
+
 									<li className='menu-auth-atom__menu-element'>Instructor dashboard</li>
 									<li onClick={clickHandler} className='menu-auth-atom__menu-element'>
 										Log out

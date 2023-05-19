@@ -55,7 +55,12 @@ const CourseDetailsPage = (): JSX.Element => {
 						/>
 					</div>
 					<div className='course-details-page__option'>
-						<MainCourseOptionAtom price={courseDetail[0].price} img={courseDetail[0].img} name={courseDetail[0].name} />
+						<MainCourseOptionAtom
+							id={courseDetail[0].id}
+							price={courseDetail[0].price}
+							img={courseDetail[0].img}
+							name={courseDetail[0].name}
+						/>
 					</div>
 				</div>
 			</div>

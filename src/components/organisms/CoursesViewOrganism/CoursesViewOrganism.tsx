@@ -41,8 +41,8 @@ const CoursesViewOrganism = (): JSX.Element => {
 				<CourseMoneyBack />
 			</div>
 
-			{courses.map(el => (
-				<Link to={`/courses/${el.id}`}>
+			{courses.map((el, index) => (
+				<Link key={index} to={`/courses/${el.id}`}>
 					<CourseElement
 						key={el.id}
 						id={el.id}

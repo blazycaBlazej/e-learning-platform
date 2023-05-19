@@ -1,0 +1,12 @@
+.wish-list-empty-atom {
+	& &__text {
+		font-weight: bold;
+		font-family: 'Inter';
+		color: #1c1d1f;
+		font-size: 2.4rem;
+	}
+
+	& &__btn {
+		margin-top: 3rem;
+	}
+}

@@ -14,13 +14,11 @@ const MainCourseTopics = (): JSX.Element => {
      '>
 			<h2 className='main-course-topics__header'>What you'll learn</h2>
 			<ul className='main-course-topics__list'>
-				{topics.map(el => (
-					<>
-						<li className='main-course-topics__list-element'>
-							<IconCheck size={18} />
-							{el}
-						</li>
-					</>
+				{topics.map((el, index) => (
+					<li key={index} className='main-course-topics__list-element'>
+						<IconCheck size={18} />
+						{el}
+					</li>
 				))}
 			</ul>
 		</section>
