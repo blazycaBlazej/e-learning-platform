@@ -76,8 +76,8 @@ app.post('/register', (req, res) => {
 			res.status(409).json({ error: 'Użytkownik już istnieje' })
 		} else {
 			connection.query(
-				'INSERT INTO users (email, password, fullName, wishlist, purchasedItemsId) VALUES (?, ?, ?, ?, ?)',
-				[email, password, fullName, '', ''],
+				'INSERT INTO users (email, password, fullName, wishlist, purchasedItemsId, instructorCourses) VALUES (?, ?, ?, ?, ?, ?)',
+				[email, password, fullName, '', '', ''],
 				error => {
 					if (error) {
 						console.error('Błąd zapytania SQL:', error)
@@ -111,6 +111,80 @@ app.post('/login', (req, res) => {
 			}
 		}
 	})
+})
+
+app.post('/addCourse', authMiddleware, (req, res) => {
+	const { name, description, requirements, category } = req.body
+
+	const user = req.user
+	if (user) {
+		// Wstaw nowy wiersz do tabeli courses
+		connection.query(
+			`INSERT INTO courses (category, name, description, author, numberOfRating, rating, price, language, requirements, img)
+			VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+			[
+				category,
+				name,
+				description,
+				user.fullName,
+				0,
+				0,
+				50,
+				'English',
+				requirements,
+				'https://cdn.pixabay.com/photo/2020/11/17/13/22/student-5752322_1280.png',
+			],
+			(error, results) => {
+				if (error) {
+					console.error('Błąd zapytania do bazy danych:', error)
+					res.status(500).json({ message: 'Wystąpił błąd serwera' })
+				} else {
+					// Pobierz ID ostatnio wstawionego wiersza
+					connection.query(`SELECT LAST_INSERT_ID()`, (error, result) => {
+						if (error) {
+							console.error('Błąd zapytania do bazy danych:', error)
+							res.status(500).json({ message: 'Wystąpił błąd serwera' })
+						} else {
+							const lastInsertedId = result[0]['LAST_INSERT_ID()']
+
+							// Pobierz obecne kursy instruktora z bazy danych
+							connection.query(
+								`SELECT instructorCourses FROM users WHERE email = ?`,
+								[user.email],
+								(error, results) => {
+									if (error) {
+										console.error('Błąd zapytania do bazy danych:', error)
+										res.status(500).json({ message: 'Wystąpił błąd serwera' })
+									} else {
+										const instructorCourses = results[0].instructorCourses
+										const instructorCoursesArray = instructorCourses ? instructorCourses.split(' ') : []
+										instructorCoursesArray.push(lastInsertedId)
+										const updateInstructorCoursesArray = instructorCoursesArray.join(' ')
+
+										// Zaktualizuj kursy instruktora w bazie danych
+										connection.query(
+											`UPDATE users SET instructorCourses = ? WHERE email = ?`,
+											[updateInstructorCoursesArray, user.email],
+											(error, results) => {
+												if (error) {
+													console.error('Błąd zapytania do bazy danych:', error)
+													res.status(500).json({ message: 'Wystąpił błąd serwera' })
+												} else {
+													res.status(200).json({ id: lastInsertedId })
+												}
+											}
+										)
+									}
+								}
+							)
+						}
+					})
+				}
+			}
+		)
+	} else {
+		res.status(401).json({ message: 'Nieprawidłowy token JWT' })
+	}
 })
 
 app.post('/buyCourse', authMiddleware, (req, res) => {
@@ -188,6 +262,34 @@ app.get('/getPurchasedCourse', authMiddleware, (req, res) => {
 				res.status(500).json({ message: 'Wystąpił błąd serwera' })
 			} else {
 				res.status(200).json(results[0].purchasedItemsId)
+			}
+		})
+	} else {
+		res.status(401).json({ message: 'Nieprawidłowy token JWT' })
+	}
+})
+
+app.post('/isAuthor', authMiddleware, (req, res) => {
+	const user = req.user
+	const { id } = req.body
+	if (user) {
+		connection.query(`SELECT instructorCourses FROM users WHERE email = '${user.email}'`, (error, results) => {
+			if (error) {
+				console.error('Błąd zapytania do bazy danych:', error)
+				res.status(500).json({ message: 'Wystąpił błąd serwera' })
+			} else {
+				const purchasedItemsId = results[0]?.instructorCourses || ''
+				const purchasedItemsIdArray = purchasedItemsId.split(' ')
+				let isAuthor = false
+				console.log(purchasedItemsIdArray)
+				console.log(String(id))
+				console.log(req.body)
+
+				purchasedItemsIdArray.map(el => {
+					if (el === String(id)) isAuthor = true
+				})
+
+				res.status(200).json({ isAuthor })
 			}
 		})
 	} else {
@@ -353,7 +455,6 @@ app.get('/getInstructorCourses', authMiddleware, (req, res) => {
 		res.status(401).json({ message: 'Nieprawidłowy token JWT' })
 	}
 })
-
 
 app.get('/courses', (req, res) => {
 	const { category } = req.query

@@ -80,6 +80,9 @@ const MenuAuthAtom = (): JSX.Element => {
 									<Link to='/instructor-courses'>
 										<li className='menu-auth-atom__menu-element'>Instructor Courses</li>
 									</Link>
+									<Link to='/create-course'>
+										<li className='menu-auth-atom__menu-element'>Create Course</li>
+									</Link>
 									<li onClick={clickHandler} className='menu-auth-atom__menu-element'>
 										Log out
 									</li>

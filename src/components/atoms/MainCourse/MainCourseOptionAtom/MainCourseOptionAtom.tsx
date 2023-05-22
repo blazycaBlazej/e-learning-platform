@@ -34,11 +34,33 @@ const MainCourseOptionAtom = ({ price, img, name, id }: MainCourseOptionAtomProp
 	const [isFollow, setIsFollow] = useState<boolean>(false)
 	const [isPurchased, setIsPurchased] = useState<boolean>(false)
 	const [isFollowLoading, setFollowIsLoading] = useState<boolean>(false)
-	const [isPurchasedLoading, setPurchasedIsLoading] = useState<boolean>(false)
+	const [isLoading, setIsLoading] = useState<boolean>(false)
+	const [isAuthor, setIsAuthor] = useState<boolean>(false)
 
 	const clickHandler = () => {
 		if (!isLogin) {
 			navigate('/login')
+		}
+	}
+
+	const checkIsAuthor = async () => {
+		if (isLogin) {
+			try {
+				const response = await fetch('http://127.0.0.1:3001/isAuthor', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						authorization: `Beer ${token}`,
+					},
+					body: JSON.stringify({ id }),
+				})
+
+				const data = await response.json()
+
+				data.isAuthor === true ? setIsAuthor(true) : setIsAuthor(false)
+			} catch (error) {
+				console.log(error)
+			}
 		}
 	}
 
@@ -73,7 +95,7 @@ const MainCourseOptionAtom = ({ price, img, name, id }: MainCourseOptionAtomProp
 
 	const checkPurchasedCourse = async () => {
 		if (isLogin) {
-			setPurchasedIsLoading(true)
+			setIsLoading(true)
 			try {
 				const response = await fetch('http://127.0.0.1:3001/getPurchasedCourse', {
 					headers: {
@@ -96,7 +118,7 @@ const MainCourseOptionAtom = ({ price, img, name, id }: MainCourseOptionAtomProp
 			} catch (error) {
 				console.log(error)
 			}
-			setPurchasedIsLoading(false)
+			setIsLoading(false)
 		}
 	}
 
@@ -131,7 +153,7 @@ const MainCourseOptionAtom = ({ price, img, name, id }: MainCourseOptionAtomProp
 			navigate('/login')
 		} else {
 			const buyCourse = async () => {
-				setPurchasedIsLoading(true)
+				setIsLoading(true)
 				try {
 					await fetch('http://127.0.0.1:3001/buyCourse', {
 						method: 'POST',
@@ -145,13 +167,14 @@ const MainCourseOptionAtom = ({ price, img, name, id }: MainCourseOptionAtomProp
 				} catch (error) {
 					console.log(error)
 				}
-				setPurchasedIsLoading(false)
+				setIsLoading(false)
 			}
 			buyCourse()
 		}
 	}
 
 	useEffect(() => {
+		checkIsAuthor()
 		checkPurchasedCourse()
 		checkWishList()
 	}, [])
@@ -165,10 +188,12 @@ const MainCourseOptionAtom = ({ price, img, name, id }: MainCourseOptionAtomProp
 				{isPurchased ? null : <span className='main-course-option-atom__price'>${price}</span>}
 
 				<div className='main-course-option-atom__btns'>
-					{isPurchasedLoading ? (
+					{isLoading ? (
 						<div className='main-course-option-atom__spinner'>
 							<RotatingLines strokeColor='grey' strokeWidth='5' animationDuration='0.75' width='78' visible={true} />
 						</div>
+					) : isAuthor ? (
+						<ButtonAtom label='Edit' btnClass='button--to-follow' />
 					) : isPurchased ? (
 						<div className='main-course-option-atom__purchased'>
 							<div className='main-course-option-atom__purchased-row'>
@@ -209,7 +234,7 @@ const MainCourseOptionAtom = ({ price, img, name, id }: MainCourseOptionAtomProp
 								</div>
 							</div>
 							<div onClick={clickHandler}>
-								<ButtonAtom label='Add to followed' btnClass='button--to-follow' />
+								<ButtonAtom label='Add to basket' btnClass='button--to-follow' />
 							</div>
 						</>
 					)}

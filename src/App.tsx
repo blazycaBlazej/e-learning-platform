@@ -15,6 +15,7 @@ import { logoutAction } from './pages/LogoutPage/LogoutPage'
 import { useEffect } from 'react'
 import { authAction } from './store/slices/authSlice/authSlice'
 import WishListPage from './pages/WishListPage/WishListPage'
+import CreateCoursePage from './pages/CreateCoursePage/CreateCoursePage'
 interface StateRoot {
 	auth: {
 		isLogin: boolean
@@ -134,6 +135,10 @@ function App() {
 							return redirect('/')
 						}
 					},
+				},
+				{
+					path: 'create-course',
+					element: <CreateCoursePage />,
 				},
 				// {
 				// 	path: '/logout',
