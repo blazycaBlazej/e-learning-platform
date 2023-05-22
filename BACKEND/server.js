@@ -1,19 +1,20 @@
+import * as dotenv from 'dotenv'
+dotenv.config()
+
 import mysql from 'mysql2'
 import express from 'express'
 import cors from 'cors'
 import jwt from 'jsonwebtoken'
 
-const port = 3001
+const port = process.env.PORT 
 
-//PROCESS.ENV
-const ACCESS_TOKEN = 'asfsgfvdg834tkjh4lkt23jilt2l3rtmlegfeljfwoiu3w4kh34trknektwl3rl3tle34t'
+const ACCESS_TOKEN = process.env.ACCESS_TOKEN
 
-//PROCESS.ENV
 const connection = mysql.createConnection({
-	host: 'localhost',
-	user: 'root',
-	password: 'zaq12wsx',
-	database: 'platform2',
+	host: process.env.HOST,
+	user: process.env.USER,
+	password: process.env.PASSWORD,
+	database: process.env.DATABASE,
 })
 
 //MIDDLEWARE
