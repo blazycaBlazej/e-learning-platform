@@ -1,15 +1,17 @@
 import { Form, Link, useRouteLoaderData } from 'react-router-dom'
-import { MenuBasketAtom } from '../../atoms/Menu/MenuBasketAtom/MenuBasketAtom'
-import { MenuBurgerAtom } from '../../atoms/Menu/MenuBurgerAtom/MenuBurgerAtom'
-import { MenuItemAtom } from '../../atoms/Menu/MenuItemAtom/MenuItemAtom'
-import { MenuLogoAtom } from '../../atoms/Menu/MenuLogoAtom/MenuLogoAtom'
-import { MenuSearchAtom } from '../../atoms/Menu/MenuSearchAtom/MenuSearchAtom'
-import { MenuSearchbar } from '../../atoms/Menu/MenuSearchbar/MenuSearchbar'
-import { ButtonAtom } from '../../atoms/UI/ButtonAtom/ButtonAtom'
-import './MenuOrganism.scss'
 import { useDispatch, useSelector } from 'react-redux'
-import { authAction } from '../../../store/slices/authSlice/authSlice'
-import { MenuAuthAtom } from '../../atoms/Menu/MenuAuthAtom/MenuAuthAtom'
+import {
+	MenuBasketAtom,
+	MenuBurgerAtom,
+	MenuItemAtom,
+	MenuLogoAtom,
+	MenuSearchAtom,
+	MenuSearchbar,
+	ButtonAtom,
+	MenuAuthAtom,
+} from '../../atoms'
+
+import './MenuOrganism.scss'
 
 interface StateRoot {
 	auth: {
@@ -18,8 +20,6 @@ interface StateRoot {
 }
 
 export const MenuOrganism = (): JSX.Element => {
-	const dispatch = useDispatch()
-
 	const isLogin = useSelector((state: StateRoot) => state.auth.isLogin)
 
 	return (

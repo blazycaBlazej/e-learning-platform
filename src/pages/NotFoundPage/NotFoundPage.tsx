@@ -1,5 +1,5 @@
-import { FooterOrganism } from '../../components/organisms/FooterOrganism/FooterOrganism'
-import { MenuOrganism } from '../../components/organisms/MenuOrganism/MenuOrganism'
+import { FooterOrganism, MenuOrganism } from '../../components/organisms'
+
 import './NotFoundPage.scss'
 
 export const NotFoundPage = (): JSX.Element => {

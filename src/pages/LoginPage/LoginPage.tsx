@@ -1,4 +1,4 @@
-import { LoginOrganism } from '../../components/organisms/LoginOrganism/LoginOrganism'
+import { LoginOrganism } from '../../components/organisms'
 import './LoginPage.scss'
 
 export const LoginPage = (): JSX.Element => {

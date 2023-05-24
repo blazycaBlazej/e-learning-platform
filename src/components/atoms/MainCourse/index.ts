@@ -1,0 +1,7 @@
+export * from './MainCourseCompanies'
+export * from './MainCourseDescription'
+export * from './MainCourseHeader'
+export * from './MainCourseOptionAtom'
+export * from './MainCourseRequirements'
+export * from './MainCourseStickyHeader'
+export * from './MainCourseTopics'

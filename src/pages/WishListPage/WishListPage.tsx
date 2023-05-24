@@ -1,4 +1,4 @@
-import { WishListOrganism } from '../../components/organisms/WishListOrganism/WishListOrganism'
+import { WishListOrganism } from '../../components/organisms'
 import './WishListPage.scss'
 
 export const WishListPage = (): JSX.Element => {

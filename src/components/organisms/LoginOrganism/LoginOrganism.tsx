@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { ButtonAtom } from '../../atoms/UI/ButtonAtom/ButtonAtom'
-import './LoginOrganism.scss'
+import { ButtonAtom } from '../../atoms'
 import { authAction } from '../../../store/slices/authSlice/authSlice'
+import './LoginOrganism.scss'
 
 export const LoginOrganism = (): JSX.Element => {
 	const [sent, setSent] = useState<boolean>(false)

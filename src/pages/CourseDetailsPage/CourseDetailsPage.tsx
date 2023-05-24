@@ -1,13 +1,15 @@
 import { useLoaderData } from 'react-router-dom'
 import { useEffect } from 'react'
-import { MainCourseHeader } from '../../components/atoms/MainCourse/MainCourseHeader/MainCourseHeader'
-import { MainCourseOptionAtom } from '../../components/atoms/MainCourse/MainCourseOptionAtom/MainCourseOptionAtom'
 
-import { MainCourseTopics } from '../../components/atoms/MainCourse/MainCourseTopics/MainCourseTopics'
-import { MainCourseCompanies } from '../../components/atoms/MainCourse/MainCourseCompanies/MainCourseCompanies'
-import { MainCourseRequirements } from '../../components/atoms/MainCourse/MainCourseRequirements/MainCourseRequirements'
-import { MainCourseDescription } from '../../components/atoms/MainCourse/MainCourseDescription/MainCourseDescription'
-import { MainCourseStickyHeader } from '../../components/atoms/MainCourse/MainCourseStickyHeader/MainCourseStickyHeader'
+import {
+	MainCourseTopics,
+	MainCourseCompanies,
+	MainCourseRequirements,
+	MainCourseDescription,
+	MainCourseStickyHeader,
+	MainCourseOptionAtom,
+	MainCourseHeader,
+} from '../../components/atoms'
 
 import './CourseDetailsPage.scss'
 

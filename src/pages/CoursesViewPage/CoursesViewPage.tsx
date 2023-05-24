@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { CoursesViewOrganism } from '../../components/organisms/CoursesViewOrganism/CoursesViewOrganism'
+import { CoursesViewOrganism } from '../../components/organisms'
 import './CoursesViewPage.scss'
 
 export const CoursesViewPage = (): JSX.Element => {

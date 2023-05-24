@@ -1,11 +1,10 @@
-import FlipMove from 'react-flip-move'
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { ButtonAtom } from '../../atoms/UI/ButtonAtom/ButtonAtom'
-import './RegisterOrganism.scss'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import FlipMove from 'react-flip-move'
 import { authAction } from '../../../store/slices/authSlice/authSlice'
+import { ButtonAtom } from '../../atoms'
+import './RegisterOrganism.scss'
 
 export const RegisterOrganism = (): JSX.Element => {
 	const [isSent, setIsSent] = useState(false)

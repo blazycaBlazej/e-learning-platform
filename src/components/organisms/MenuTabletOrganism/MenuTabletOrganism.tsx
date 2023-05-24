@@ -3,8 +3,8 @@ import FlipMove from 'react-flip-move'
 import { Link, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { uiAction } from '../../../store/slices/uiSlice/uiSlice'
-import './MenuTabletOrganism.scss'
 import { authAction } from '../../../store/slices/authSlice/authSlice'
+import './MenuTabletOrganism.scss'
 
 interface StateRoot {
 	ui: {

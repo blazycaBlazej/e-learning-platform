@@ -1,7 +1,7 @@
 import { IconWorld } from '@tabler/icons-react'
 import { Link } from 'react-router-dom'
 import './FooterOrganism.scss'
-import { ButtonAtom } from '../../atoms/UI/ButtonAtom/ButtonAtom'
+import { ButtonAtom } from '../../atoms'
 
 export const FooterOrganism = (): JSX.Element => {
 	return (

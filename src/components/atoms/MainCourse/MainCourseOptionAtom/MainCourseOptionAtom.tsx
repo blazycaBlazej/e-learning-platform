@@ -7,7 +7,7 @@ import {
 	IconInfoCircleFilled,
 } from '@tabler/icons-react'
 
-import {ButtonAtom} from '../../UI/ButtonAtom/ButtonAtom'
+import { ButtonAtom } from '../../UI' 
 import './MainCourseOptionAtom.scss'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'

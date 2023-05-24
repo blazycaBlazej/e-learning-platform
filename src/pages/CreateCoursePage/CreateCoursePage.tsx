@@ -1,4 +1,4 @@
-import { CreateCourseOrganism } from '../../components/organisms/CreateCourseOrganism/CreateCourseOrganism'
+import { CreateCourseOrganism } from '../../components/organisms'
 import './CreateCoursePage.scss'
 
 export const CreateCoursePage = (): JSX.Element => {

@@ -1,8 +1,6 @@
 import { useLoaderData } from 'react-router-dom'
-import { WishListCourseAtom } from '../../atoms/WishList/WishListCourseAtom/WishListCourseAtom'
-import { WishListHeaderAtom } from '../../atoms/WishList/WishListHeaderAtom/WishListHeaderAtom'
+import { WishListCourseAtom, WishListEmptyAtom, WishListHeaderAtom } from '../../atoms'
 import './WishListOrganism.scss'
-import { WishListEmptyAtom } from '../../atoms/WishList/WishListEmptyAtom/WishListEmptyAtom'
 
 interface CourseDetail {
 	id: number

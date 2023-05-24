@@ -1,7 +1,5 @@
 import { Outlet } from 'react-router-dom'
-import { MenuOrganism } from '../components/organisms/MenuOrganism/MenuOrganism'
-import { FooterOrganism } from '../components/organisms/FooterOrganism/FooterOrganism'
-import { MenuTabletOrganism } from '../components/organisms/MenuTabletOrganism/MenuTabletOrganism'
+import { MenuOrganism, FooterOrganism, MenuTabletOrganism } from '../components/organisms'
 
 import './MainLayout.scss'
 

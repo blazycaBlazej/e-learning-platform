@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { HomeCategoryAtom } from '../../../atoms/Home/HomeCategoryAtom/HomeCategoryAtom'
+import { HomeCategoryAtom } from '../../../atoms'
 import './HomeCategoriesMolecul.scss'
 
 export const HomeCategoriesMolecul = (): JSX.Element => {

@@ -1,7 +1,6 @@
-import { Link, useLoaderData, Location } from 'react-router-dom'
-import { CourseElement } from '../../atoms/Courses/CourseElement/CourseElement'
-import { CourseLabel } from '../../atoms/Courses/CourseLabel/CourseLabel'
-import { CourseMoneyBack } from '../../atoms/Courses/CourseMoneyBack/CourseMoneyBack'
+import { Link, useLoaderData } from 'react-router-dom'
+import { CourseElement, CourseLabel, CourseMoneyBack } from '../../atoms'
+
 import './CoursesViewOrganism.scss'
 
 interface Course {

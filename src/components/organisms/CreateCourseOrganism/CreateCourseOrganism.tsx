@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react'
-import './CreateCourseOrganism.scss'
-import { ButtonAtom } from '../../atoms/UI/ButtonAtom/ButtonAtom'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { ButtonAtom } from '../../atoms'
+import './CreateCourseOrganism.scss'
 
 export const CreateCourseOrganism = (): JSX.Element => {
 	const [name, setName] = useState('')

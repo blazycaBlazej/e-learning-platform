@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ButtonAtom } from '../../components/atoms/UI/ButtonAtom/ButtonAtom'
+import { ButtonAtom } from '../../components/atoms' 
 import './BasketPage.scss'
 
 export const BasketPage = (): JSX.Element => {

@@ -1,5 +1,5 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { createBrowserRouter, redirect, RouterProvider } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { RouterProvider } from 'react-router-dom'
 
 import './App.scss'
 
