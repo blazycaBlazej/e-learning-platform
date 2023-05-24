@@ -1,7 +1,7 @@
 import { IconShoppingCart } from '@tabler/icons-react'
 import './MenuBasketAtom.scss'
 
-const MenuBasketAtom = (): JSX.Element => {
+export const MenuBasketAtom = (): JSX.Element => {
 	return (
 		<span className='menu-basket-atom'>
 			<IconShoppingCart size={25} />
@@ -9,4 +9,4 @@ const MenuBasketAtom = (): JSX.Element => {
 	)
 }
 
-export default MenuBasketAtom
+

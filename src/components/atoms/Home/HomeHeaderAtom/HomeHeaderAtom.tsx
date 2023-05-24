@@ -1,6 +1,6 @@
 import './HomeHeaderAtom.scss'
 
-const HomeHeaderAtom = (): JSX.Element => {
+export const HomeHeaderAtom = (): JSX.Element => {
 	return (
 		<section className='home-header-atom'>
 			<div className='home-header-atom__img-wrapper'>
@@ -26,4 +26,3 @@ const HomeHeaderAtom = (): JSX.Element => {
 	)
 }
 
-export default HomeHeaderAtom

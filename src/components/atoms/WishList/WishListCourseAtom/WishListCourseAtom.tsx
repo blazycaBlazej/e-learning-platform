@@ -19,7 +19,7 @@ interface WishListCourseAtomProps {
 	type: string
 }
 
-const WishListCourseAtom = ({ course, type }: WishListCourseAtomProps): JSX.Element => {
+export const WishListCourseAtom = ({ course, type }: WishListCourseAtomProps): JSX.Element => {
 	const { id, category, name, description, author, numberOfRating, rating, price, language, requirements, img } = course
 
 	return (
@@ -81,5 +81,3 @@ const WishListCourseAtom = ({ course, type }: WishListCourseAtomProps): JSX.Elem
 		</Link>
 	)
 }
-
-export default WishListCourseAtom

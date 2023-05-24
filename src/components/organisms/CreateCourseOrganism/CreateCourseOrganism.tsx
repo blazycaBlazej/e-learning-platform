@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react'
 import './CreateCourseOrganism.scss'
-import ButtonAtom from '../../atoms/UI/ButtonAtom/ButtonAtom'
+import { ButtonAtom } from '../../atoms/UI/ButtonAtom/ButtonAtom'
 import { useNavigate } from 'react-router-dom'
 
-const CreateCourseOrganism = (): JSX.Element => {
+export const CreateCourseOrganism = (): JSX.Element => {
 	const [name, setName] = useState('')
 	const [description, setDescription] = useState('')
 	const [requirements, setRequirements] = useState('')
@@ -123,5 +123,3 @@ const CreateCourseOrganism = (): JSX.Element => {
 		</section>
 	)
 }
-
-export default CreateCourseOrganism

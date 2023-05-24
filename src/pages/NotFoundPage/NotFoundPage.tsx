@@ -1,8 +1,8 @@
-import FooterOrganism from '../../components/organisms/FooterOrganism/FooterOrganism'
-import MenuOrganism from '../../components/organisms/MenuOrganism/MenuOrganism'
+import { FooterOrganism } from '../../components/organisms/FooterOrganism/FooterOrganism'
+import { MenuOrganism } from '../../components/organisms/MenuOrganism/MenuOrganism'
 import './NotFoundPage.scss'
 
-const NotFoundPage = (): JSX.Element => {
+export const NotFoundPage = (): JSX.Element => {
 	return (
 		<section className='not-found-page'>
 			<MenuOrganism />
@@ -20,5 +20,3 @@ const NotFoundPage = (): JSX.Element => {
 		</section>
 	)
 }
-
-export default NotFoundPage

@@ -1,11 +1,11 @@
 import { Outlet } from 'react-router-dom'
-import MenuOrganism from '../components/organisms/MenuOrganism/MenuOrganism'
+import { MenuOrganism } from '../components/organisms/MenuOrganism/MenuOrganism'
+import { FooterOrganism } from '../components/organisms/FooterOrganism/FooterOrganism'
+import { MenuTabletOrganism } from '../components/organisms/MenuTabletOrganism/MenuTabletOrganism'
 
 import './MainLayout.scss'
-import FooterOrganism from '../components/organisms/FooterOrganism/FooterOrganism'
-import MenuTabletOrganism from '../components/organisms/MenuTabletOrganism/MenuTabletOrganism'
 
-const MainLayout = (): JSX.Element => {
+export const MainLayout = (): JSX.Element => {
 	return (
 		<section className='main-layout'>
 			<MenuOrganism />
@@ -19,5 +19,3 @@ const MainLayout = (): JSX.Element => {
 		</section>
 	)
 }
-
-export default MainLayout

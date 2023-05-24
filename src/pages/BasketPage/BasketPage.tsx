@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
-import ButtonAtom from '../../components/atoms/UI/ButtonAtom/ButtonAtom'
+import { ButtonAtom } from '../../components/atoms/UI/ButtonAtom/ButtonAtom'
 import './BasketPage.scss'
 
-const BasketPage = (): JSX.Element => {
+export const BasketPage = (): JSX.Element => {
 	return (
 		<section className='basket-page'>
 			<h1 className='basket-page__header'>Shopping Cart</h1>
@@ -26,5 +26,3 @@ const BasketPage = (): JSX.Element => {
 		</section>
 	)
 }
-
-export default BasketPage

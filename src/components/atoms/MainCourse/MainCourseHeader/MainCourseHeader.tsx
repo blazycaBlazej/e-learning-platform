@@ -12,7 +12,7 @@ interface MainCourseHeaderProps {
 	category: string
 }
 
-const MainCourseHeader = ({
+export const MainCourseHeader = ({
 	name,
 	description,
 	rating,
@@ -85,4 +85,3 @@ const MainCourseHeader = ({
 	)
 }
 
-export default MainCourseHeader

@@ -2,11 +2,11 @@ import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import ButtonAtom from '../../atoms/UI/ButtonAtom/ButtonAtom'
+import { ButtonAtom } from '../../atoms/UI/ButtonAtom/ButtonAtom'
 import './LoginOrganism.scss'
 import { authAction } from '../../../store/slices/authSlice/authSlice'
 
-const LoginOrganism = (): JSX.Element => {
+export const LoginOrganism = (): JSX.Element => {
 	const [sent, setSent] = useState<boolean>(false)
 	const emailRef = useRef<null | HTMLInputElement>(null)
 	const passwordRef = useRef<null | HTMLInputElement>(null)
@@ -89,8 +89,6 @@ const LoginOrganism = (): JSX.Element => {
 		</section>
 	)
 }
-
-export default LoginOrganism
 
 // // const navigate = useNavigate()
 // const isLogin = useRouteLoaderData('root')

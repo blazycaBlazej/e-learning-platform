@@ -4,7 +4,7 @@ interface MainCourseRequirementsProps {
 	requirements: string
 }
 
-const MainCourseRequirements = ({ requirements }: MainCourseRequirementsProps): JSX.Element => {
+export const MainCourseRequirements = ({ requirements }: MainCourseRequirementsProps): JSX.Element => {
 	const requirementsArray = requirements.split(',')
 	return (
 		<section className='main-course-requirements'>
@@ -20,4 +20,4 @@ const MainCourseRequirements = ({ requirements }: MainCourseRequirementsProps): 
 	)
 }
 
-export default MainCourseRequirements
+

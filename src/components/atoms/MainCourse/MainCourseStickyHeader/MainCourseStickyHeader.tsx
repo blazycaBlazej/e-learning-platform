@@ -10,7 +10,7 @@ interface MainCourseStickyHeaderProps {
 	img: string
 }
 
-const MainCourseStickyHeader = ({ name, numberOfRating, rating, img }: MainCourseStickyHeaderProps): JSX.Element => {
+export const MainCourseStickyHeader = ({ name, numberOfRating, rating, img }: MainCourseStickyHeaderProps): JSX.Element => {
 	return (
 		<section className='main-course-sticky-header'>
 			<span className='main-course-sticky-header__name'>{name}</span>
@@ -26,4 +26,3 @@ const MainCourseStickyHeader = ({ name, numberOfRating, rating, img }: MainCours
 	)
 }
 
-export default MainCourseStickyHeader

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { IconSearch } from '@tabler/icons-react'
 import './MenuSearchbar.scss'
 
-const MenuSearchbar = (): JSX.Element => {
+export const MenuSearchbar = (): JSX.Element => {
 	const refSearch = useRef<null | HTMLInputElement>(null)
 	const navigate = useNavigate()
 	useEffect(() => {
@@ -47,4 +47,4 @@ const MenuSearchbar = (): JSX.Element => {
 	)
 }
 
-export default MenuSearchbar
+

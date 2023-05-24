@@ -1,13 +1,13 @@
 import FlipMove from 'react-flip-move'
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import ButtonAtom from '../../atoms/UI/ButtonAtom/ButtonAtom'
+import { ButtonAtom } from '../../atoms/UI/ButtonAtom/ButtonAtom'
 import './RegisterOrganism.scss'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { authAction } from '../../../store/slices/authSlice/authSlice'
 
-const RegisterOrganism = (): JSX.Element => {
+export const RegisterOrganism = (): JSX.Element => {
 	const [isSent, setIsSent] = useState(false)
 	const [passwordIsCorrect, setPasswordIsCorrect] = useState(false)
 	const [nameIsCorrect, setNameIsCorrect] = useState(false)
@@ -241,5 +241,3 @@ const RegisterOrganism = (): JSX.Element => {
 		</section>
 	)
 }
-
-export default RegisterOrganism

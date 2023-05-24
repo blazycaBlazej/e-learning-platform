@@ -4,7 +4,7 @@ interface WishListHeaderAtomProps {
 	type: string
 }
 
-const WishListHeaderAtom = ({ type }: WishListHeaderAtomProps): JSX.Element => {
+export const WishListHeaderAtom = ({ type }: WishListHeaderAtomProps): JSX.Element => {
 	return (
 		<section className='wish-list-header-atom'>
 			<div className='wish-list-header-atom__content'>
@@ -15,5 +15,3 @@ const WishListHeaderAtom = ({ type }: WishListHeaderAtomProps): JSX.Element => {
 		</section>
 	)
 }
-
-export default WishListHeaderAtom

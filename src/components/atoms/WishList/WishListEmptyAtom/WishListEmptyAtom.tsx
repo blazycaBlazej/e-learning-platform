@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom'
-import ButtonAtom from '../../UI/ButtonAtom/ButtonAtom'
+import {ButtonAtom} from '../../UI/ButtonAtom/ButtonAtom'
 import './WishListEmptyAtom.scss'
 
 interface WishListEmptyAtomProps {
 	type: string
 }
 
-const WishListEmptyAtom = ({ type }: WishListEmptyAtomProps): JSX.Element => {
+export const WishListEmptyAtom = ({ type }: WishListEmptyAtomProps): JSX.Element => {
 	return (
 		<section className='wish-list-empty-atom'>
 			<p className='wish-list-empty-atom__text'>
@@ -27,4 +27,3 @@ const WishListEmptyAtom = ({ type }: WishListEmptyAtomProps): JSX.Element => {
 	)
 }
 
-export default WishListEmptyAtom

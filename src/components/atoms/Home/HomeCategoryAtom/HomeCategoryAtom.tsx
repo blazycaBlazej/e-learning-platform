@@ -5,7 +5,7 @@ interface HomeCategoryAtomProps {
 	img: string
 }
 
-const HomeCategoryAtom = ({ label, img }: HomeCategoryAtomProps): JSX.Element => {
+export const HomeCategoryAtom = ({ label, img }: HomeCategoryAtomProps): JSX.Element => {
 	return (
 		<div className='home-category-atom'>
 			<div className='home-category-atom__wrapper'>
@@ -16,4 +16,4 @@ const HomeCategoryAtom = ({ label, img }: HomeCategoryAtomProps): JSX.Element =>
 	)
 }
 
-export default HomeCategoryAtom
+

@@ -1,7 +1,7 @@
 import { Link, useLoaderData, Location } from 'react-router-dom'
-import CourseElement from '../../atoms/Courses/CourseElement/CourseElement'
-import CourseLabel from '../../atoms/Courses/CourseLabel/CourseLabel'
-import CourseMoneyBack from '../../atoms/Courses/CourseMoneyBack/CourseMoneyBack'
+import {CourseElement} from '../../atoms/Courses/CourseElement/CourseElement'
+import {CourseLabel} from '../../atoms/Courses/CourseLabel/CourseLabel'
+import {CourseMoneyBack} from '../../atoms/Courses/CourseMoneyBack/CourseMoneyBack'
 import './CoursesViewOrganism.scss'
 
 interface Course {
@@ -18,7 +18,7 @@ interface Course {
 	img: string
 }
 
-const CoursesViewOrganism = (): JSX.Element => {
+export const CoursesViewOrganism = (): JSX.Element => {
 	const courses: Course[] = useLoaderData() as Course[]
 	let header = ''
 	const splitLocation = location.pathname.split('/')
@@ -63,4 +63,4 @@ const CoursesViewOrganism = (): JSX.Element => {
 	)
 }
 
-export default CoursesViewOrganism
+

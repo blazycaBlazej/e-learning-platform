@@ -1,7 +1,7 @@
 import { IconInfoSmall } from '@tabler/icons-react'
 import './CourseMoneyBack.scss'
 
-const CourseMoneyBack = (): JSX.Element => {
+export const CourseMoneyBack = (): JSX.Element => {
 	return (
 		<section className='course-money-back'>
 			<div className='course-money-back__cirlce'>
@@ -13,4 +13,4 @@ const CourseMoneyBack = (): JSX.Element => {
 	)
 }
 
-export default CourseMoneyBack
+

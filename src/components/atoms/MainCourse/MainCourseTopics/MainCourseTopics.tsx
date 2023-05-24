@@ -1,6 +1,6 @@
 import { IconCheck } from '@tabler/icons-react'
 import './MainCourseTopics.scss'
-const MainCourseTopics = (): JSX.Element => {
+export const MainCourseTopics = (): JSX.Element => {
 	const topics = [
 		'Draw objects out of your head',
 		'Understand the fundamentals of art',
@@ -25,4 +25,3 @@ const MainCourseTopics = (): JSX.Element => {
 	)
 }
 
-export default MainCourseTopics

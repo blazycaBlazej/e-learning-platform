@@ -7,7 +7,7 @@ import {
 	IconInfoCircleFilled,
 } from '@tabler/icons-react'
 
-import ButtonAtom from '../../UI/ButtonAtom/ButtonAtom'
+import {ButtonAtom} from '../../UI/ButtonAtom/ButtonAtom'
 import './MainCourseOptionAtom.scss'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -27,7 +27,7 @@ interface StateRoot {
 	}
 }
 
-const MainCourseOptionAtom = ({ price, img, name, id }: MainCourseOptionAtomProps): JSX.Element => {
+export const MainCourseOptionAtom = ({ price, img, name, id }: MainCourseOptionAtomProps): JSX.Element => {
 	const isLogin = useSelector((state: StateRoot) => state.auth.isLogin)
 	const token = localStorage.getItem('token')
 	const navigate = useNavigate()
@@ -260,4 +260,4 @@ const MainCourseOptionAtom = ({ price, img, name, id }: MainCourseOptionAtomProp
 	)
 }
 
-export default MainCourseOptionAtom
+

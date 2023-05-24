@@ -15,7 +15,7 @@ interface CourseElementProps {
 	img?: string
 }
 
-const CourseElement = ({
+export const CourseElement = ({
 	id,
 	category,
 	name,
@@ -87,5 +87,3 @@ const CourseElement = ({
 		</section>
 	)
 }
-
-export default CourseElement

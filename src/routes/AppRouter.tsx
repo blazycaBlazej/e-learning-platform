@@ -1,18 +1,17 @@
 import { RouterProvider, createBrowserRouter, redirect } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
-import HomePage from '../pages/HomePage/HomePage'
-import CourseDetailsPage from '../pages/CourseDetailsPage/CourseDetailsPage'
-import CoursesViewPage from '../pages/CoursesViewPage/CoursesViewPage'
-import MainLayout from '../layouts/MainLayout'
-import BasketPage from '../pages/BasketPage/BasketPage'
-import LoginPage from '../pages/LoginPage/LoginPage'
-import RegisterPage from '../pages/RegisterPage/RegisterPage'
+import { HomePage } from '../pages/HomePage/HomePage'
+import { CourseDetailsPage } from '../pages/CourseDetailsPage/CourseDetailsPage'
+import { CoursesViewPage } from '../pages/CoursesViewPage/CoursesViewPage'
+import { MainLayout } from '../layouts/MainLayout'
+import { BasketPage } from '../pages/BasketPage/BasketPage'
+import { LoginPage } from '../pages/LoginPage/LoginPage'
+import { RegisterPage } from '../pages/RegisterPage/RegisterPage'
 import { logoutAction } from '../pages/LogoutPage/LogoutPage'
-import NotFoundPage from '../pages/NotFoundPage/NotFoundPage'
-import { courses } from '../data/courses'
-import WishListPage from '../pages/WishListPage/WishListPage'
-import CreateCoursePage from '../pages/CreateCoursePage/CreateCoursePage'
+import { NotFoundPage } from '../pages/NotFoundPage/NotFoundPage'
+import { WishListPage } from '../pages/WishListPage/WishListPage'
+import { CreateCoursePage } from '../pages/CreateCoursePage/CreateCoursePage'
 
 interface StateRoot {
 	auth: {

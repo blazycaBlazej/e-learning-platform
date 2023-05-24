@@ -1,9 +1,9 @@
 import { IconWorld } from '@tabler/icons-react'
 import { Link } from 'react-router-dom'
 import './FooterOrganism.scss'
-import ButtonAtom from '../../atoms/UI/ButtonAtom/ButtonAtom'
+import { ButtonAtom } from '../../atoms/UI/ButtonAtom/ButtonAtom'
 
-const FooterOrganism = (): JSX.Element => {
+export const FooterOrganism = (): JSX.Element => {
 	return (
 		<footer className='footer-organism'>
 			<div className='footer-organism__header'>
@@ -128,5 +128,3 @@ const FooterOrganism = (): JSX.Element => {
 		</footer>
 	)
 }
-
-export default FooterOrganism

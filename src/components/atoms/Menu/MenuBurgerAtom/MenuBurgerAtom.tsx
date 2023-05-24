@@ -4,7 +4,7 @@ import { IconMenu2 } from '@tabler/icons-react'
 import './MenuBurgerAtom.scss'
 
 import { uiAction } from '../../../../store/slices/uiSlice/uiSlice'
-const MenuBurgerAtom = (): JSX.Element => {
+export const MenuBurgerAtom = (): JSX.Element => {
 	const dispatch = useDispatch()
 
 	const clickHandler = (e: React.MouseEvent) => {
@@ -18,4 +18,3 @@ const MenuBurgerAtom = (): JSX.Element => {
 	)
 }
 
-export default MenuBurgerAtom

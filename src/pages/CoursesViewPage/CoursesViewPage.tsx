@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
-import CoursesViewOrganism from '../../components/organisms/CoursesViewOrganism/CoursesViewOrganism'
+import { CoursesViewOrganism } from '../../components/organisms/CoursesViewOrganism/CoursesViewOrganism'
 import './CoursesViewPage.scss'
 
-const CoursesViewPage = (): JSX.Element => {
+export const CoursesViewPage = (): JSX.Element => {
 	useEffect(() => window.scrollTo(0, 0), [])
 
 	return (
@@ -11,5 +11,3 @@ const CoursesViewPage = (): JSX.Element => {
 		</main>
 	)
 }
-
-export default CoursesViewPage

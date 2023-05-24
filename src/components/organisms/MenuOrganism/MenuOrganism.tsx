@@ -1,15 +1,15 @@
 import { Form, Link, useRouteLoaderData } from 'react-router-dom'
-import MenuBasketAtom from '../../atoms/Menu/MenuBasketAtom/MenuBasketAtom'
-import MenuBurgerAtom from '../../atoms/Menu/MenuBurgerAtom/MenuBurgerAtom'
-import MenuItemAtom from '../../atoms/Menu/MenuItemAtom/MenuItemAtom'
-import MenuLogoAtom from '../../atoms/Menu/MenuLogoAtom/MenuLogoAtom'
-import MenuSearchAtom from '../../atoms/Menu/MenuSearchAtom/MenuSearchAtom'
-import MenuSearchbar from '../../atoms/Menu/MenuSearchbar/MenuSearchbar'
-import ButtonAtom from '../../atoms/UI/ButtonAtom/ButtonAtom'
+import { MenuBasketAtom } from '../../atoms/Menu/MenuBasketAtom/MenuBasketAtom'
+import { MenuBurgerAtom } from '../../atoms/Menu/MenuBurgerAtom/MenuBurgerAtom'
+import { MenuItemAtom } from '../../atoms/Menu/MenuItemAtom/MenuItemAtom'
+import { MenuLogoAtom } from '../../atoms/Menu/MenuLogoAtom/MenuLogoAtom'
+import { MenuSearchAtom } from '../../atoms/Menu/MenuSearchAtom/MenuSearchAtom'
+import { MenuSearchbar } from '../../atoms/Menu/MenuSearchbar/MenuSearchbar'
+import { ButtonAtom } from '../../atoms/UI/ButtonAtom/ButtonAtom'
 import './MenuOrganism.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { authAction } from '../../../store/slices/authSlice/authSlice'
-import MenuAuthAtom from '../../atoms/Menu/MenuAuthAtom/MenuAuthAtom'
+import { MenuAuthAtom } from '../../atoms/Menu/MenuAuthAtom/MenuAuthAtom'
 
 interface StateRoot {
 	auth: {
@@ -17,7 +17,7 @@ interface StateRoot {
 	}
 }
 
-const MenuOrganism = (): JSX.Element => {
+export const MenuOrganism = (): JSX.Element => {
 	const dispatch = useDispatch()
 
 	const isLogin = useSelector((state: StateRoot) => state.auth.isLogin)
@@ -66,5 +66,3 @@ const MenuOrganism = (): JSX.Element => {
 		</nav>
 	)
 }
-
-export default MenuOrganism

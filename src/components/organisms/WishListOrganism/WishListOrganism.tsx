@@ -1,8 +1,8 @@
 import { useLoaderData } from 'react-router-dom'
-import WishListCourseAtom from '../../atoms/WishList/WishListCourseAtom/WishListCourseAtom'
-import WishListHeaderAtom from '../../atoms/WishList/WishListHeaderAtom/WishListHeaderAtom'
+import { WishListCourseAtom } from '../../atoms/WishList/WishListCourseAtom/WishListCourseAtom'
+import { WishListHeaderAtom } from '../../atoms/WishList/WishListHeaderAtom/WishListHeaderAtom'
 import './WishListOrganism.scss'
-import WishListEmptyAtom from '../../atoms/WishList/WishListEmptyAtom/WishListEmptyAtom'
+import { WishListEmptyAtom } from '../../atoms/WishList/WishListEmptyAtom/WishListEmptyAtom'
 
 interface CourseDetail {
 	id: number
@@ -24,7 +24,7 @@ interface LoaderData {
 	type: string
 }
 
-const WishListOrganism = (): JSX.Element => {
+export const WishListOrganism = (): JSX.Element => {
 	const courses: LoaderData = useLoaderData() as LoaderData
 	return (
 		<section className='wish-list-organism'>
@@ -41,5 +41,3 @@ const WishListOrganism = (): JSX.Element => {
 		</section>
 	)
 }
-
-export default WishListOrganism

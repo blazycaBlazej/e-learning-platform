@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
-import HomeCategoryAtom from '../../../atoms/Home/HomeCategoryAtom/HomeCategoryAtom'
+import { HomeCategoryAtom } from '../../../atoms/Home/HomeCategoryAtom/HomeCategoryAtom'
 import './HomeCategoriesMolecul.scss'
 
-const HomeCategoriesMolecul = (): JSX.Element => {
+export const HomeCategoriesMolecul = (): JSX.Element => {
 	return (
 		<section className='home-categories-molecul'>
 			<h2 className='home-categories-molecul__header'>Top categories</h2>
@@ -76,5 +76,3 @@ const HomeCategoriesMolecul = (): JSX.Element => {
 		</section>
 	)
 }
-
-export default HomeCategoriesMolecul

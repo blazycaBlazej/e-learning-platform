@@ -15,7 +15,7 @@ interface StateRoot {
 	}
 }
 
-const MenuTabletOrganism = (): JSX.Element => {
+export const MenuTabletOrganism = (): JSX.Element => {
 	const location = useLocation()
 	const dispatch = useDispatch()
 	const myRef = useRef<null | HTMLDivElement>(null)
@@ -123,5 +123,3 @@ const MenuTabletOrganism = (): JSX.Element => {
 		</FlipMove>
 	)
 }
-
-export default MenuTabletOrganism

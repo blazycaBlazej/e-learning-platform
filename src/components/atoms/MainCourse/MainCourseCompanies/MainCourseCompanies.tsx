@@ -1,6 +1,6 @@
 import './MainCourseCompanies.scss'
 
-const MainCourseCompanies = (): JSX.Element => {
+export const MainCourseCompanies = (): JSX.Element => {
 	return (
 		<section className='main-course-companies'>
 			<span className='main-course-companies__header'>Top companies offer this course to their employees</span>
@@ -48,4 +48,4 @@ const MainCourseCompanies = (): JSX.Element => {
 	)
 }
 
-export default MainCourseCompanies
+

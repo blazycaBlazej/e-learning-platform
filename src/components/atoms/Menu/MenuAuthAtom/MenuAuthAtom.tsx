@@ -5,7 +5,7 @@ import './MenuAuthAtom.scss'
 import { useDispatch } from 'react-redux'
 import { authAction } from '../../../../store/slices/authSlice/authSlice'
 
-const MenuAuthAtom = (): JSX.Element => {
+export const MenuAuthAtom = (): JSX.Element => {
 	const refMenu = useRef<null | HTMLDivElement>(null)
 	const [isVisible, setIsVisible] = useState(false)
 	const dispatch = useDispatch()
@@ -96,4 +96,4 @@ const MenuAuthAtom = (): JSX.Element => {
 	)
 }
 
-export default MenuAuthAtom
+

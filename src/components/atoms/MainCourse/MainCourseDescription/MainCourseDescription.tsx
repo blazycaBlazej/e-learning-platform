@@ -4,7 +4,7 @@ interface MainCourseDescriptionProps {
 	description: string
 }
 
-const MainCourseDescription = ({ description }: MainCourseDescriptionProps): JSX.Element => {
+export const MainCourseDescription = ({ description }: MainCourseDescriptionProps): JSX.Element => {
 	return (
 		<section className='main-course-description'>
 			<h2 className='main-course-description__header'>Description</h2>
@@ -13,4 +13,3 @@ const MainCourseDescription = ({ description }: MainCourseDescriptionProps): JSX
 	)
 }
 
-export default MainCourseDescription
