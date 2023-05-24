@@ -1,7 +1,7 @@
 import { Link, useLoaderData, Location } from 'react-router-dom'
-import {CourseElement} from '../../atoms/Courses/CourseElement/CourseElement'
-import {CourseLabel} from '../../atoms/Courses/CourseLabel/CourseLabel'
-import {CourseMoneyBack} from '../../atoms/Courses/CourseMoneyBack/CourseMoneyBack'
+import { CourseElement } from '../../atoms/Courses/CourseElement/CourseElement'
+import { CourseLabel } from '../../atoms/Courses/CourseLabel/CourseLabel'
+import { CourseMoneyBack } from '../../atoms/Courses/CourseMoneyBack/CourseMoneyBack'
 import './CoursesViewOrganism.scss'
 
 interface Course {
@@ -43,24 +43,9 @@ export const CoursesViewOrganism = (): JSX.Element => {
 
 			{courses.map((el, index) => (
 				<Link key={index} to={`/courses/${el.id}`}>
-					<CourseElement
-						key={el.id}
-						id={el.id}
-						category={el.category}
-						name={el.name}
-						description={el.description}
-						author={el.author}
-						numberOfRating={el.numberOfRating}
-						rating={el.rating}
-						price={el.price}
-						language={el.language}
-						requirements={el.requirements}
-						img={el.img}
-					/>
+					<CourseElement course={el} />
 				</Link>
 			))}
 		</section>
 	)
 }
-
-

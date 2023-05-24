@@ -1,7 +1,7 @@
 import { IconStarFilled, IconStarHalfFilled, IconStar } from '@tabler/icons-react'
 import './CourseElement.scss'
 
-interface CourseElementProps {
+interface Course {
 	id: number
 	category: string
 	name: string
@@ -15,19 +15,12 @@ interface CourseElementProps {
 	img?: string
 }
 
-export const CourseElement = ({
-	id,
-	category,
-	name,
-	description,
-	author,
-	numberOfRating,
-	rating,
-	price,
-	language,
-	requirements,
-	img,
-}: CourseElementProps): JSX.Element => {
+interface CourseElementProps {
+	course: Course
+}
+
+export const CourseElement = ({ course }: CourseElementProps): JSX.Element => {
+	const { id, category, name, description, author, numberOfRating, rating, price, language, requirements, img } = course
 	return (
 		<section className='course-element'>
 			<div className='course-element__img--wrapper'>
