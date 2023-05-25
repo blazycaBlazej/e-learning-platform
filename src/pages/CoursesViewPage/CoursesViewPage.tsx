@@ -11,3 +11,5 @@ export const CoursesViewPage = (): JSX.Element => {
 		</main>
 	)
 }
+
+export default CoursesViewPage

@@ -8,3 +8,4 @@ export const WishListPage = (): JSX.Element => {
 		</section>
 	)
 }
+export default WishListPage

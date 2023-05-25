@@ -8,3 +8,5 @@ export const LoginPage = (): JSX.Element => {
 		</section>
 	)
 }
+
+export default LoginPage

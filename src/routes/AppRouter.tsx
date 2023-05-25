@@ -1,18 +1,7 @@
+import { lazy, Suspense } from 'react'
 import { createBrowserRouter, redirect } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-
 import { MainLayout } from '../layouts'
-import {
-	HomePage,
-	CourseDetailsPage,
-	CoursesViewPage,
-	BasketPage,
-	LoginPage,
-	RegisterPage,
-	NotFoundPage,
-	WishListPage,
-	CreateCoursePage,
-} from '../pages'
 
 import { logoutAction } from '../pages/LogoutPage/LogoutPage'
 
@@ -22,29 +11,58 @@ interface StateRoot {
 	}
 }
 
+const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'))
+const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'))
+const NotFoundPage = lazy(() => import('../pages/NotFoundPage/NotFoundPage'))
+const WishListPage = lazy(() => import('../pages/WishListPage/WishListPage'))
+const CreateCoursePage = lazy(() => import('../pages/CreateCoursePage/CreateCoursePage'))
+const HomePage = lazy(() => import('../pages/HomePage/HomePage'))
+const CourseDetailsPage = lazy(() => import('../pages/CourseDetailsPage/CourseDetailsPage'))
+const CoursesViewPage = lazy(() => import('../pages/CoursesViewPage/CoursesViewPage'))
+const BasketPage = lazy(() => import('../pages/BasketPage/BasketPage'))
+
 export const router = createBrowserRouter([
 	{
 		path: '/',
-		element: <MainLayout />,
-		errorElement: <NotFoundPage />,
+		element: (
+			<Suspense fallback={<p>Loading...</p>}>
+				<MainLayout />
+			</Suspense>
+		),
+		errorElement: (
+			<Suspense fallback={<p>Loading...</p>}>
+				<NotFoundPage />
+			</Suspense>
+		),
 		id: 'root',
 		// loader: () => {
 		// 	const token = localStorage.getItem('token')
 		// 	return token
 		// },
-
 		children: [
 			{
 				index: true,
-				element: <HomePage />,
+				element: (
+					<Suspense fallback={<p>Loading...</p>}>
+						<HomePage />,
+					</Suspense>
+				),
 			},
 			{
 				path: 'basket',
-				element: <BasketPage />,
+				element: (
+					<Suspense fallback={<p>Loading...</p>}>
+						<BasketPage />
+					</Suspense>
+				),
 			},
 			{
 				path: 'login',
-				element: <LoginPage />,
+				element: (
+					<Suspense fallback={<p>Loading...</p>}>
+						<LoginPage />
+					</Suspense>
+				),
 				loader: () => {
 					if (localStorage.getItem('token')) {
 						return redirect('/')
@@ -55,7 +73,11 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: 'register',
-				element: <RegisterPage />,
+				element: (
+					<Suspense fallback={<p>Loading...</p>}>
+						<RegisterPage />
+					</Suspense>
+				),
 				loader: () => {
 					if (localStorage.getItem('token')) {
 						return redirect('/')
@@ -66,7 +88,11 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: '/my-course',
-				element: <WishListPage />,
+				element: (
+					<Suspense fallback={<p>Loading...</p>}>
+						<WishListPage />
+					</Suspense>
+				),
 				loader: async () => {
 					const isLogin = localStorage.getItem('token')
 					if (isLogin) {
@@ -77,7 +103,6 @@ export const router = createBrowserRouter([
 								authorization: `Beer ${localStorage.getItem('token')}`,
 							},
 						})
-
 						const data = await response.json()
 						const dataArray = Object.values(data)
 						console.log(dataArray)
@@ -89,7 +114,11 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: 'wishlist',
-				element: <WishListPage />,
+				element: (
+					<Suspense fallback={<p>Loading...</p>}>
+						<WishListPage />
+					</Suspense>
+				),
 				loader: async () => {
 					const isLogin = localStorage.getItem('token')
 					if (isLogin) {
@@ -100,7 +129,6 @@ export const router = createBrowserRouter([
 								authorization: `Beer ${localStorage.getItem('token')}`,
 							},
 						})
-
 						const data = await response.json()
 						const dataArray = Object.values(data)
 						console.log(dataArray)
@@ -112,7 +140,11 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: 'instructor-courses',
-				element: <WishListPage />,
+				element: (
+					<Suspense fallback={<p>Loading...</p>}>
+						<WishListPage />
+					</Suspense>
+				),
 				loader: async () => {
 					const isLogin = localStorage.getItem('token')
 					if (isLogin) {
@@ -123,7 +155,6 @@ export const router = createBrowserRouter([
 								authorization: `Beer ${localStorage.getItem('token')}`,
 							},
 						})
-
 						const data = await response.json()
 						const dataArray = Object.values(data)
 						console.log(dataArray)
@@ -135,7 +166,11 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: 'create-course',
-				element: <CreateCoursePage />,
+				element: (
+					<Suspense fallback={<p>Loading...</p>}>
+						<CreateCoursePage />
+					</Suspense>
+				),
 			},
 			// {
 			// 	path: '/logout',
@@ -151,7 +186,11 @@ export const router = createBrowserRouter([
 			// },
 			{
 				path: '/courses',
-				element: <CoursesViewPage />,
+				element: (
+					<Suspense fallback={<p>Loading...</p>}>
+						<CoursesViewPage />
+					</Suspense>
+				),
 				loader: async () => {
 					const data = await fetch('http://127.0.0.1:3001/courses', {
 						method: 'GET',
@@ -159,13 +198,16 @@ export const router = createBrowserRouter([
 							'Content-Type': 'application/json',
 						},
 					})
-
 					return data
 				},
 			},
 			{
 				path: '/courses/search/:search',
-				element: <CoursesViewPage />,
+				element: (
+					<Suspense fallback={<p>Loading...</p>}>
+						<CoursesViewPage />
+					</Suspense>
+				),
 				loader: async ({ request, params }) => {
 					console.log(params.search)
 					try {
@@ -182,10 +224,13 @@ export const router = createBrowserRouter([
 					}
 				},
 			},
-
 			{
 				path: '/courses/:id',
-				element: <CourseDetailsPage />,
+				element: (
+					<Suspense fallback={<p>Loading...</p>}>
+						<CourseDetailsPage />
+					</Suspense>
+				),
 				loader: async ({ request, params }) => {
 					const response = await fetch(`http://127.0.0.1:3001/courses/${params.id}`, {
 						method: 'GET',
@@ -193,18 +238,19 @@ export const router = createBrowserRouter([
 							'Content-type': 'application/json',
 						},
 					})
-
 					const data = await response.json()
-
 					return data
 				},
 			},
 			{
 				path: '/courses/design',
-				element: <CoursesViewPage />,
+				element: (
+					<Suspense fallback={<p>Loading...</p>}>
+						<CoursesViewPage />
+					</Suspense>
+				),
 				loader: async () => {
 					// const data = courses.filter(el => el.category === 'design')
-
 					// return data
 					const data = await fetch('http://127.0.0.1:3001/courses?category=Design', {
 						method: 'GET',
@@ -218,10 +264,13 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: '/courses/development',
-				element: <CoursesViewPage />,
+				element: (
+					<Suspense fallback={<p>Loading...</p>}>
+						<CoursesViewPage />
+					</Suspense>
+				),
 				loader: async () => {
 					// const data = courses.filter(el => el.category === 'development')
-
 					// return data
 					const data = await fetch('http://127.0.0.1:3001/courses?category=Development', {
 						method: 'GET',
@@ -234,12 +283,14 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: '/courses/marketing',
-				element: <CoursesViewPage />,
+				element: (
+					<Suspense fallback={<p>Loading...</p>}>
+						<CoursesViewPage />
+					</Suspense>
+				),
 				loader: async () => {
 					// const data = courses.filter(el => el.category === 'marketing')
-
 					// return data
-
 					const data = await fetch('http://127.0.0.1:3001/courses?category=Marketing', {
 						method: 'GET',
 						headers: {
@@ -251,7 +302,11 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: '/courses/it-and-software',
-				element: <CoursesViewPage />,
+				element: (
+					<Suspense fallback={<p>Loading...</p>}>
+						<CoursesViewPage />
+					</Suspense>
+				),
 				loader: async () => {
 					const data = await fetch('http://127.0.0.1:3001/courses?category=IT and Software', {
 						method: 'GET',
@@ -259,16 +314,18 @@ export const router = createBrowserRouter([
 							'Content-Type': 'application/json',
 						},
 					})
-
 					return data
 					// const data = courses.filter(el => el.category === 'IT and Software')
-
 					// return data
 				},
 			},
 			{
 				path: '/courses/personal-development',
-				element: <CoursesViewPage />,
+				element: (
+					<Suspense fallback={<p>Loading...</p>}>
+						<CoursesViewPage />
+					</Suspense>
+				),
 				loader: async () => {
 					const data = await fetch('http://127.0.0.1:3001/courses?category=Personal Development', {
 						method: 'GET',
@@ -276,16 +333,18 @@ export const router = createBrowserRouter([
 							'Content-Type': 'application/json',
 						},
 					})
-
 					return data
 					// const data = courses.filter(el => el.category === 'Personal Development')
-
 					// return data
 				},
 			},
 			{
 				path: '/courses/business',
-				element: <CoursesViewPage />,
+				element: (
+					<Suspense fallback={<p>Loading...</p>}>
+						<CoursesViewPage />
+					</Suspense>
+				),
 				loader: async () => {
 					const data = await fetch('http://127.0.0.1:3001/courses?category=Business', {
 						method: 'GET',
@@ -293,13 +352,16 @@ export const router = createBrowserRouter([
 							'Content-Type': 'application/json',
 						},
 					})
-
 					return data
 				},
 			},
 			{
 				path: '/courses/photography',
-				element: <CoursesViewPage />,
+				element: (
+					<Suspense fallback={<p>Loading...</p>}>
+						<CoursesViewPage />
+					</Suspense>
+				),
 				loader: async () => {
 					const data = await fetch('http://127.0.0.1:3001/courses?category=Photography', {
 						method: 'GET',
@@ -307,13 +369,16 @@ export const router = createBrowserRouter([
 							'Content-Type': 'application/json',
 						},
 					})
-
 					return data
 				},
 			},
 			{
 				path: '/courses/music',
-				element: <CoursesViewPage />,
+				element: (
+					<Suspense fallback={<p>Loading...</p>}>
+						<CoursesViewPage />
+					</Suspense>
+				),
 				loader: async () => {
 					const data = await fetch('http://127.0.0.1:3001/courses?category=Music', {
 						method: 'GET',
@@ -321,7 +386,6 @@ export const router = createBrowserRouter([
 							'Content-Type': 'application/json',
 						},
 					})
-
 					return data
 				},
 			},

@@ -8,3 +8,6 @@ export const CreateCoursePage = (): JSX.Element => {
 		</section>
 	)
 }
+
+
+export default CreateCoursePage

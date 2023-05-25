@@ -8,3 +8,6 @@ export const RegisterPage = (): JSX.Element => {
 		</section>
 	)
 }
+
+
+export default RegisterPage

@@ -26,3 +26,5 @@ export const BasketPage = (): JSX.Element => {
 		</section>
 	)
 }
+
+export default BasketPage

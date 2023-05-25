@@ -20,3 +20,6 @@ export const NotFoundPage = (): JSX.Element => {
 		</section>
 	)
 }
+
+
+export default NotFoundPage

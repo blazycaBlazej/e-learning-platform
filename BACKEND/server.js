@@ -6,7 +6,7 @@ import express from 'express'
 import cors from 'cors'
 import jwt from 'jsonwebtoken'
 
-const port = process.env.PORT 
+const port = process.env.PORT
 
 const ACCESS_TOKEN = process.env.ACCESS_TOKEN
 
@@ -403,7 +403,8 @@ app.get('/getMyCourses', authMiddleware, (req, res) => {
 				console.error('Błąd zapytania do bazy danych:', error)
 				res.status(500).json({ message: 'Wystąpił błąd serwera' })
 			} else {
-				const wishlist = results[0].purchasedItemsId
+				// const wishlist = results[0].purchasedItemsId
+				const wishlist = results[0].purchasedItemsId || ''
 				if (wishlist) {
 					const wishlistIds = wishlist.split(' ')
 					const query = `SELECT * FROM courses WHERE id IN (${wishlistIds.map(id => `'${id}'`).join(',')})`

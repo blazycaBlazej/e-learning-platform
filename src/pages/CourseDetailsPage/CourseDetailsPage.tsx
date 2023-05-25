@@ -77,3 +77,5 @@ export const CourseDetailsPage = (): JSX.Element => {
 		</main>
 	)
 }
+
+export default CourseDetailsPage
