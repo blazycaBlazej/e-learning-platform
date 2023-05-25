@@ -17,31 +17,16 @@ const connection = mysql.createConnection({
 	database: process.env.DATABASE,
 })
 
-//MIDDLEWARE
-// const authMiddleware = (req, res, next) => {
-// 	const token = req.headers['authorization']?.split(' ')[1]
-// 	if (!token) {
-// 		return res.sendStatus(401).json({ message: 'Zaloguj sie' })
-// 	}
-
-// 	jwt.verify(token, ACCESS_TOKEN, (err, data) => {
-// 		if (err) {
-// 			return res.sendStatus(403).json({ message: 'Zaloguj sie' })
-// 		}
-
-// 		req.user = data
-// 		next()
-// 	})
-// }
+//git
 const authMiddleware = (req, res, next) => {
 	const token = req.headers['authorization']?.split(' ')[1]
 	if (!token) {
-		return res.status(401).json({ message: 'Zaloguj się' })
+		return res.status(401).json({ message: 'Sign in' })
 	}
 
 	jwt.verify(token, ACCESS_TOKEN, (err, data) => {
 		if (err) {
-			return res.status(403).json({ message: 'Nieprawidłowy token' })
+			return res.status(403).json({ message: 'Invalid token' })
 		}
 
 		req.user = data
@@ -51,17 +36,11 @@ const authMiddleware = (req, res, next) => {
 
 const app = express()
 
-app.listen(port, () => {
-	console.log('Server slucha')
-})
+app.listen(port, () => console.log('Server listen'))
 
-connection.connect(error => {
-	if (error) {
-		console.error('Błąd połączenia z bazą danych:', error)
-	} else {
-		console.log('Połączono z bazą danych MySQL!')
-	}
-})
+connection.connect(error =>
+	error ? console.error('Database connection error:', error) : console.log('Connected to a MySQL database!')
+)
 
 app.use(cors())
 app.use(express.json())
@@ -71,21 +50,22 @@ app.post('/register', (req, res) => {
 
 	connection.query('SELECT * FROM users WHERE email = ?', [email], (error, results) => {
 		if (error) {
-			console.error('Błąd zapytania SQL:', error)
-			res.status(500).json({ error: 'Wewnętrzny błąd serwera' })
+			console.error('Database query error:', error)
+			res.status(500).json({ error: 'Internal server error' })
 		} else if (results.length > 0) {
-			res.status(409).json({ error: 'Użytkownik już istnieje' })
+			res.status(409).json({ error: 'The user already exists' })
 		} else {
 			connection.query(
 				'INSERT INTO users (email, password, fullName, wishlist, purchasedItemsId, instructorCourses) VALUES (?, ?, ?, ?, ?, ?)',
 				[email, password, fullName, '', '', ''],
-				error => {
+				(error, result) => {
 					if (error) {
-						console.error('Błąd zapytania SQL:', error)
-						res.status(500).json({ error: 'Wewnętrzny błąd serwera' })
+						console.error('Database query error:', error)
+						res.status(500).json({ error: 'Internal server error' })
 					} else {
-						const token = jwt.sign({ email, password, fullName }, ACCESS_TOKEN)
-						res.status(200).json({ message: 'Użytkownik zarejestrowany pomyślnie', token })
+						const userId = result.insertId
+						const token = jwt.sign({ email, password, fullName, userId }, ACCESS_TOKEN)
+						res.status(200).json({ message: 'User registered successfully', token, name: user.fullName })
 					}
 				}
 			)
@@ -98,384 +78,284 @@ app.post('/login', (req, res) => {
 
 	connection.query('SELECT * FROM users WHERE email = ?', [email], (error, results) => {
 		if (error) {
-			console.error('Błąd zapytania SQL:', error)
-			res.status(500).json({ error: 'Wewnętrzny błąd serwera' })
+			console.error('Database query error:', error)
+			res.status(500).json({ error: 'Internal server error' })
 		} else if (results.length === 0) {
-			res.status(404).json({ error: 'Nieprawidłowe hasło lub login' })
+			res.status(404).json({ error: 'Incorrect password or login' })
 		} else {
 			const user = results[0]
 			if (user.password !== password) {
-				res.status(401).json({ error: 'Nieprawidłowe hasło lub login' })
+				res.status(401).json({ error: 'Incorrect password or login' })
 			} else {
-				const token = jwt.sign(user, ACCESS_TOKEN)
-				res.status(200).json({ message: 'Zalogowano pomyślnie', token, name: user.fullName })
+				const token = jwt.sign({ email, fullName, userId }, ACCESS_TOKEN)
+				res.status(200).json({ message: 'Logged in successfully', token, name: user.fullName })
 			}
 		}
 	})
 })
 
+//git
 app.post('/addCourse', authMiddleware, (req, res) => {
 	const { name, description, requirements, category } = req.body
 
 	const user = req.user
-	if (user) {
-		// Wstaw nowy wiersz do tabeli courses
-		connection.query(
-			`INSERT INTO courses (category, name, description, author, numberOfRating, rating, price, language, requirements, img)
+
+	connection.query(
+		`INSERT INTO courses (category, name, description, author, numberOfRating, rating, price, language, requirements, img)
 			VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-			[
-				category,
-				name,
-				description,
-				user.fullName,
-				0,
-				0,
-				50,
-				'English',
-				requirements,
-				'https://cdn.pixabay.com/photo/2020/11/17/13/22/student-5752322_1280.png',
-			],
-			(error, results) => {
-				if (error) {
-					console.error('Błąd zapytania do bazy danych:', error)
-					res.status(500).json({ message: 'Wystąpił błąd serwera' })
-				} else {
-					// Pobierz ID ostatnio wstawionego wiersza
-					connection.query(`SELECT LAST_INSERT_ID()`, (error, result) => {
+		[
+			category,
+			name,
+			description,
+			user.fullName,
+			0,
+			0,
+			50,
+			'English',
+			requirements,
+			'https://cdn.pixabay.com/photo/2020/11/17/13/22/student-5752322_1280.png',
+		],
+		(error, results) => {
+			if (error) {
+				console.error('Database query error:', error)
+				res.status(500).json({ message: 'Internal server error' })
+			} else {
+				const courseId = results.insertId
+				connection.query(
+					`INSERT INTO userCreatedCourses (user_id, course_id)
+					VALUES  (?, ?)`,
+					[user.userId, courseId],
+					(error, results) => {
 						if (error) {
-							console.error('Błąd zapytania do bazy danych:', error)
-							res.status(500).json({ message: 'Wystąpił błąd serwera' })
+							console.error('Database query error:', error)
+							res.status(500).json({ message: 'Internal server error' })
 						} else {
-							const lastInsertedId = result[0]['LAST_INSERT_ID()']
-
-							// Pobierz obecne kursy instruktora z bazy danych
-							connection.query(
-								`SELECT instructorCourses FROM users WHERE email = ?`,
-								[user.email],
-								(error, results) => {
-									if (error) {
-										console.error('Błąd zapytania do bazy danych:', error)
-										res.status(500).json({ message: 'Wystąpił błąd serwera' })
-									} else {
-										const instructorCourses = results[0].instructorCourses
-										const instructorCoursesArray = instructorCourses ? instructorCourses.split(' ') : []
-										instructorCoursesArray.push(lastInsertedId)
-										const updateInstructorCoursesArray = instructorCoursesArray.join(' ')
-
-										// Zaktualizuj kursy instruktora w bazie danych
-										connection.query(
-											`UPDATE users SET instructorCourses = ? WHERE email = ?`,
-											[updateInstructorCoursesArray, user.email],
-											(error, results) => {
-												if (error) {
-													console.error('Błąd zapytania do bazy danych:', error)
-													res.status(500).json({ message: 'Wystąpił błąd serwera' })
-												} else {
-													res.status(200).json({ id: lastInsertedId })
-												}
-											}
-										)
-									}
-								}
-							)
+							res.status(200).json({ message: 'Course was created', id: courseId })
 						}
-					})
-				}
+					}
+				)
 			}
-		)
-	} else {
-		res.status(401).json({ message: 'Nieprawidłowy token JWT' })
-	}
+		}
+	)
 })
 
+//git
 app.post('/buyCourse', authMiddleware, (req, res) => {
 	const { id } = req.body
 
 	const user = req.user
-	if (user) {
-		connection.query(`SELECT purchasedItemsId FROM users WHERE email = '${user.email}'`, (error, results) => {
+
+	connection.query(
+		`INSERT INTO userCourses (user_id, course_id)
+		VALUES  (?, ?)`,
+		[user.userId, id],
+		(error, results) => {
 			if (error) {
-				console.error('Błąd zapytania do bazy danych:', error)
-				res.status(500).json({ message: 'Wystąpił błąd serwera' })
+				console.error('Database query error:', error)
+				res.status(500).json({ message: 'Internal server error' })
 			} else {
-				const purchasedItems = results[0].purchasedItemsId
-				const purchasedItemsArray = purchasedItems ? purchasedItems.split(' ') : []
-
-				purchasedItemsArray.push(id)
-
-				const updatedPurchasedItems = purchasedItemsArray.join(' ')
-				connection.query(
-					`UPDATE users SET purchasedItemsId = '${updatedPurchasedItems}' WHERE email = '${user.email}'`,
-					(error, results) => {
-						if (error) {
-							console.error('Błąd zapytania do bazy danych:', error)
-							res.status(500).json({ message: 'Wystąpił błąd serwera' })
-						} else {
-							res.status(200).json({ message: 'Zakupion kurs' })
-
-							//
-							connection.query(`SELECT wishlist FROM users WHERE email = '${user.email}'`, (error, results) => {
-								if (error) {
-									console.error('Błąd zapytania do bazy danych:', error)
-								} else {
-									const wishlist = results[0].wishlist // Pobierz listę życzeń z wyników zapytania
-
-									// Sprawdź, czy id już istnieje na liście życzeń
-									const wishlistArray = wishlist ? wishlist.split(' ') : []
-									// console.log(wishlistArray)
-									let newArray = wishlistArray.filter(item => item != id)
-
-									// console.log(newArray)
-									const updatedWishlist = newArray.join(' ') // Konwertuj tablicę z powrotem do tekstu
-									// console.log(updatedWishlist)
-									// Zaktualizuj bazę danych z nową listą życzeń
-									connection.query(
-										`UPDATE users SET wishlist = '${updatedWishlist}' WHERE email = '${user.email}'`,
-										(error, results) => {
-											if (error) {
-												console.error('Błąd zapytania do bazy danych:', error)
-											} else {
-											}
-										}
-									)
-								}
-							})
-
-							//
-						}
-					}
-				)
+				res.status(200).json({ message: 'Course was purchased' })
 			}
-		})
-	} else {
-		res.status(401).json({ message: 'Nieprawidłowy token JWT' })
-	}
+		}
+	)
 })
 
-app.get('/getPurchasedCourse', authMiddleware, (req, res) => {
+//git
+app.get('/getMyCourses', authMiddleware, (req, res) => {
 	const user = req.user
 
-	if (user) {
-		// Pobierz informacje o liście życzeń z bazy danych dla danego użytkownika
-		connection.query(`SELECT purchasedItemsId FROM users WHERE email = '${user.email}'`, (error, results) => {
+	connection.query(
+		`SELECT courses.*
+		FROM courses
+		JOIN userCourses ON courses.id = userCourses.course_id
+		WHERE userCourses.user_id = ?`,
+		[user.userId],
+		(error, results) => {
 			if (error) {
-				console.error('Błąd zapytania do bazy danych:', error)
-				res.status(500).json({ message: 'Wystąpił błąd serwera' })
+				console.error('Database query error:', error)
+				res.status(500).json({ message: 'Internal server error' })
 			} else {
-				res.status(200).json(results[0].purchasedItemsId)
+				res.status(200).json(results)
 			}
-		})
-	} else {
-		res.status(401).json({ message: 'Nieprawidłowy token JWT' })
-	}
+		}
+	)
 })
 
+//git
+app.get('/getInstructorCourses', authMiddleware, (req, res) => {
+	const user = req.user
+
+	connection.query(
+		`SELECT courses.*
+		FROM courses
+		JOIN userCreatedCourses ON courses.id = userCreatedCourses.course_id
+		WHERE userCreatedCourses.user_id = ?`,
+		[user.userId],
+		(error, results) => {
+			if (error) {
+				console.error('Database query error:', error)
+				res.status(500).json({ message: 'Internal server error' })
+			} else {
+				res.status(200).json(results)
+			}
+		}
+	)
+})
+
+//git
+app.post('/isBought', authMiddleware, (req, res) => {
+	const user = req.user
+	const { id } = req.body
+
+	connection.query(
+		`SELECT EXISTS(SELECT *
+		FROM userCourses WHERE user_id=? AND course_id=?) AS isBought;
+		`,
+		[user.userId, id],
+		(error, results) => {
+			if (error) {
+				console.error('Database query error:', error)
+				res.status(500).json({ message: 'Internal server error' })
+			} else {
+				res.status(200).json(results)
+			}
+		}
+	)
+})
+
+//git
 app.post('/isAuthor', authMiddleware, (req, res) => {
 	const user = req.user
 	const { id } = req.body
-	if (user) {
-		connection.query(`SELECT instructorCourses FROM users WHERE email = '${user.email}'`, (error, results) => {
+
+	connection.query(
+		`SELECT EXISTS(SELECT *
+		FROM userCreatedCourses WHERE user_id=? AND course_id=?) AS isAuthor;
+		`,
+		[user.userId, id],
+		(error, results) => {
 			if (error) {
-				console.error('Błąd zapytania do bazy danych:', error)
-				res.status(500).json({ message: 'Wystąpił błąd serwera' })
+				console.error('Database query error:', error)
+				res.status(500).json({ message: 'Internal server error' })
 			} else {
-				const purchasedItemsId = results[0]?.instructorCourses || ''
-				const purchasedItemsIdArray = purchasedItemsId.split(' ')
-				let isAuthor = false
-				console.log(purchasedItemsIdArray)
-				console.log(String(id))
-				console.log(req.body)
-
-				purchasedItemsIdArray.map(el => {
-					if (el === String(id)) isAuthor = true
-				})
-
-				res.status(200).json({ isAuthor })
+				res.status(200).json(results)
 			}
-		})
-	} else {
-		res.status(401).json({ message: 'Nieprawidłowy token JWT' })
-	}
+		}
+	)
 })
 
+//git
 app.post('/toggleWishList', authMiddleware, (req, res) => {
 	const { id } = req.body
 
 	const user = req.user
-	if (user) {
-		// Pobierz informacje o liście życzeń z bazy danych dla danego użytkownika
-		connection.query(`SELECT wishlist FROM users WHERE email = '${user.email}'`, (error, results) => {
-			if (error) {
-				console.error('Błąd zapytania do bazy danych:', error)
-				res.status(500).json({ message: 'Wystąpił błąd serwera' })
-			} else {
-				const wishlist = results[0].wishlist // Pobierz listę życzeń z wyników zapytania
 
-				// Sprawdź, czy id już istnieje na liście życzeń
-				const wishlistArray = wishlist ? wishlist.split(' ') : []
-				// console.log(wishlistArray)
-				let newArray = wishlistArray.filter(item => item != id)
-				// console.log(newArray)
-				// console.log('wishlistArray: ' + wishlistArray.length)
-				// console.log('newArray: ' + newArray.length)
-				if (wishlistArray.length === newArray.length) {
-					newArray.push(id)
+	connection.query(`SELECT * FROM userWishCourses WHERE user_id=?`, [user.userId], (error, results) => {
+		if (error) {
+			console.error('Database query error:', error)
+			res.status(500).json({ message: 'Internal server error' })
+		} else {
+			let idToDelete
+			const newResults = results.filter(item => {
+				item.course_id !== id
+				if (item.course_id === id) {
+					idToDelete = item.id
+					return false
 				}
-				// console.log(newArray)
-				const updatedWishlist = newArray.join(' ') // Konwertuj tablicę z powrotem do tekstu
-				// console.log(updatedWishlist)
-				// Zaktualizuj bazę danych z nową listą życzeń
+				return true
+			})
+			if (newResults.length === results.length) {
 				connection.query(
-					`UPDATE users SET wishlist = '${updatedWishlist}' WHERE email = '${user.email}'`,
+					`INSERT INTO userWishCourses (user_id, course_id)
+					VALUES  (?, ?)`,
+					[user.userId, id],
 					(error, results) => {
 						if (error) {
-							console.error('Błąd zapytania do bazy danych:', error)
-							res.status(500).json({ message: 'Wystąpił błąd serwera' })
+							console.error('Database query error::', error)
+							res.status(500).json({ message: 'Internal server error' })
 						} else {
-							res.status(200).json({ message: 'Zaktualizowano listę życzeń' })
+							res.status(200).json({ message: 'Wish list updated' })
+						}
+					}
+				)
+			} else {
+				connection.query(
+					`DELETE FROM userWishCourses WHERE id=?
+						`,
+					[idToDelete],
+					(error, results) => {
+						if (error) {
+							console.error('Database query error::', error)
+							res.status(500).json({ message: 'Internal server error' })
+						} else {
+							res.status(200).json({ message: 'Wish list updated' })
 						}
 					}
 				)
 			}
-		})
-	} else {
-		res.status(401).json({ message: 'Nieprawidłowy token JWT' })
-	}
+		}
+	})
 })
 
-app.get('/getWishListItems', authMiddleware, (req, res) => {
+//git ?
+app.post('/isOnWishList', authMiddleware, (req, res) => {
 	const user = req.user
+	const { id } = req.body
 
-	if (user) {
-		// Pobierz informacje o liście życzeń z bazy danych dla danego użytkownika
-		connection.query(`SELECT wishlist FROM users WHERE email = '${user.email}'`, (error, results) => {
+	connection.query(
+		`SELECT EXISTS(SELECT *
+		FROM userWishCourses WHERE user_id=? AND course_id=?) AS isOnWishList;
+		`,
+		[user.userId, id],
+		(error, results) => {
 			if (error) {
-				console.error('Błąd zapytania do bazy danych:', error)
-				res.status(500).json({ message: 'Wystąpił błąd serwera' })
+				console.error('Database query error:', error)
+				res.status(500).json({ message: 'Internal server error' })
 			} else {
-				res.status(200).json(results[0].wishlist)
+				res.status(200).json(results)
 			}
-		})
-	} else {
-		res.status(401).json({ message: 'Nieprawidłowy token JWT' })
-	}
+		}
+	)
 })
 
+//git
 app.get('/getWishListCourses', authMiddleware, (req, res) => {
 	const user = req.user
 
-	if (user) {
-		// Pobierz informacje o liście życzeń z bazy danych dla danego użytkownika
-		connection.query(`SELECT wishlist FROM users WHERE email = '${user.email}'`, (error, results) => {
+	connection.query(
+		`SELECT courses.*
+		FROM courses
+		JOIN userWishCourses ON courses.id = userWishCourses.course_id
+		WHERE userWishCourses.user_id = ?`,
+		[user.userId],
+		(error, results) => {
 			if (error) {
-				console.error('Błąd zapytania do bazy danych:', error)
-				res.status(500).json({ message: 'Wystąpił błąd serwera' })
+				console.error('Database query error:', error)
+				res.status(500).json({ message: 'Internal server error' })
 			} else {
-				const wishlist = results[0].wishlist
-				if (wishlist) {
-					const wishlistIds = wishlist.split(' ')
-					const query = `SELECT * FROM courses WHERE id IN (${wishlistIds.map(id => `'${id}'`).join(',')})`
-					connection.query(query, (error, courses) => {
-						if (error) {
-							console.error('Błąd zapytania do bazy danych:', error)
-							res.status(500).json({ message: 'Wystąpił błąd serwera' })
-						} else {
-							res.status(200).json(courses)
-						}
-					})
-				} else {
-					res.status(200).json([]) // Pusta lista życzeń, gdy wishlist jest pusty
-				}
+				res.status(200).json(results)
 			}
-		})
-	} else {
-		res.status(401).json({ message: 'Nieprawidłowy token JWT' })
-	}
+		}
+	)
 })
 
-app.get('/getMyCourses', authMiddleware, (req, res) => {
-	const user = req.user
-
-	if (user) {
-		// Pobierz informacje o liście życzeń z bazy danych dla danego użytkownika
-		connection.query(`SELECT purchasedItemsId FROM users WHERE email = '${user.email}'`, (error, results) => {
-			if (error) {
-				console.error('Błąd zapytania do bazy danych:', error)
-				res.status(500).json({ message: 'Wystąpił błąd serwera' })
-			} else {
-				// const wishlist = results[0].purchasedItemsId
-				const wishlist = results[0].purchasedItemsId || ''
-				if (wishlist) {
-					const wishlistIds = wishlist.split(' ')
-					const query = `SELECT * FROM courses WHERE id IN (${wishlistIds.map(id => `'${id}'`).join(',')})`
-					connection.query(query, (error, courses) => {
-						if (error) {
-							console.error('Błąd zapytania do bazy danych:', error)
-							res.status(500).json({ message: 'Wystąpił błąd serwera' })
-						} else {
-							res.status(200).json(courses)
-						}
-					})
-				} else {
-					res.status(200).json([]) // Pusta lista życzeń, gdy wishlist jest pusty
-				}
-			}
-		})
-	} else {
-		res.status(401).json({ message: 'Nieprawidłowy token JWT' })
-	}
-})
-
-app.get('/getInstructorCourses', authMiddleware, (req, res) => {
-	const user = req.user
-
-	if (user) {
-		// Pobierz informacje o liście życzeń z bazy danych dla danego użytkownika
-		connection.query(`SELECT instructorCourses FROM users WHERE email = '${user.email}'`, (error, results) => {
-			if (error) {
-				console.error('Błąd zapytania do bazy danych:', error)
-				res.status(500).json({ message: 'Wystąpił błąd serwera' })
-			} else {
-				const wishlist = results[0].instructorCourses
-				if (wishlist) {
-					const wishlistIds = wishlist.split(' ')
-					const query = `SELECT * FROM courses WHERE id IN (${wishlistIds.map(id => `'${id}'`).join(',')})`
-					connection.query(query, (error, courses) => {
-						if (error) {
-							console.error('Błąd zapytania do bazy danych:', error)
-							res.status(500).json({ message: 'Wystąpił błąd serwera' })
-						} else {
-							res.status(200).json(courses)
-						}
-					})
-				} else {
-					res.status(200).json([]) // Pusta lista życzeń, gdy wishlist jest pusty
-				}
-			}
-		})
-	} else {
-		res.status(401).json({ message: 'Nieprawidłowy token JWT' })
-	}
-})
-
+//git
 app.get('/courses', (req, res) => {
 	const { category } = req.query
-
 	const query = category ? 'SELECT * FROM courses WHERE category = ?' : 'SELECT * FROM courses'
-
 	const params = category ? [category] : []
 
 	connection.query(query, params, (error, results) => {
 		if (error) {
-			// Obsłuż błąd odpowiednio
-			console.error(error)
-			res.status(500).json({ error: 'Internal server error' })
+			console.error('Database query error:', error)
+			res.status(500).json({ message: 'Internal server error' })
 		} else {
 			res.status(200).json(results)
 		}
 	})
 })
 
+//git
 app.get('/courses/search/:search', (req, res) => {
 	const { search } = req.params
 	const searchTerm = `%${search}%`
@@ -485,7 +365,6 @@ app.get('/courses/search/:search', (req, res) => {
 		[searchTerm, searchTerm, searchTerm, searchTerm],
 		(error, results) => {
 			if (error) {
-				// Obsłuż błąd odpowiednio
 				console.error(error)
 				res.status(500).json({ error: 'Internal server error' })
 			} else {
@@ -495,25 +374,17 @@ app.get('/courses/search/:search', (req, res) => {
 	)
 })
 
+//git
 app.get('/courses/:id', (req, res) => {
 	const { id } = req.params
 
 	connection.query('SELECT * FROM courses WHERE id = ?', [id], (error, results) => {
 		if (error) {
-			// Obsłuż błąd odpowiednio
 			console.error(error)
 			res.status(500).json({ error: 'Internal server error' })
 		} else {
 			res.status(200).json(results)
 		}
-	})
-})
-
-//est
-app.get('/admin', authMiddleware, (req, res) => {
-	connection.query('SELECT * FROM courses', (err, rows, fields) => {
-		if (err) throw err
-		res.json(rows)
 	})
 })
 

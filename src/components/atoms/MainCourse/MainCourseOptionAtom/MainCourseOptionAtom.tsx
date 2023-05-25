@@ -7,7 +7,7 @@ import {
 	IconInfoCircleFilled,
 } from '@tabler/icons-react'
 
-import { ButtonAtom } from '../../UI' 
+import { ButtonAtom } from '../../UI'
 import './MainCourseOptionAtom.scss'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -57,7 +57,7 @@ export const MainCourseOptionAtom = ({ price, img, name, id }: MainCourseOptionA
 
 				const data = await response.json()
 
-				data.isAuthor === true ? setIsAuthor(true) : setIsAuthor(false)
+				data[0].isAuthor ? setIsAuthor(true) : setIsAuthor(false)
 			} catch (error) {
 				console.log(error)
 			}
@@ -68,24 +68,17 @@ export const MainCourseOptionAtom = ({ price, img, name, id }: MainCourseOptionA
 		if (isLogin) {
 			setFollowIsLoading(true)
 			try {
-				const response = await fetch('http://127.0.0.1:3001/getWishListItems', {
+				const response = await fetch('http://127.0.0.1:3001/isOnWishList', {
+					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
 						authorization: `Beer ${token}`,
 					},
+					body: JSON.stringify({ id }),
 				})
 
 				const data = await response.json()
-				// console.log(data)
-				let isFollow
-				if (data.includes(' ')) {
-					const dataArray = data.split(' ')
-					isFollow = dataArray.filter((el: string) => el === String(id))
-				} else {
-					isFollow = data
-				}
-
-				String(isFollow) === String(id) ? setIsFollow(true) : setIsFollow(false)
+				data[0].isOnWishList ? setIsFollow(true) : setIsFollow(false)
 			} catch (error) {
 				console.log(error)
 			}
@@ -97,24 +90,18 @@ export const MainCourseOptionAtom = ({ price, img, name, id }: MainCourseOptionA
 		if (isLogin) {
 			setIsLoading(true)
 			try {
-				const response = await fetch('http://127.0.0.1:3001/getPurchasedCourse', {
+				const response = await fetch('http://127.0.0.1:3001/isBought', {
+					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
 						authorization: `Beer ${token}`,
 					},
+					body: JSON.stringify({ id }),
 				})
 
 				const data = await response.json()
-				let isPurchased
-				if (data.includes(' ')) {
-					const dataArray = data.split(' ')
-					isPurchased = dataArray.filter((el: string) => el === String(id))
-				} else {
-					isPurchased = data
-				}
-				console.log(isPurchased)
 
-				String(isPurchased) === String(id) ? setIsPurchased(true) : setIsPurchased(false)
+				data[0].isBought ? setIsPurchased(true) : setIsPurchased(false)
 			} catch (error) {
 				console.log(error)
 			}
@@ -259,5 +246,3 @@ export const MainCourseOptionAtom = ({ price, img, name, id }: MainCourseOptionA
 		</section>
 	)
 }
-
-
