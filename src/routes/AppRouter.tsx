@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react'
-import { createBrowserRouter, redirect } from 'react-router-dom'
+import { createBrowserRouter, redirect, defer, json } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { MainLayout } from '../layouts'
 
@@ -131,7 +131,7 @@ export const router = createBrowserRouter([
 						})
 						const data = await response.json()
 						const dataArray = Object.values(data)
-						console.log(dataArray)
+
 						return { data: dataArray, type: 'wishlist' }
 					} else {
 						return redirect('/')
@@ -191,15 +191,6 @@ export const router = createBrowserRouter([
 						<CoursesViewPage />
 					</Suspense>
 				),
-				loader: async () => {
-					const data = await fetch('http://127.0.0.1:3001/courses', {
-						method: 'GET',
-						headers: {
-							'Content-Type': 'application/json',
-						},
-					})
-					return data
-				},
 			},
 			{
 				path: '/courses/search/:search',
@@ -208,21 +199,21 @@ export const router = createBrowserRouter([
 						<CoursesViewPage />
 					</Suspense>
 				),
-				loader: async ({ request, params }) => {
-					console.log(params.search)
-					try {
-						const response = await fetch(`http://127.0.0.1:3001/courses/search/${params.search}`, {
-							method: 'GET',
-							headers: {
-								'Content-type': 'application/json',
-							},
-						})
-						const data = await response.json()
-						return data
-					} catch (error) {
-						console.log(error)
-					}
-				},
+				// loader: async ({ request, params }) => {
+				// 	console.log(params.search)
+				// 	try {
+				// 		const response = await fetch(`http://127.0.0.1:3001/courses/search/${params.search}`, {
+				// 			method: 'GET',
+				// 			headers: {
+				// 				'Content-type': 'application/json',
+				// 			},
+				// 		})
+				// 		const data = await response.json()
+				// 		return data
+				// 	} catch (error) {
+				// 		console.log(error)
+				// 	}
+				// },
 			},
 			{
 				path: '/courses/:id',
@@ -249,18 +240,6 @@ export const router = createBrowserRouter([
 						<CoursesViewPage />
 					</Suspense>
 				),
-				loader: async () => {
-					// const data = courses.filter(el => el.category === 'design')
-					// return data
-					const data = await fetch('http://127.0.0.1:3001/courses?category=Design', {
-						method: 'GET',
-						headers: {
-							'Content-type': 'application/json',
-						},
-						// body: JSON.stringify({ category: 'Design' }),
-					})
-					return data
-				},
 			},
 			{
 				path: '/courses/development',
@@ -269,17 +248,6 @@ export const router = createBrowserRouter([
 						<CoursesViewPage />
 					</Suspense>
 				),
-				loader: async () => {
-					// const data = courses.filter(el => el.category === 'development')
-					// return data
-					const data = await fetch('http://127.0.0.1:3001/courses?category=Development', {
-						method: 'GET',
-						headers: {
-							'Content-type': 'application/json',
-						},
-					})
-					return data
-				},
 			},
 			{
 				path: '/courses/marketing',
@@ -288,17 +256,6 @@ export const router = createBrowserRouter([
 						<CoursesViewPage />
 					</Suspense>
 				),
-				loader: async () => {
-					// const data = courses.filter(el => el.category === 'marketing')
-					// return data
-					const data = await fetch('http://127.0.0.1:3001/courses?category=Marketing', {
-						method: 'GET',
-						headers: {
-							'Content-Type': 'application/json',
-						},
-					})
-					return data
-				},
 			},
 			{
 				path: '/courses/it-and-software',
@@ -307,17 +264,6 @@ export const router = createBrowserRouter([
 						<CoursesViewPage />
 					</Suspense>
 				),
-				loader: async () => {
-					const data = await fetch('http://127.0.0.1:3001/courses?category=IT and Software', {
-						method: 'GET',
-						headers: {
-							'Content-Type': 'application/json',
-						},
-					})
-					return data
-					// const data = courses.filter(el => el.category === 'IT and Software')
-					// return data
-				},
 			},
 			{
 				path: '/courses/personal-development',
@@ -326,17 +272,6 @@ export const router = createBrowserRouter([
 						<CoursesViewPage />
 					</Suspense>
 				),
-				loader: async () => {
-					const data = await fetch('http://127.0.0.1:3001/courses?category=Personal Development', {
-						method: 'GET',
-						headers: {
-							'Content-Type': 'application/json',
-						},
-					})
-					return data
-					// const data = courses.filter(el => el.category === 'Personal Development')
-					// return data
-				},
 			},
 			{
 				path: '/courses/business',
@@ -345,15 +280,6 @@ export const router = createBrowserRouter([
 						<CoursesViewPage />
 					</Suspense>
 				),
-				loader: async () => {
-					const data = await fetch('http://127.0.0.1:3001/courses?category=Business', {
-						method: 'GET',
-						headers: {
-							'Content-Type': 'application/json',
-						},
-					})
-					return data
-				},
 			},
 			{
 				path: '/courses/photography',
@@ -362,15 +288,6 @@ export const router = createBrowserRouter([
 						<CoursesViewPage />
 					</Suspense>
 				),
-				loader: async () => {
-					const data = await fetch('http://127.0.0.1:3001/courses?category=Photography', {
-						method: 'GET',
-						headers: {
-							'Content-Type': 'application/json',
-						},
-					})
-					return data
-				},
 			},
 			{
 				path: '/courses/music',
@@ -379,15 +296,6 @@ export const router = createBrowserRouter([
 						<CoursesViewPage />
 					</Suspense>
 				),
-				loader: async () => {
-					const data = await fetch('http://127.0.0.1:3001/courses?category=Music', {
-						method: 'GET',
-						headers: {
-							'Content-Type': 'application/json',
-						},
-					})
-					return data
-				},
 			},
 		],
 	},

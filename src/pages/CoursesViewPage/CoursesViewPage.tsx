@@ -1,4 +1,5 @@
-import { useEffect } from 'react'
+import { useEffect, Suspense } from 'react'
+import { Await, defer, useLoaderData, useLocation } from 'react-router-dom'
 import { CoursesViewOrganism } from '../../components/organisms'
 import './CoursesViewPage.scss'
 

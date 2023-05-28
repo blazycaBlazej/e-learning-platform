@@ -46,5 +46,3 @@ export const MenuSearchbar = (): JSX.Element => {
 		</section>
 	)
 }
-
-
