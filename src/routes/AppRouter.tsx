@@ -96,7 +96,7 @@ export const router = createBrowserRouter([
 				loader: async () => {
 					const isLogin = localStorage.getItem('token')
 					if (isLogin) {
-						const response = await fetch('http://127.0.0.1:3001/getMyCourses', {
+						const response = await fetch('https://test-fb3k.onrender.com/getMyCourses', {
 							method: 'GET',
 							headers: {
 								'Content-Type': 'application/json',
@@ -105,7 +105,7 @@ export const router = createBrowserRouter([
 						})
 						const data = await response.json()
 						const dataArray = Object.values(data)
-						console.log(dataArray)
+
 						return { data: dataArray, type: 'myCourse' }
 					} else {
 						return redirect('/')
@@ -122,7 +122,7 @@ export const router = createBrowserRouter([
 				loader: async () => {
 					const isLogin = localStorage.getItem('token')
 					if (isLogin) {
-						const response = await fetch('http://127.0.0.1:3001/getWishListCourses', {
+						const response = await fetch('https://test-fb3k.onrender.com/getWishListCourses', {
 							method: 'GET',
 							headers: {
 								'Content-Type': 'application/json',
@@ -148,7 +148,7 @@ export const router = createBrowserRouter([
 				loader: async () => {
 					const isLogin = localStorage.getItem('token')
 					if (isLogin) {
-						const response = await fetch('http://127.0.0.1:3001/getInstructorCourses', {
+						const response = await fetch('https://test-fb3k.onrender.com/getInstructorCourses', {
 							method: 'GET',
 							headers: {
 								'Content-Type': 'application/json',
@@ -222,16 +222,6 @@ export const router = createBrowserRouter([
 						<CourseDetailsPage />
 					</Suspense>
 				),
-				loader: async ({ request, params }) => {
-					const response = await fetch(`http://127.0.0.1:3001/courses/${params.id}`, {
-						method: 'GET',
-						headers: {
-							'Content-type': 'application/json',
-						},
-					})
-					const data = await response.json()
-					return data
-				},
 			},
 			{
 				path: '/courses/design',

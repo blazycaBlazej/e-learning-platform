@@ -41,7 +41,7 @@ export const CoursesViewOrganism = (): JSX.Element => {
 		console.log(location.pathname)
 		if (location.pathname === '/courses') {
 			const getCourses = async () => {
-				const response = await fetch('http://127.0.0.1:3001/courses', {
+				const response = await fetch('https://test-fb3k.onrender.com/courses', {
 					method: 'GET',
 					headers: {
 						'Content-type': 'application/json',
@@ -54,7 +54,7 @@ export const CoursesViewOrganism = (): JSX.Element => {
 			getCourses()
 		} else if (location.pathname.includes('/courses/search/')) {
 			const getCourses = async () => {
-				const response = await fetch(`http://127.0.0.1:3001/courses/search/${urlArray[3]}`, {
+				const response = await fetch(`https://test-fb3k.onrender.com/courses/search/${urlArray[3]}`, {
 					method: 'GET',
 					headers: {
 						'Content-type': 'application/json',
@@ -67,7 +67,7 @@ export const CoursesViewOrganism = (): JSX.Element => {
 			getCourses()
 		} else {
 			const getCourses = async () => {
-				const response = await fetch(`http://127.0.0.1:3001/courses?category=${urlArray[2]}`, {
+				const response = await fetch(`https://test-fb3k.onrender.com/courses?category=${urlArray[2]}`, {
 					method: 'GET',
 					headers: {
 						'Content-type': 'application/json',

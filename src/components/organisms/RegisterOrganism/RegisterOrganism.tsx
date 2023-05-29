@@ -123,7 +123,7 @@ export const RegisterOrganism = (): JSX.Element => {
 			const registerUser = async () => {
 				setIsButtonClicked(false)
 				try {
-					const response = await fetch('http://127.0.0.1:3001/register', {
+					const response = await fetch('https://test-fb3k.onrender.com/register', {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',

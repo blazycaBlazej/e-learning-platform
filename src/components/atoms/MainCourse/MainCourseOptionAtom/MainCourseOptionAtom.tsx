@@ -46,7 +46,7 @@ export const MainCourseOptionAtom = ({ price, img, name, id }: MainCourseOptionA
 	const checkIsAuthor = async () => {
 		if (isLogin) {
 			try {
-				const response = await fetch('http://127.0.0.1:3001/isAuthor', {
+				const response = await fetch('https://test-fb3k.onrender.com/isAuthor', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
@@ -68,7 +68,7 @@ export const MainCourseOptionAtom = ({ price, img, name, id }: MainCourseOptionA
 		if (isLogin) {
 			setFollowIsLoading(true)
 			try {
-				const response = await fetch('http://127.0.0.1:3001/isOnWishList', {
+				const response = await fetch('https://test-fb3k.onrender.com/isOnWishList', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ export const MainCourseOptionAtom = ({ price, img, name, id }: MainCourseOptionA
 		if (isLogin) {
 			setIsLoading(true)
 			try {
-				const response = await fetch('http://127.0.0.1:3001/isBought', {
+				const response = await fetch('https://test-fb3k.onrender.com/isBought', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
@@ -116,7 +116,7 @@ export const MainCourseOptionAtom = ({ price, img, name, id }: MainCourseOptionA
 			const addFollow = async () => {
 				setFollowIsLoading(true)
 				try {
-					await fetch('http://127.0.0.1:3001/toggleWishList', {
+					await fetch('https://test-fb3k.onrender.com/toggleWishList', {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',
@@ -142,7 +142,7 @@ export const MainCourseOptionAtom = ({ price, img, name, id }: MainCourseOptionA
 			const buyCourse = async () => {
 				setIsLoading(true)
 				try {
-					await fetch('http://127.0.0.1:3001/buyCourse', {
+					await fetch('https://test-fb3k.onrender.com/buyCourse', {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',

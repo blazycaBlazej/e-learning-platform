@@ -50,6 +50,11 @@
 		gap: 3.2rem;
 	}
 
+	& &__loader {
+		margin-top: 50px;
+		text-align: center;
+	}
+
 	@media screen and(max-width: 1180px) {
 		& &__left-side {
 			max-width: 60rem;

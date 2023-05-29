@@ -19,5 +19,3 @@ export const MainCourseRequirements = ({ requirements }: MainCourseRequirementsP
 		</section>
 	)
 }
-
-

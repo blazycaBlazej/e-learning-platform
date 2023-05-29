@@ -23,7 +23,7 @@ export const CreateCourseOrganism = (): JSX.Element => {
 
 		if (name && description && requirements && category) {
 			const addCourse = async () => {
-				const response = await fetch('http://127.0.0.1:3001/addCourse', {
+				const response = await fetch('https://test-fb3k.onrender.com/addCourse', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',

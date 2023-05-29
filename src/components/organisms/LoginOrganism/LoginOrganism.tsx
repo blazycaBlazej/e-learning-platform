@@ -24,7 +24,7 @@ export const LoginOrganism = (): JSX.Element => {
 			setSent(false)
 			const sendRequest = async () => {
 				try {
-					const response = await fetch('http://127.0.0.1:3001/login', {
+					const response = await fetch('https://test-fb3k.onrender.com/login', {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',
