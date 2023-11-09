@@ -1,2 +1,2 @@
-LIVE:
-https://gentle-entremet-a102f0.netlify.app
+PREZENTACJA:
+[youtube.com/watch?v=X9-AJ-PtYRM](https://www.youtube.com/watch?v=X9-AJ-PtYRM)
